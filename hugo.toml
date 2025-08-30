@@ -34,12 +34,27 @@ disableKinds = ["taxonomy"]
     extended = false
     min = '0.146.0'
 
+# [markup.goldmark.renderer]
+#     unsafe = true
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+    [markup.goldmark.extensions]
+      [markup.goldmark.extensions.passthrough]
+        enable = true
+        [markup.goldmark.extensions.passthrough.delimiters]
+          block = [['\[', '\]'], ['$$', '$$']]
+          inline = [['\(', '\)']]
+
 [taxonomies]
   categories = ""
   tags = "tags"
 
 [params]
   me = "Krishnan B. Iyer"
+  math = true
 
 [caches]
   [caches.images]

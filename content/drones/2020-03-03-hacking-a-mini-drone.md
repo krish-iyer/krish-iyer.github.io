@@ -128,7 +128,7 @@ Once you are done, you can connect FC via USB and open the Cleanflight configura
 
 This project is very specific about the version because other versions might or might not have some functionalities also some additional support will be added in this firmware version in later phase. Other versions might not support MSP, altitude hold, etc.
 
-<img src="/assets/images/cleanflight_configurator.png" alt="Cleanflight configurator" style="width: 100%; height: auto;">
+<img src="/files/images/cleanflight_configurator.png" alt="Cleanflight configurator" style="width: 100%; height: auto;">
 
 Once you are done with flashing the firmware into the FC, you can set modes and toggle a few settings to enable MSP over one of the serial ports (UART).
 
@@ -153,6 +153,6 @@ Before proceeding, you need to add board support package for ESP8285 as follows:
 - Select port (e.g., /tty/USB0)
 - then click on Upload program
 
-<img src="/assets/images/arduino_preferences.png" alt="Arduino Preferences" style="width: 100%; height: auto;">
+<img src="/files/images/arduino_preferences.png" alt="Arduino Preferences" style="width: 100%; height: auto;">
 
-<img src="/assets/images/arduino_boardmanager.png" alt="Arduino Board Manager" style="width: 100%; height: auto;">
+<img src="/files/images/arduino_boardmanager.png" alt="Arduino Board Manager" style="width: 100%; height: auto;">

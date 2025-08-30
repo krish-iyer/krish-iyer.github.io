@@ -26,19 +26,20 @@ The median and quartiles as shown in “Fig. 1” makes the orientation independ
 
 ### Determining orientation
 After points have been identified, orientation can easily be calculated by
-$tan^-1 ( \frac{x}{y} )$. The magnitude of the angle will be calculated by the slope as shown in “Fig. 2” where as the direction(anticlockwise or clockwise)(shown in “Fig. 4”) will be given by the difference of y value respect to index value of x quartile and y median as shown in “Fig. 3”.
+
+\[ tan^-1 ( \frac{x}{y} ) \]. The magnitude of the angle will be calculated by the slope as shown in “Fig. 2” where as the direction(anticlockwise or clockwise)(shown in “Fig. 4”) will be given by the difference of y value respect to index value of x quartile and y median as shown in “Fig. 3”.
 
 <div style="display: flex; justify-content: space-around; align-items: flex-end;">
   <figure style="flex: 1; margin: 0 10px;">
-    <img src="/assets/images/object_est_fig1.png" alt="Image 1 Description" style="width: 100%;">
+    <img src="/files/images/object_est_fig1.png" alt="Image 1 Description" style="width: 100%;">
     <figcaption style="margin-top: 10px; word-wrap: break-word;">Fig. 1. Identification of Points</figcaption>
   </figure>
   <figure style="flex: 1; margin: 0 10px;">
-    <img src="/assets/images/object_est_fig2.png" alt="Image 2 Description" style="width: 100%;">
+    <img src="/files/images/object_est_fig2.png" alt="Image 2 Description" style="width: 100%;">
     <figcaption style="margin-top: 10px; word-wrap: break-word;">Fig. 2. Orientation Angle vs Time (ideal) for π/2 to − π/2 orientation</figcaption>
   </figure>
   <figure style="flex: 1; margin: 0 10px;">
-    <img src="/assets/images/object_est_fig3.png" alt="Image 3 Description" style="width: 100%;">
+    <img src="/files/images/object_est_fig3.png" alt="Image 3 Description" style="width: 100%;">
     <figcaption style="margin-top: 10px; word-wrap: break-word;">Fig. 3. Difference of y values vs Time (y value with respect to index value of x quartile and y median) (ideal) for π/2 to − π/2 orientation</figcaption>
   </figure>
 </div>
@@ -54,29 +55,29 @@ We tested this on a testbed consisting of a camera [7] [8] fixed orthogonal to t
 
 ### Identification of points
 - Separate row and column of detected feature
-- Find row($x_m$) and column($y_m$) median
-- Find a quartile with 25% in row($x_q$) and column($y_q$) array
+- Find row(\(x_m\)) and column(\(y_m\)) median
+- Find a quartile with 25% in row(\(x_q\)) and column(\(y_q\)) array
 from midpoint.
 - Find the index of the above value in row array
-- For the same index find the value in column index($y_{\text{ind}}$)
+- For the same index find the value in column index(\(y_{\text{ind}}\))
 
 ### Orientation estimation
-- Find the slope of the line segment joining $x_m$ , $y_m$ and $x_q$,$y_q$ by $tan^−1(\frac{x_m − x_q }{y_m − y_q})$
+- Find the slope of the line segment joining \(x_m\) , \(y_m\) and \(x_q\),\(y_q\) by \(tan^−1(\frac{x_m − x_q }{y_m − y_q})\)
 - For the direction(anticlockwise or clockwise) will be
-given by the difference of y value respect to index value of x quartile and y median $y_m − y_{\text{ind}}$
+given by the difference of y value respect to index value of x quartile and y median \(y_m − y_{\text{ind}}\)
 
 
 <div style="display: flex; justify-content: space-around; align-items: flex-end;">
 	<figure style="flex: 1; margin: 0 10px;">
-		<img src="/assets/images/object_est_fig4.png" alt="Image 1 Description" style="width: 100%;">
+		<img src="/files/images/object_est_fig4.png" alt="Image 1 Description" style="width: 100%;">
 		<figcaption style="margin-top: 10px; word-wrap: break-word;">Fig. 4. Direction estimated based on the difference of y points (-1 represents anticlockwise, 1 represents clockwise direction and 0 represents reference interval) (ideal) for π/2 to − π/2 orientation</figcaption>
 	</figure>
 	<figure style="flex: 1; margin: 0 10px;">
-		<img src="/assets/images/object_est_fig5.png" alt="Image 2 Description" style="width: 100%;">
+		<img src="/files/images/object_est_fig5.png" alt="Image 2 Description" style="width: 100%;">
 		<figcaption style="margin-top: 10px; word-wrap: break-word;">Fig. 5. Orientation Angle vs Time (practical) for π/2 to − π/2 orientation</figcaption>
 	</figure>
 	<figure style="flex: 1; margin: 0 10px;">
-		<img src="/assets/images/object_est_fig6.png" alt="Image 3 Description" style="width: 100%;">
+		<img src="/files/images/object_est_fig6.png" alt="Image 3 Description" style="width: 100%;">
 		<figcaption style="margin-top: 10px; word-wrap: break-word;">Fig. 6. Difference of y values (y value with respect to index value of x quartile and y median) (practical) for π/2 to − π/2 orientation</figcaption>
 	</figure>
 </div>
@@ -86,11 +87,11 @@ The orientation estimation and direction graphs are shown in “Fig. 5” and �
 
 <div style="display: flex; justify-content: space-between;">
   <figure style="flex: 1; margin: 0 10px;">
-    <img src="/assets/images/object_est_fig6.png" alt="Image 1 Description" style="max-width: 100%; height: auto;">
+    <img src="/files/images/object_est_fig6.png" alt="Image 1 Description" style="max-width: 100%; height: auto;">
     <figcaption style="margin-top: 10px;">Fig. 7. Applied Filtered on Difference of y points</figcaption>
   </figure>
   <figure style="flex: 1; margin: 0 10px;">
-    <img src="/assets/images/object_est_fig7.png" alt="Image 2 Description" style="max-width: 100%; height: auto;">
+    <img src="/files/images/object_est_fig7.png" alt="Image 2 Description" style="max-width: 100%; height: auto;">
     <figcaption style="margin-top: 10px;">Fig. 8. Direction estimated based on the difference of y points (-1 represents anticlockwise, 1 represents clockwise direction and 0 represents reference interval) (practical) for π/2 to − π/2 orientation</figcaption>
   </figure>
 </div>
