@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>hackdrones on Krishnan&#39;s blog</title>
+    <link>http://localhost:1313/drones/</link>
+    <description>Recent content in hackdrones on Krishnan&#39;s blog</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 07 May 2020 12:32:45 +0100</lastBuildDate>
+    <atom:link href="http://localhost:1313/drones/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Object Orientation Estimation Algorithm for Visual Feedback Systems</title>
+      <link>http://localhost:1313/drones/2020-05-07-orientation-estimation/</link>
+      <pubDate>Thu, 07 May 2020 12:32:45 +0100</pubDate>
+      <guid>http://localhost:1313/drones/2020-05-07-orientation-estimation/</guid>
+      <description>&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;&#xA;&lt;p&gt;Let&amp;rsquo;s try to demonstrate a simple statistical approach to find the orientation of the object. There are already existing complex solutions [4] [5] which draw a significant amount of CPU resources, making it impractical to implement in real-time systems. Especially for moving systems, a delay in the orientation could cost a large deviation(error) from the reference. One of the closest approaches is discussed by Dulio Furtado and Fulton T. Ray, Jr [1].&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Hacking a Mini Drone</title>
+      <link>http://localhost:1313/drones/2020-03-03-hacking-a-mini-drone/</link>
+      <pubDate>Tue, 03 Mar 2020 12:32:45 +0100</pubDate>
+      <guid>http://localhost:1313/drones/2020-03-03-hacking-a-mini-drone/</guid>
+      <description>&lt;h2 id=&#34;table-of-contents&#34;&gt;Table of Contents&lt;/h2&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#introduction&#34;&gt;Introduction&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#methodology&#34;&gt;Methodology&lt;/a&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#drone-control-firmware&#34;&gt;Drone Control firmware&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#sensors&#34;&gt;Sensors&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#network&#34;&gt;Network&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#formation-control&#34;&gt;Formation control&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#installation&#34;&gt;Installation&lt;/a&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#hardware&#34;&gt;Hardware&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#wifi-module---esp8285&#34;&gt;WiFi Module - ESP8285&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#flashing-circuit-for-esp8285&#34;&gt;Flashing Circuit for ESP8285&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#connection-to-fc&#34;&gt;Connection to FC&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#barometer---bmp280-and-magnetometer---qmc5883l&#34;&gt;Barometer - BMP280 and Magnetometer - QMC5883L&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#software&#34;&gt;Software&lt;/a&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#flashing-cleanflight-firmware&#34;&gt;Flashing Cleanflight Firmware&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#installing-multiwii-python-library&#34;&gt;Installing MultiWii Python Library&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#flashing-firmware-to-esp8285-using-arduino-ide&#34;&gt;Flashing firmware to ESP8285 using Arduino IDE&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;h1 id=&#34;introduction&#34;&gt;Introduction&lt;/h1&gt;&#xA;&lt;p&gt;This documentation will help you build a solid foundation for a drone network, enabling you to implement various swarm control algorithms specific to drones. This guide will cover wireless control of drones and manipulation of low-level network bindings.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

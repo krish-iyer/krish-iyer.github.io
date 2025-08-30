@@ -1,0 +1,209 @@
+@charset "utf-8";
+@import url('https://fonts.googleapis.com/css2?family=Cutive+Mono&family=Work+Sans&display=swap" rel="stylesheet"');
+
+body {
+  color: #000;
+  font-family: 'Work Sans', sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  margin: 1rem auto;
+  max-width: 768px;
+}
+
+h1 {
+  font-size: 24px;
+  margin: 22px 0;
+  font-weight: bold;
+  color: #000;
+}
+
+
+header {
+  border-bottom: 1.5px dashed #000;
+  margin-bottom: 1rem;
+  margin-top: 4rem;
+  padding-bottom: 16px;
+}
+
+footer {
+  border-top: 1.5px dashed #000;
+  margin-top: 1rem;
+  padding-top: 16px;
+  text-align: center;
+}
+
+a {
+  color: rgb(34, 34, 238);
+  text-decoration: underline;
+  /* text-underline-offset: 2px; */
+  /* text-decoration-thickness: 2px; */
+}
+
+/* a:visited { */
+/*   color: inherit; */
+/* } */
+
+a:hover,
+a:focus {
+  color: darkblue;
+  background-color: rgb(242, 242, 242);  /* light grey */
+  text-decoration-thickness: 2.5px;
+  outline: none;
+}
+/* a:hover, */
+/* a:focus { */
+/*   text-decoration-thickness: 4px; */
+/*   outline: none; */
+/* } */
+
+a:focus-visible {
+  outline: 2px solid #888;
+  outline-offset: 2px;
+}
+
+ul:not(.menu-root) {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+ul:not(.menu-root) > li {
+  padding-left: 2rem;
+  text-indent: 0;
+}
+
+ul:not(.menu-root) > li::before {
+  content: "-";
+  position: relative;
+  left: -0.5rem;
+  font-weight: bold;
+}
+
+/* static/css/site.css */
+.site-nav .menu-root { display:flex; flex-wrap:wrap; align-items:center; gap:.5rem; list-style:none; margin:0; padding:0; }
+.site-nav .menu-root > li + li::before { content:"/"; margin:0 .5rem 0 .25rem; opacity:.6; }
+/* .site-nav .menu-root a {text-decoration: underline;} */
+.site-nav .submenu { list-style:none; margin:.25rem 0 0; padding:0; }
+.site-nav .submenu > li + li { margin-top:.25rem; }
+
+
+.post-title {
+  text-align: center;
+  margin: 0;
+}
+
+.post-date {
+  display: block;
+  text-align: center;
+  margin-top: 0.5rem;
+  font-style: italic;
+  color: #000;
+  font-size: 14px;
+}
+
+/**
+ * Code and syntax highlighting
+ */
+pre { background-color: #f3f3f3;
+      border: none;
+      padding: 1em;
+      overflow:auto;
+      font-size: 12px;
+      color: rgba(0, 0, 0, 0.95);
+      font-family: 'Cutive Mono', monospace;
+      line-height: 1.7 !important;}
+.selected-text{
+  background:#fff;
+  color :#000;
+}
+.highlight .c { color: #999988; font-style: italic } /* Comment */
+.highlight .err { color: #a61717; background-color: #e3d2d2 } /* Error */
+.highlight .k { font-weight: bold } /* Keyword */
+.highlight .o { font-weight: bold } /* Operator */
+.highlight .cm { color: #999988; font-style: italic } /* Comment.Multiline */
+.highlight .cp { color: #999999; font-weight: bold } /* Comment.Preproc */
+.highlight .c1 { color: #999988; font-style: italic } /* Comment.Single */
+.highlight .cs { color: #999999; font-weight: bold; font-style: italic } /* Comment.Special */
+.highlight .gd { color: #000000; background-color: #ffdddd } /* Generic.Deleted */
+.highlight .gd .x { color: #000000; background-color: #ffaaaa } /* Generic.Deleted.Specific */
+.highlight .ge { font-style: italic } /* Generic.Emph */
+.highlight .gr { color: #aa0000 } /* Generic.Error */
+.highlight .gh { color: #999999 } /* Generic.Heading */
+.highlight .gi { color: #000000; background-color: #ddffdd } /* Generic.Inserted */
+.highlight .gi .x { color: #000000; background-color: #aaffaa } /* Generic.Inserted.Specific */
+.highlight .go { color: #888888 } /* Generic.Output */
+.highlight .gp { color: #555555 } /* Generic.Prompt */
+.highlight .gs { font-weight: bold } /* Generic.Strong */
+.highlight .gu { color: #aaaaaa } /* Generic.Subheading */
+.highlight .gt { color: #aa0000 } /* Generic.Traceback */
+.highlight .kc { font-weight: bold } /* Keyword.Constant */
+.highlight .kd { font-weight: bold } /* Keyword.Declaration */
+.highlight .kp { font-weight: bold } /* Keyword.Pseudo */
+.highlight .kr { font-weight: bold } /* Keyword.Reserved */
+.highlight .kt { color: #445588; font-weight: bold } /* Keyword.Type */
+.highlight .m { color: #009999 } /* Literal.Number */
+.highlight .s { color: #d14 } /* Literal.String */
+.highlight .na { color: #008080 } /* Name.Attribute */
+.highlight .nb { color: #0086B3 } /* Name.Builtin */
+.highlight .nc { color: #445588; font-weight: bold } /* Name.Class */
+.highlight .no { color: #008080 } /* Name.Constant */
+.highlight .ni { color: #800080 } /* Name.Entity */
+.highlight .ne { color: #000000; font-weight: bold } /* Name.Exception */
+.highlight .nf { color: #000000; font-weight: bold } /* Name.Function */
+.highlight .nn { color: #555555 } /* Name.Namespace */
+.highlight .nt { color: #000080 } /* Name.Tag */
+.highlight .nv { color: #008080 } /* Name.Variable */
+.highlight .ow { font-weight: bold } /* Operator.Word */
+.highlight .w { color: #bbbbbb } /* Text.Whitespace */
+.highlight .mf { color: #009999 } /* Literal.Number.Float */
+.highlight .mh { color: #009999 } /* Literal.Number.Hex */
+.highlight .mi { color: #009999 } /* Literal.Number.Integer */
+.highlight .mo { color: #009999 } /* Literal.Number.Oct */
+.highlight .sb { color: #d14 } /* Literal.String.Backtick */
+.highlight .sc { color: #d14 } /* Literal.String.Char */
+.highlight .sd { color: #d14 } /* Literal.String.Doc */
+.highlight .s2 { color: #d14 } /* Literal.String.Double */
+.highlight .se { color: #d14 } /* Literal.String.Escape */
+.highlight .sh { color: #d14 } /* Literal.String.Heredoc */
+.highlight .si { color: #d14 } /* Literal.String.Interpol */
+.highlight .sx { color: #d14 } /* Literal.String.Other */
+.highlight .sr { color: #009926 } /* Literal.String.Regex */
+.highlight .s1 { color: #d14 } /* Literal.String.Single */
+.highlight .ss { color: #990073 } /* Literal.String.Symbol */
+.highlight .bp { color: #999999 } /* Name.Builtin.Pseudo */
+.highlight .vc { color: #008080 } /* Name.Variable.Class */
+.highlight .vg { color: #008080 } /* Name.Variable.Global */
+.highlight .vi { color: #008080 } /* Name.Variable.Instance */
+.highlight .il { color: #009999 } /* Literal.Number.Integer.Long */
+
+/* Publication */
+
+.pub-list {
+  list-style: none;
+  padding: 0;
+}
+
+.pub-item {
+  margin-bottom: 1rem;
+}
+
+.pub-title {
+  font-weight: bold;
+}
+
+.pub-venue {
+  font-style: italic;
+  color: #000;
+  padding-left: 1rem;
+}
+
+.pub-authors {
+  color: #000;
+  padding-left: 1rem;
+}
+
+.pub-authors strong {
+  color: #000;
+  font-weight: bold;
+  text-decoration: underline; /* your name stands out */
+}

@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>Hacking a Mini Drone | Krishnan&#39;s blog</title>
+
+    <link rel="stylesheet" href="/css/main.css">
+
+
+      <script src="/js/main.js"></script>
+
+
+</head>
+<body>
+  <header>
+    
+  <nav class="site-nav">
+    <ul class="menu-root">
+    <li>
+      <a href="/">Home</a>
+    </li>
+    <li>
+      <a href="/publications/">Publications</a>
+    </li>
+    <li>
+      <a href="/files/resume.pdf">CV</a>
+    </li>
+    <li>
+      <a href="/about/">About</a>
+    </li>
+    <li>
+      <a href="/contact/">Contact</a>
+    </li>
+    </ul>
+  </nav>
+
+
+  </header>
+  <main>
+    
+    <h1 class="post-title">Hacking a Mini Drone</h1>
+
+    
+    
+    <time class="post-date" datetime="2020-03-03T12:32:45&#43;01:00"><em>March 3, 2020</em></time>
+
+  <div class="post-content">
+    <h2 id="table-of-contents">Table of Contents</h2>
+<ol>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#methodology">Methodology</a>
+<ol>
+<li><a href="#drone-control-firmware">Drone Control firmware</a></li>
+<li><a href="#sensors">Sensors</a></li>
+<li><a href="#network">Network</a></li>
+<li><a href="#formation-control">Formation control</a></li>
+</ol>
+</li>
+<li><a href="#installation">Installation</a>
+<ol>
+<li><a href="#hardware">Hardware</a></li>
+<li><a href="#wifi-module---esp8285">WiFi Module - ESP8285</a></li>
+<li><a href="#flashing-circuit-for-esp8285">Flashing Circuit for ESP8285</a></li>
+<li><a href="#connection-to-fc">Connection to FC</a></li>
+<li><a href="#barometer---bmp280-and-magnetometer---qmc5883l">Barometer - BMP280 and Magnetometer - QMC5883L</a></li>
+</ol>
+</li>
+<li><a href="#software">Software</a>
+<ol>
+<li><a href="#flashing-cleanflight-firmware">Flashing Cleanflight Firmware</a></li>
+<li><a href="#installing-multiwii-python-library">Installing MultiWii Python Library</a></li>
+<li><a href="#flashing-firmware-to-esp8285-using-arduino-ide">Flashing firmware to ESP8285 using Arduino IDE</a></li>
+</ol>
+</li>
+</ol>
+<h1 id="introduction">Introduction</h1>
+<p>This documentation will help you build a solid foundation for a drone network, enabling you to implement various swarm control algorithms specific to drones. This guide will cover wireless control of drones and manipulation of low-level network bindings.</p>
+<p>For testing and demonstration, I will be using a FC (flight controller) supported by Cleanflight configurator, which simplifies the control part. The idea is to first set up a standard drone in a flight-ready state and then gradually introduce custom code. For example, there&rsquo;s a detailed tutorial on how to <a href="https://www.instructables.com/id/Build-a-WiFi-Enabled-Micro-quadrotor/">fly a drone using an Android app</a>.</p>
+<p>If you missed the link above, I can provide you with some details here. The controller used is SPRACINGF3EVO, and it&rsquo;s important to note that we&rsquo;ll be focusing on brushed motor controllers rather than brushless motors. Brushless motors require ESCs (Electronic Speed Controllers) and larger batteries for safety and stability, whereas brushed controllers are simpler. However, the methodologies discussed in this documentation apply to both brushed and brushless controllers.</p>
+<p>Once you have the FC board in hand, you&rsquo;ll need to flash it with a program capable of handling control signals for motor driving and various sensor values like accelerometer and gyro. If you lack prior knowledge in flight control algorithms and ARM M series MCUs, Cleanflight offers a straightforward solution to get your drone airborne with just a few clicks.</p>
+<p>Details regarding the WiFi module will be covered in upcoming posts. Once we have set up the WiFi, we can control the drone using any device capable of sending signals over WiFi, whether it&rsquo;s an Android phone or a PC.</p>
+<p><strong>Hardware Specification</strong></p>
+<ul>
+<li>FC (flight controller) - <strong>SPRACINGF3EVO</strong></li>
+<li>WiFi module - <strong>ESP8285</strong> or <strong>ESP8266</strong></li>
+<li>Barometer - <strong>BMP280</strong></li>
+<li>Magnetometer - <strong>QMC5883L</strong></li>
+</ul>
+<h1 id="methodology">Methodology</h1>
+<h2 id="drone-control-firmware">Drone Control firmware</h2>
+<p>The drone will be flashed with Cleanflight firmware, which includes added support for barometer (BMP280) and magnetometer (QMC5883L). The firmware flashing process can be done using the Cleanflight configurator Chrome extension. The installation process for everything related to the project will be discussed in detail in a separate post.</p>
+<h2 id="sensors">Sensors</h2>
+<p>Since the drone (SPRACINGF3EVO brushed) doesn&rsquo;t have onboard support for barometer and magnetometer by default, additional support for barometer (BMP280) and magnetometer (QMC5883L) needs to be added to enable assisted control over altitude and position.</p>
+<h2 id="network">Network</h2>
+<p>The goal is to control multiple drones over a wireless network (WiFi). To provide wireless network support to the drones and enable communication with the Ground Control Station (GCS), we will connect an ESP8285 WiFi module with custom firmware to each drone. Each module will receive commands or requests, which will then be communicated to the drone over MSP (MultiWii Serial Protocol). The packets received will be encoded according to the MSP Protocol, so each WiFi module will read and write these packets serially to the drone.</p>
+<h2 id="formation-control">Formation control</h2>
+<p>To control the position and altitude of each drone, we need to distinguish each drone individually and track its object and IP address to ensure the correct control commands are sent to each drone.</p>
+<p>Each drone will be made distinctive with a different color, and for object tracking, OpenCV will be used where each color will be mapped to the corresponding IP address of the drone.</p>
+<h1 id="installation">Installation</h1>
+<h2 id="hardware">Hardware</h2>
+<h3 id="wifi-module---esp8285">WiFi Module - ESP8285</h3>
+<h4 id="flashing-circuit-for-esp8285">Flashing Circuit for ESP8285</h4>
+<p>For flashing firmware into ESP8285, <a href="https://www.amazon.in/FT232Rl-Serial-Converter-Adapter-Arduino/dp/B07H1X2BLQ/ref=asc_df_B07H1X2BLQ/?tag=googleshopdes-21&amp;linkCode=df0&amp;hvadid=397001131891&amp;hvpos=&amp;hvnetw=g&amp;hvrand=2465740708075116030&amp;hvpone=&amp;hvptwo=&amp;hvqmt=&amp;hvdev=c&amp;hvdvcmdl=&amp;hvlocint=&amp;hvlocphy=20461&amp;hvtargid=pla-836112039242&amp;psc=1&amp;ext_vrnc=hi">FTDI(USB -&gt; Serial)</a> chip is preferred, but you can also use Arduino Uno or Mega as a programmer. Connections for FTDI with ESP8285 are as follows:</p>
+<table>
+  <thead>
+      <tr>
+          <th>FTDI</th>
+          <th>ESP8285</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>VCC (3.3v)</td>
+          <td>EN, VCC</td>
+      </tr>
+      <tr>
+          <td>TX3</td>
+          <td>RX</td>
+      </tr>
+      <tr>
+          <td>RX3</td>
+          <td>TX</td>
+      </tr>
+      <tr>
+          <td>GND</td>
+          <td>GND, GPIO</td>
+      </tr>
+  </tbody>
+</table>
+<p>Basically, grounding GPIO will take ESP8285 into the boot mode in which you can flash programs, applicable for all ESP modules.</p>
+<h4 id="connection-to-fc">Connection to FC</h4>
+<p>WiFi module will communicate with the drone on UART3. Hence, solder RX, TX, VCC (3.3V), and GND. The corresponding port will be enabled in the Cleanflight configurator.</p>
+<table>
+  <thead>
+      <tr>
+          <th>FC</th>
+          <th>ESP8285</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>VCC (3.3v)</td>
+          <td>EN, VCC</td>
+      </tr>
+      <tr>
+          <td>TX3</td>
+          <td>RX</td>
+      </tr>
+      <tr>
+          <td>RX3</td>
+          <td>TX</td>
+      </tr>
+      <tr>
+          <td>GND</td>
+          <td>GND</td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="barometer---bmp280-and-magnetometer---qmc5883l">Barometer - BMP280 and Magnetometer - QMC5883L</h3>
+<p>BMP280 and QMC5883L will communicate with FC over an I2C bus (I2C2), whose pins are mapped over UART1 (PA9: SCL; PA10: SDA). The corresponding changes would be made in firmware. The connections are as follows:</p>
+<table>
+  <thead>
+      <tr>
+          <th>FC</th>
+          <th>BMP280</th>
+          <th>QMC5883L</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>VCC (3.3v)</td>
+          <td>VCC</td>
+          <td>VCC</td>
+      </tr>
+      <tr>
+          <td>SCL2 (TX1)</td>
+          <td>SCL</td>
+          <td>SCL</td>
+      </tr>
+      <tr>
+          <td>SDA2 (RX1)</td>
+          <td>SDA</td>
+          <td>SDA</td>
+      </tr>
+      <tr>
+          <td>GND</td>
+          <td>GND</td>
+          <td>GND</td>
+      </tr>
+  </tbody>
+</table>
+<h2 id="software">Software</h2>
+<h3 id="flashing-cleanflight-firmware">Flashing Cleanflight Firmware</h3>
+<p>Cleanflight firmware is easy to get started with if you don&rsquo;t want to write control algorithms and HAL drivers for the board all by yourself. To flash Cleanflight firmware, you need to install <a href="https://chrome.google.com/webstore/detail/cleanflight-configurator/enacoimjcgeinfnnnpajinjgmkahmfgb">Cleanflight configurator chrome extension</a>.</p>
+<p>Make sure you have <a href="https://www.st.com/en/development-tools/stsw-stm32102.html">STM32 Virtual COM Port Drivers</a> installed. These drivers will help you detect and flash programs into the controller.</p>
+<p><strong>Note:</strong> Debian or Linux users have to execute the following additional commands for flashing the firmware:</p>
+<pre tabindex="0"><code>$ sudo systemctl stop ModemManager.service
+$ echo &#39;SUBSYSTEM==&#34;usb&#34;, ATTRS{idVendor}==&#34;0483&#34;, ATTRS{idProduct}==&#34;df11&#34;, MODE=&#34;0664&#34;, GROUP=&#34;plugdev&#34;&#39; | sudo tee /etc/udev/rules.d/45-stdfu-permissions.rules &gt; /dev/null
+</code></pre><p>Once you are done, you can connect FC via USB and open the Cleanflight configurator and follow the below mentioned steps:</p>
+<ul>
+<li><strong>Choose Board</strong> as <strong>SPRACINGF3EVO</strong></li>
+<li><strong>Choose Firmware version for SPRACINGF3EVO</strong> as <strong>CLFL_v2.2.0</strong></li>
+<li>Enable <strong>Full chip erase</strong></li>
+<li>Click on <strong>Load Firmware(Online)</strong></li>
+<li>Click on <strong>Flash Firmware</strong> after it gets loaded</li>
+</ul>
+<p>This project is very specific about the version because other versions might or might not have some functionalities also some additional support will be added in this firmware version in later phase. Other versions might not support MSP, altitude hold, etc.</p>
+<!-- raw HTML omitted -->
+<p>Once you are done with flashing the firmware into the FC, you can set modes and toggle a few settings to enable MSP over one of the serial ports (UART).</p>
+<h3 id="installing-multiwii-python-library">Installing MultiWii Python Library</h3>
+<p>To install MultiWii python Library, follow the below given steps:</p>
+<pre tabindex="0"><code>$ git clone https://github.com/krish-iyer/hackdrones
+$ cd hackdrones/src/GCS/
+$ pip3 install .
+</code></pre><h3 id="flashing-firmware-to-esp8285-using-arduino-ide">Flashing firmware to ESP8285 using Arduino IDE</h3>
+<p>Before proceeding, you need to add board support package for ESP8285 as follows:</p>
+<ul>
+<li>Add <em><a href="http://arduino.esp8266.com/stable/package_esp8266com_index.json">http://arduino.esp8266.com/stable/package_esp8266com_index.json</a></em> in File &gt; Preferences</li>
+<li>Now go to Tools &gt; Board &gt; Board Manager</li>
+<li>Install <em>ESP8266</em> package</li>
+<li>After connecting FDTI module with ESP8285, select board as <strong>Generic ESP8285 Module</strong></li>
+<li>Select port (e.g., /tty/USB0)</li>
+<li>then click on Upload program</li>
+</ul>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+
+  </div>
+
+  
+
+
+  </main>
+  <footer>
+    <p>Copyright 2025. All rights reserved.</p>
+
+  </footer>
+</body>
+</html>

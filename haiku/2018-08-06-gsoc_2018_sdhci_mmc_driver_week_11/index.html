@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>Week #11 | Krishnan&#39;s blog</title>
+
+    <link rel="stylesheet" href="/css/main.css">
+
+
+      <script src="/js/main.js"></script>
+
+
+</head>
+<body>
+  <header>
+    
+  <nav class="site-nav">
+    <ul class="menu-root">
+    <li>
+      <a href="/">Home</a>
+    </li>
+    <li>
+      <a href="/publications/">Publications</a>
+    </li>
+    <li>
+      <a href="/files/resume.pdf">CV</a>
+    </li>
+    <li>
+      <a href="/about/">About</a>
+    </li>
+    <li>
+      <a href="/contact/">Contact</a>
+    </li>
+    </ul>
+  </nav>
+
+
+  </header>
+  <main>
+    
+    <h1 class="post-title">Week #11</h1>
+
+    
+    
+    <time class="post-date" datetime="2018-08-06T21:24:03&#43;05:30"><em>August 6, 2018</em></time>
+
+  <div class="post-content">
+    <p>Hello everyone, We are in the final week of GSoC'18 program and yesterday our <a href="https://git.haiku-os.org/haiku/commit/?id=25b6a6f19b13680a759cffecebf60d0b7e76d3d3">code</a> has successfully <a href="https://review.haiku-os.org/#/c/haiku/+/318/">merged</a>. It got crashed in the first build because we thought we would add the code but disable the build currently but we didn&rsquo;t test the case when device manager will try to find the driver in a certain directory which we <a href="https://github.com/krish-iyer/haiku/blob/sdhci_mmc_driver/src/system/kernel/device_manager/device_manager.cpp#L1899">hardcoded</a> at the time of loading the module. So we just changed it to an OR condition where it won&rsquo;t be able to find the driver binary but still be able to boot the OS in any case.</p>
+<p>I would like to elaborate where exactly the project is stuck now. In <a href="https://www.sdcard.org/downloads/pls/pdf/index.php?p=Part1_Physical_Layer_Simplified_Specification_Ver1.10.jpg&amp;f=Part1_Physical_Layer_Simplified_Specification_Ver1.10.pdf&amp;e=EN_P1110">Physical Layer spec version 1.10</a>  pg 97 and section 7.2 has a flow chart which clearly specifies the to issue the command and read the OCR value from which will be able to estimate the exact supported voltage value. So for the start, we need to issue
+CMD0 which will reset the card. In pg 54 and section 4.7.4, they mentioned the command which is as follows.</p>
+<table>
+  <thead>
+      <tr>
+          <th>CMD Index</th>
+          <th style="text-align: center">SPI Mode</th>
+          <th style="text-align: right">Argument</th>
+          <th>Resp</th>
+          <th style="text-align: center">Abbreviation</th>
+          <th style="text-align: right">Command Desp</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>CMD0</td>
+          <td style="text-align: center">yes</td>
+          <td style="text-align: right">none</td>
+          <td>R1</td>
+          <td style="text-align: center">GO_IDLE_STATE</td>
+          <td style="text-align: right">resets the SD card</td>
+      </tr>
+  </tbody>
+</table>
+<p>So for this I did following things:</p>
+<pre><code>// As  mentioned in command register desciption in [SD host spec ver 1.00
+command = SDHCI_RESPONSE_R1 | SDHCI_CMD_CRC_EN  | SDHCI_CMD_INDEX_EN | SDHCI_CMD_0;
+</code></pre>
+<p>But no response came up. Timeout error indicates that there should be some clocking issue. But I think 400kHZ is the ideal clock at which card should respond. For that again we read base clock value from the capabilities register and divided with the factor so that we get a value nearest to 400kHZ.</p>
+<p>For this week I will be writing documentation and submitting the final evaluation. Feel free to review the code and share your views regarding the project :).</p>
+
+  </div>
+
+  
+
+
+  </main>
+  <footer>
+    <p>Copyright 2025. All rights reserved.</p>
+
+  </footer>
+</body>
+</html>

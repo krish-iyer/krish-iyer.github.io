@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>Third Phase Outline | Krishnan&#39;s blog</title>
+
+    <link rel="stylesheet" href="/css/main.css">
+
+
+      <script src="/js/main.js"></script>
+
+
+</head>
+<body>
+  <header>
+    
+  <nav class="site-nav">
+    <ul class="menu-root">
+    <li>
+      <a href="/">Home</a>
+    </li>
+    <li>
+      <a href="/publications/">Publications</a>
+    </li>
+    <li>
+      <a href="/files/resume.pdf">CV</a>
+    </li>
+    <li>
+      <a href="/about/">About</a>
+    </li>
+    <li>
+      <a href="/contact/">Contact</a>
+    </li>
+    </ul>
+  </nav>
+
+
+  </header>
+  <main>
+    
+    <h1 class="post-title">Third Phase Outline</h1>
+
+    
+    
+    <time class="post-date" datetime="2018-07-12T10:52:58&#43;05:30"><em>July 12, 2018</em></time>
+
+  <div class="post-content">
+    <p>So here we are in the final week of the second phase of this project. I would like to address what was planned for this phase and what we have achieved and will proceed to plan for the third phase.</p>
+<h2 id="second-phase-highlights">Second Phase Highlights</h2>
+<ul>
+<li>We were successful in register mapping through MMUIO.</li>
+<li>We have created a bus manager but not linked with controller ATM.</li>
+<li>Interrupts have not been implemented but also not required in this phase.</li>
+<li>Separating controller(device) and MMC bus(child device) but in a single module is still needed to be done.</li>
+<li>mmc_disk being running multiple times is fixed now.</li>
+</ul>
+<h2 id="plan-for-the-third-phase">Plan for the Third Phase</h2>
+<p>I have already addressed the issue of reading OCR value in my most recent blog post. The issue was, even after setting up the command register we were not able to get the response from response register after reset. When we enabled timout error status, it automatically turned the error bit to 1 and which says that it failed to get any response in 64 cycles of SDCLK. It will the foremost task
+and will be reading the response of commands. To proceed further in sequences it&rsquo;s necessary that we should get the responses of the commands.</p>
+<h3 id="sequences">Sequences</h3>
+<h4 id="bus-power-control-sequence">Bus Power Control sequence</h4>
+<p>Currently working on to get the OCR response. For this, we need to go through modes like SD and SPI also asserting CS signal i.e host to card chip select signal which is already been set in transfer mode register.</p>
+<p>SD memory card SPI channel consists of four signals</p>
+<ol>
+<li>CS: host to card chip select signal</li>
+<li>CLK: host to card clock signal</li>
+<li>DataIn: Host to card data signal</li>
+<li>DataOut: card to host data signal</li>
+</ol>
+<p>This will also take us into distinguishing between SD memory card and MultiMedia card, that can be done with CMD1 and ACMD41(command is CMD5) as mentioned in <a href="https://www.sdcard.org/downloads/pls/pdf/index.php?p=PartE1_SDIO_Simplified_Specification_Ver1.00.jpg&amp;f=PartE1_SDIO_Simplified_Specification_Ver1.00.pdf&amp;e=EN_E1100">SDIO spec</a>. Also qemu is by default getting a response which I was not able to produce(after reset). Currently, we are facing response timeout error which is set for 64 SDCLK cycles. For this, we will be executing Timeout Setting on DAT Line sequence. DAT bus Line is actually the physicall data line on which data is being transfered, turning it low and high determines the start bits and end bits respectively. The payload for block oriented data transfer is protected by 1 or 4 bits CRC check sum.</p>
+<h4 id="changing-bus-width">Changing Bus Width</h4>
+<p>Again reading the response is a must for proceeding for this sequence. Distinguishing between SD memory card and the MultiMedia card is also a key element in this sequence.</p>
+<h4 id="sd-transaction-generation">SD Transaction Generation</h4>
+<p>To proceed further we should be through with <a href="https://www.sdcard.org/downloads/pls/click.php?p=Part1_Physical_Layer_Simplified_Specification_Ver1.01.jpg&amp;f=Part1_Physical_Layer_Simplified_Specification_Ver1.01.pdf&amp;e=EN_P1101">SD memory card spec</a> and <a href="https://www.sdcard.org/downloads/pls/pdf/index.php?p=PartE1_SDIO_Simplified_Specification_Ver1.00.jpg&amp;f=PartE1_SDIO_Simplified_Specification_Ver1.00.pdf&amp;e=EN_E1100">SDIO spec</a>. This will be basically implemented in mmc_disk or we can say that the job of data transfer will be managed by MMC disk driver. For now, virtio disk driver is using IOScheduler and DMA resource class(device_manager/..) I am not sure that how much of that we can use of how similar DMA transfer and Polling is similar to SD transaction.</p>
+<h5 id="transaction-control-without-data-transfer-using-dat-line">Transaction Control without Data Transfer Using DAT Line</h5>
+<ul>
+<li><strong>Sequence for the issue of SD command</strong></li>
+<li><strong>Sequence for complete command</strong></li>
+</ul>
+<h5 id="transaction-with-data-transfer-using-dat-line">Transaction with Data Transfer Using DAT Line</h5>
+<p>SD transfers are classified into three kinds</p>
+<ol>
+<li>Single Block Transfer</li>
+<li>Multiple Block Transfer</li>
+<li>Infinite Block Transfer</li>
+</ol>
+<p>There are implemented by two different methods</p>
+<ul>
+<li><strong>Not using DMA</strong></li>
+<li><strong>Using DMA</strong></li>
+</ul>
+<p>That &rsquo;ll be all the milestones which will be implemented in the third phase, hopefully :). The driver will be favorable to SD memory card rather MultiMedia card. MultiMedia support can be added later.I think the only big obstacle, we need pass through is reading the response for a particular command. Rest all things and implementation of sequences will go smooth. It is going to be a big challenge to implement these
+within 3 weeks of time but still if some delay comes up then I would like to extend the internship period and at least complete third phase plan.</p>
+<p>Thanks for reading :)</p>
+
+  </div>
+
+  
+
+
+  </main>
+  <footer>
+    <p>Copyright 2025. All rights reserved.</p>
+
+  </footer>
+</body>
+</html>

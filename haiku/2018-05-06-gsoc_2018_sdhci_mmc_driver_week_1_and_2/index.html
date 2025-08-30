@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>Week #1 and #2 | Krishnan&#39;s blog</title>
+
+    <link rel="stylesheet" href="/css/main.css">
+
+
+      <script src="/js/main.js"></script>
+
+
+</head>
+<body>
+  <header>
+    
+  <nav class="site-nav">
+    <ul class="menu-root">
+    <li>
+      <a href="/">Home</a>
+    </li>
+    <li>
+      <a href="/publications/">Publications</a>
+    </li>
+    <li>
+      <a href="/files/resume.pdf">CV</a>
+    </li>
+    <li>
+      <a href="/about/">About</a>
+    </li>
+    <li>
+      <a href="/contact/">Contact</a>
+    </li>
+    </ul>
+  </nav>
+
+
+  </header>
+  <main>
+    
+    <h1 class="post-title">Week #1 and #2</h1>
+
+    
+    
+    <time class="post-date" datetime="2018-05-06T17:58:47&#43;05:30"><em>May 6, 2018</em></time>
+
+  <div class="post-content">
+    <p>Hey folks! here&rsquo;s the updates of past two weeks on the project!</p>
+<p>I have cloned the latest haiku source and built the image file. With the generated image file I have emulated sdhci-pci device successfully. Following are the instructions to be followed:</p>
+<h2 id="cloning-the-source-code">Cloning the source code</h2>
+<pre><code>git clone https://github.com/haiku/haiku.git
+git clone https://github.com/haiku/buildtools.git
+</code></pre>
+<h2 id="compiling-source-code">Compiling Source Code</h2>
+<p>Create a directory where you are going to save the build image and related files</p>
+<pre><code>mkdir generated.x86_64; cd generated.x86_64
+</code></pre>
+<p>For compiling</p>
+<pre><code>../configure --build-cross-tools x86_64 ../../buildtools
+</code></pre>
+<h2 id="building-image">Building Image</h2>
+<p>Before building the image you need to install some dependencies</p>
+<pre><code>sudo apt-get install git nasm autoconf automake texinfo flex bison gawk build-essential unzip wget zip less zlib1g-dev libcurl4-openssl-dev genisoimage libtool
+</code></pre>
+<p>For creating nightly anyboot Haiku iso image</p>
+<pre><code>jam -q -j2 @nightly-anyboot
+</code></pre>
+<h2 id="error-while-building">Error! while building</h2>
+<p>Now if you getting an error while building, specifically about haiku revision. Then,</p>
+<pre><code>cd haiku/build/jam
+cat UserBuildConfig
+</code></pre>
+<p>Now copy hrexxxxx, and change directory to haiku/generated.x86_64/build</p>
+<pre><code>cd haiku/generated.x86_64/build
+</code></pre>
+<p>Then create and write into the file</p>
+<pre><code>echo -n &quot;hrevxxxxx&quot; &gt; haiku-revision
+</code></pre>
+<p>After the building and emulation of the device, I have started finding out the device on the PCI bus so that I can add functionalities for data transfer and many more.</p>
+<h2 id="emulation-with-qemu">Emulation with Qemu</h2>
+<h3 id="installing-qemu">Installing Qemu</h3>
+<pre><code>apt-get install qemu
+</code></pre>
+<h3 id="boot-os-in-virtual-drive">Boot OS in Virtual Drive</h3>
+<p>First of all create a virtual harddrive in which you are going to boot the OS</p>
+<pre><code>qemu-img create haiku-vm.img 10G
+</code></pre>
+<p>Now boot the OS in virtual drive</p>
+<pre><code>sudo qemu-system-x86_64 -boot d -cdrom haiku/generated.x86_64/haiku-nightly-anyboot.iso -m 512 -hda haiku-vm.img
+</code></pre>
+<p>Now you can simply run the virtual drive</p>
+<pre><code>sudo qemu-system-x86_64 haiku-vm.img
+</code></pre>
+<h3 id="emulation">Emulation</h3>
+<p>For emulation a sdhci-pci device</p>
+<pre><code>qemu-img create sd-card.img 10G
+qemu-system-x86_64 haiku-vm.img  -drive if=sd,index=0,file=sd-card.img,id=mydrive -device sdhci-pci 
+</code></pre>
+<h2 id="creating-device-driver">Creating Device Driver</h2>
+<p>I have referred device manager doc as it mentions following things:</p>
+<ul>
+<li>The object device_node describes the functionality and also specification of the device
+device_node has modules and attributes. The node must have a module and other components are optional.</li>
+<li>When the system starts only a root node gets registered. The root node has hardware bus like PCI.
+root node( PCI bus)-&gt; parent node(devices on PCI bus)-&gt; child node(specific to device and attach functionalities specific to device)</li>
+<li>Whenever a device is attached to PCI bus, it registers a child node for each device on the bus
+For exploring the hardware in the computer, the system has device drivers.</li>
+<li>Now according to the system commands, the system will scan for the driver that provides that functionality.</li>
+</ul>
+<h3 id="apis-implemented-so-far">APIs implemented so far:</h3>
+<ul>
+<li>supports_device(): It actually checks if the device belongs to PCI bus and filter out for sdhci-pci device out of all the devices on the pci bus.</li>
+<li>init_device(): it creates a private data structure(device_cookie) for uninit_driver(), register_child_devices(), rescan_child_devices(), device_removed(), suspend() and resume().</li>
+</ul>
+<h3 id="to-make-the-driver-module-loadable">To make the driver module loadable:</h3>
+<ul>
+<li>
+<p>Module name must end with driver_v1(SDHCI_PCI_DEVICE_MODULE_NAME &ldquo;busses/mmc/sdhci_pci/driver/v1&rdquo;)</p>
+</li>
+<li>
+<p>Declaring module dependancy array(module_dependency module_dependencies[] = { { B_DEVICE_MANAGER_MODULE_NAME, (module_info**)&amp;gDeviceManager }, {}};)</p>
+</li>
+<li>
+<p>Declaring structure for driver module info</p>
+</li>
+</ul>
+<h2 id="loading-the-module">Loading the module</h2>
+<pre><code>jam -q sdhci_pci
+</code></pre>
+<p>will create a binary in</p>
+<pre><code>generated.x86_64/objects/haiku/x86_64/release/add-ons/kernel/busses/sdhci
+</code></pre>
+<p>You have to place it in</p>
+<pre><code>config/non-packaged/add-ons/kernel/busses/mmc 
+</code></pre>
+<p>After rebooting you can check debug messages in</p>
+<pre><code>cat /var/log/syslog | grep sdhci_pci
+</code></pre>
+<p>Now I am working on finding out number of slots and registering them as child devices with their base adresses.<br>
+I have been updating the code on my remote github repo[1] almost everyday, feel free to review it :). Thanks!</p>
+<ul>
+<li><a href="https://github.com/krish-iyer/haiku/tree/sdhci_mmc_driver">https://github.com/krish-iyer/haiku/tree/sdhci_mmc_driver</a></li>
+</ul>
+
+  </div>
+
+  
+
+
+  </main>
+  <footer>
+    <p>Copyright 2025. All rights reserved.</p>
+
+  </footer>
+</body>
+</html>

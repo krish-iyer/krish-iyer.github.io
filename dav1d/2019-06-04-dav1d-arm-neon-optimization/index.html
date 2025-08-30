@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>SIMD in ARM | Krishnan&#39;s blog</title>
+
+    <link rel="stylesheet" href="/css/main.css">
+
+
+      <script src="/js/main.js"></script>
+
+
+</head>
+<body>
+  <header>
+    
+  <nav class="site-nav">
+    <ul class="menu-root">
+    <li>
+      <a href="/">Home</a>
+    </li>
+    <li>
+      <a href="/publications/">Publications</a>
+    </li>
+    <li>
+      <a href="/files/resume.pdf">CV</a>
+    </li>
+    <li>
+      <a href="/about/">About</a>
+    </li>
+    <li>
+      <a href="/contact/">Contact</a>
+    </li>
+    </ul>
+  </nav>
+
+
+  </header>
+  <main>
+    
+    <h1 class="post-title">SIMD in ARM</h1>
+
+    
+    
+    <time class="post-date" datetime="2019-06-08T12:32:45&#43;01:00"><em>June 8, 2019</em></time>
+
+  <div class="post-content">
+    <p>So now let&rsquo;s talk about the project I am working on but before further proceedings let me remind about the tutorial to <a href="https://thinkingeek.com/arm-assembler-raspberry-pi/">refer</a> to, if you have understood those or already know about ARM assembly then we are on the same page.</p>
+<p>My project is &ldquo;dav1d ARM NEON optimization&rdquo; and, I have applied under GSoC'19 program and the project is initiated and maintained by VideoLAN and FFmpeg. So dav1d is an av1 decoder which like any other decoder aspires to be fast and efficient. It is available for x86, x64, ARMv7, ARMv8 architectures, my project deals with ARM arch specifically ARMv7-a. So to make code exec efficient and fast we need to cut-off in between generalised high-level language compiler and directly talk with assembly lang to the processor(communication with a native language on a country land will always be a fine interpretation to that of foriegn language). It makes code development bit tough but trust me when you see the difference, it&rsquo;s all worth the patience, time and effort.</p>
+<p>Now, we are not just writing assembly code for the different filters and functions of decoder but as humans, we never settle for less, so we exploit some extra functionalities.</p>
+<p>There are a total of 16  registers, we denote it with R and a CPSR in the processor. We also got a co-processor, we use SIMD instruction with following floating point registers sets and execute single instruction on multiple data(SIMD).</p>
+<p><img src="http://infocenter.arm.com/help/topic/com.arm.doc.dht0002a/graphics/advanced_simd_and_vfp_register_set.svg" alt=""></p>
+<p>So now I am gonna demonstrate an example to get clear about how things really work.</p>
+<p>C Code</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;i<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">4</span>;i<span style="color:#f92672">++</span>)
+</span></span><span style="display:flex;"><span>    c[i]<span style="color:#f92672">=</span>a[i]<span style="color:#f92672">+</span>b[i];
+</span></span></code></pre></div><p>Corresponding assembly code with general purpose registers</p>
+<pre tabindex="0"><code>.data
+a:
+    .int 4, 4, 4, 4
+b:
+    .int 8, 8, 8, 8
+c:
+    .int 0, 0, 0, 0
+
+.text
+.global main
+main:
+    ldr r0,addr_a
+    ldr r1,addr_b
+    ldr r2,addr_c
+    mov r4,#3
+loop:
+    cmp r4,#0
+    beq end
+    ldr r5,[r0]
+    ldr r6,[r1]
+    ldr r7,[r2]
+    add r7,r5,r6
+    str r7,[r2]
+    add r0,r0,#4
+    add r1,r1,#4
+    add r2,r2,#4
+    sub r4,#1
+    b loop
+end:
+    bx lr
+
+addr_a: .word a
+addr_b: .word b
+addr_c: .word c
+</code></pre><p>Assembly code with SIMD</p>
+<pre tabindex="0"><code>
+.data
+a:
+    .int 4, 4, 8, 8
+b:
+    .int 8, 8, 8, 8
+c:
+    .int 0, 0, 0, 0
+
+.text
+.global main
+main:
+    ldr r0,addr_a
+    ldr r1,addr_b
+    ldr r2,addr_c
+    vld1.8 {q0},[r0]!
+    vld1.8 {q1},[r1]!
+    vadd.I8 q2,q0,q1 // operated on multiple data at once
+    vst1.8 {q2},[r2]!// hence loop not required to iterate
+    bx lr            // through each element
+
+addr_a: .word a
+addr_b: .word b
+addr_c: .word c
+</code></pre><p>So in regards with assembly with SIMD, we need not loop at all, we are executing the instruction on 4 int type data at once. Hence if need to loop 16 times in C code, we need to only go for 4 with SIMD implementation. We also do some reordering with instructions and loop unrolling to even more optimize the code. I will share tricks and tips in the upcoming blog posts.</p>
+<p>In the next blog post, I would start sharing my weekly progress and we will have an insight into the dav1d functions and implementations</p>
+
+  </div>
+
+  
+
+
+  </main>
+  <footer>
+    <p>Copyright 2025. All rights reserved.</p>
+
+  </footer>
+</body>
+</html>

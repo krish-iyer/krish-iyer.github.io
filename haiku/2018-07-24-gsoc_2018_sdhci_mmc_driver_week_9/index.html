@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>Week #9 | Krishnan&#39;s blog</title>
+
+    <link rel="stylesheet" href="/css/main.css">
+
+
+      <script src="/js/main.js"></script>
+
+
+</head>
+<body>
+  <header>
+    
+  <nav class="site-nav">
+    <ul class="menu-root">
+    <li>
+      <a href="/">Home</a>
+    </li>
+    <li>
+      <a href="/publications/">Publications</a>
+    </li>
+    <li>
+      <a href="/files/resume.pdf">CV</a>
+    </li>
+    <li>
+      <a href="/about/">About</a>
+    </li>
+    <li>
+      <a href="/contact/">Contact</a>
+    </li>
+    </ul>
+  </nav>
+
+
+  </header>
+  <main>
+    
+    <h1 class="post-title">Week #9</h1>
+
+    
+    
+    <time class="post-date" datetime="2018-07-24T19:03:36&#43;05:30"><em>July 24, 2018</em></time>
+
+  <div class="post-content">
+    <p>Hello everyone, here we are with another update on the project. Last week we have started with installing
+interrupt handler, so basically we will pass the address of a function while installing the interrupt handler, later when an interrupt occurs that function will be called.</p>
+<p>We opted for pin-based interrupt handler, which is one of the levels of interrupt handling. I have explained them in previous blogs.</p>
+<h3 id="instructions-to-install-an-interrupt-handler">Instructions to install an interrupt handler:</h3>
+<pre><code>bus-&gt;irq = pciInfo-&gt;u.h0.interrupt_line; // driver needs to assign interrupt line to itself
+
+if (bus-&gt;irq == 0 || bus-&gt;irq == 0xff){ // checking if right interrupt value is assigned
+    return B_ERROR 
+
+status = install_io_interrupt_handler(bus-&gt;irq, handler_function_name, bus, 0);
+
+if(status != B_OK) // check if interrupt handler is successfully installed
+    return B_ERROR
+</code></pre>
+<p>Currently interrupt handler function can handle following interrupts(Referred: <a href="https://github.com/freebsd/freebsd/blob/master/sys/dev/sdhci/sdhci.c#L2162">FreeBSD code</a>)</p>
+<pre><code>    // card presence interrupt
+    // command interrupt
+    // bus power interrupt
+else
+    // unexpected interrupt
+</code></pre>
+<p>So with this, we were successful in setting up the interrupt and it&rsquo;s working pretty well as expected. Now the upcoming task is to issue the command to the card and read the response which is again giving timeout error. We have installed a DELAY() function for giving delays but still didn&rsquo;t work.</p>
+<p>We were trying to issue CMD0 which should reset the card registers and give the response at R1. There&rsquo;s also an error interrupt recovery sequence mentioned in spec version 4.20 but again to implement that we need to issue few commands.</p>
+<p>Next, we will be focusing on cleaning the code and getting it reviewed. After that, we will work on getting the responses for the corresponding commands.</p>
+<p>My guess! it will most likely to be clocking issue and frequency config. I will try to dig more into it :).</p>
+
+  </div>
+
+  
+
+
+  </main>
+  <footer>
+    <p>Copyright 2025. All rights reserved.</p>
+
+  </footer>
+</body>
+</html>

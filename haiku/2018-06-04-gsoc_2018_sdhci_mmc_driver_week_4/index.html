@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>Week #4 | Krishnan&#39;s blog</title>
+
+    <link rel="stylesheet" href="/css/main.css">
+
+
+      <script src="/js/main.js"></script>
+
+
+</head>
+<body>
+  <header>
+    
+  <nav class="site-nav">
+    <ul class="menu-root">
+    <li>
+      <a href="/">Home</a>
+    </li>
+    <li>
+      <a href="/publications/">Publications</a>
+    </li>
+    <li>
+      <a href="/files/resume.pdf">CV</a>
+    </li>
+    <li>
+      <a href="/about/">About</a>
+    </li>
+    <li>
+      <a href="/contact/">Contact</a>
+    </li>
+    </ul>
+  </nav>
+
+
+  </header>
+  <main>
+    
+    <h1 class="post-title">Week #4</h1>
+
+    
+    
+    <time class="post-date" datetime="2018-06-03T21:11:13&#43;05:30"><em>June 3, 2018</em></time>
+
+  <div class="post-content">
+    <p>Hey everyone! here I am with another update. Last time I had concluded-&ldquo;PCI class is not discoverable to device manager&rdquo;, it was actally a bit wrong. So korli explained that device manager won&rsquo;t load a driver which system doesn&rsquo;t know so in order for device manager to consider sdhci bus device, it has to
+be added under a condition of the devices of same type. So we <a href="https://github.com/krish-iyer/haiku/blob/sdhci_mmc_driver/src/system/kernel/device_manager/device_manager.cpp#L1917">added it under &ldquo;disk&rdquo;</a>. With that he also committed <a href="https://review.haiku-os.org/#/c/haiku/+/276/">PoC</a> which came out to be very useful but still I took sometime to really understand it.</p>
+<p>So next thing which we intended to do is to register a child device or a node which is our picked up device out of all the device which were there on the PCI bus. Now we have to attach these devices on a mmc bus and then we have to configure interrupts and commands for data transfer(Programmed I/O method).</p>
+<p>So there&rsquo;s is something like a bus and bus manager, I really want to clearify these two things now because in next few weeks we will be working on bus manager and we should avoid confusion of any kind. So till now we told device manager that if a sdhci-pci device is attached to the system then it should load the driver from mentioned path unlike PnP devices. Now we have got the driver loaded also we have filtered out the device. Now we have to initiate a bus(mmc) and attach device to it. This will be the role of a bus, now we need to set up a bus manager in order deal with storage(read, write, data transfer etc). It will mainly deal with the commands and expose some API&rsquo;s for the user to do the operations and build application on top of it.</p>
+<p>For the bus we have init_bus(), unint_bus() and bus_removed() under a global structure(gSDHCIPCIDeviceModule). Before explaining about init_bus() I wanted make you notice of something, &ldquo;cookie&rdquo; or &ldquo;bus_cookie&rdquo;. It is a opaque pointer, we can&rsquo;t see through this pointer but we can provide our implementation. This makes the code robust accross different platforms. In this particular case init_bus() will attach some useful data about the device via this cookie.</p>
+<p>I have successfully registered the child device and also attached it to the bus(mmc). We thought that it would be better if we could divide our module into two for more clearity:</p>
+<ul>
+<li>device: supports_device(), init_device(), register_device(),
+register_child_device()</li>
+<li>bus: init_bus(), uninit_bus(), remove_bus(), other functions for interrupts</li>
+</ul>
+<p>But it became difficult to manage modules and module_dependencies because these are single entry point for a module(binary). You can have any number of files and have a single binary, you just have to mention those in the Jam file. In my case it would be like</p>
+<pre><code>KernelAddon sdhci :
+	sdhci_pci.cpp
+	sdhci_device.cpp
+;
+</code></pre>
+<p>Then you just have to do</p>
+<pre><code>jam -q sdhci
+</code></pre>
+<p>Also, this will update your binary with kernel</p>
+<pre><code>jam update-image kernel sdhci 
+</code></pre>
+<p>if you have added this</p>
+<pre><code>AddFilesToPackage add-ons kernel busses mmc : sdhci ;
+</code></pre>
+<p>in build/jam/packages/Haiku</p>
+<p>I have been trying to split the module into two but I think setting up interrupts is more important and splitting can be done in parallel.</p>
+<p>Thanks to korli, PulkoMandy, phoudoin for helping me. I will be soon be ready with a plan for bus manager after setting up the interrupts and registers etc.</p>
+
+  </div>
+
+  
+
+
+  </main>
+  <footer>
+    <p>Copyright 2025. All rights reserved.</p>
+
+  </footer>
+</body>
+</html>

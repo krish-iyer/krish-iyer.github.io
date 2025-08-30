@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>Introduction to ARM Assembly and dav1d | Krishnan&#39;s blog</title>
+
+    <link rel="stylesheet" href="/css/main.css">
+
+
+      <script src="/js/main.js"></script>
+
+
+</head>
+<body>
+  <header>
+    
+  <nav class="site-nav">
+    <ul class="menu-root">
+    <li>
+      <a href="/">Home</a>
+    </li>
+    <li>
+      <a href="/publications/">Publications</a>
+    </li>
+    <li>
+      <a href="/files/resume.pdf">CV</a>
+    </li>
+    <li>
+      <a href="/about/">About</a>
+    </li>
+    <li>
+      <a href="/contact/">Contact</a>
+    </li>
+    </ul>
+  </nav>
+
+
+  </header>
+  <main>
+    
+    <h1 class="post-title">Introduction to ARM Assembly and dav1d</h1>
+
+    
+    
+    <time class="post-date" datetime="2019-06-04T12:32:45&#43;01:00"><em>June 4, 2019</em></time>
+
+  <div class="post-content">
+    <h2 id="general-assembly">General Assembly</h2>
+<p>The first thing to know about the assembly is, it&rsquo;s very much architecture dependant so for every different architecture there&rsquo;s a completely different story. Secondly, it&rsquo;s hard to get but that makes it more interesting.</p>
+<p>So before stepping into ARM assembly, I have written assembly programs and studied architecture in detail for mid-range micro-controllers. Also, I have done bit study for TMS320C6000 and TMS320F28027, they are like DSP processors so data lines and processor units are bit different there.</p>
+<h2 id="why-assembly">Why Assembly</h2>
+<p>Besides the fact that it makes you feel more closer to the hardware and you have more control over things like processor, co-processor, peripherals etc, it is also very efficient, so mostly you have seen assembly codes for small memory devices with comparatively low processing power. The best example would be <a href="https://kolibrios.org/en/">Kolibri OS</a> which is forked from <a href="http://menuetos.net/">Manuet OS</a> repo.</p>
+<p>It&rsquo;s ok if you explain French-speaking person in English but communicating in French would make things straight forward and wouldn&rsquo;t require much effort to understand on both the sides.</p>
+<h2 id="how-to-get-started-with-arm-assembly">How to get started with ARM Assembly</h2>
+<p>This <a href="https://thinkingeek.com/arm-assembler-raspberry-pi/">blog</a> will get you to hang for a start, don&rsquo;t get afraid if you don&rsquo;t follow anything with first few blog posts, later it&rsquo;s all gonna make sense. Follow through the exercises and important part to focus would be Matrix Multiply and SIMD ones. Also, Roger will clear all your doubts, there might be some delay but it would be worth the patience.</p>
+<p>Now arm assembly for ARMv7 and ARMv8 has some differences with the instruction, not to forget that they are 32bit and 64bit processor respectively, that might change the whole perspective of code implementation.</p>
+<h2 id="dav1d-neon-optimization">dav1d NEON Optimization</h2>
+<p><a href="https://code.videolan.org/videolan/dav1d">dav1d</a> is an av1 decoder more about dav1d you can read from <a href="http://www.jbkempf.com/blog/post/2018/Introducing-dav1d">j-b&rsquo;s blog</a>. In order to achieve faster execution we need to optimize the code and also use some co-processor&rsquo;s capabilities to make it much more faster, so here comes NEON into play, it&rsquo;s built on co-processor 10 and 11(IIRC). So with this one, we get access to vector registers and we can execute single instruction on multiple data(SIMD).</p>
+<p>I will share some of the benchmarks in upcoming blog posts which compares C implementation vs Assembly implementation.</p>
+
+  </div>
+
+  
+
+
+  </main>
+  <footer>
+    <p>Copyright 2025. All rights reserved.</p>
+
+  </footer>
+</body>
+</html>

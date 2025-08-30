@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>Moodle | Krishnan&#39;s blog</title>
+
+    <link rel="stylesheet" href="/css/main.css">
+
+
+      <script src="/js/main.js"></script>
+
+
+</head>
+<body>
+  <header>
+    
+  <nav class="site-nav">
+    <ul class="menu-root">
+    <li>
+      <a href="/">Home</a>
+    </li>
+    <li>
+      <a href="/publications/">Publications</a>
+    </li>
+    <li>
+      <a href="/files/resume.pdf">CV</a>
+    </li>
+    <li>
+      <a href="/about/">About</a>
+    </li>
+    <li>
+      <a href="/contact/">Contact</a>
+    </li>
+    </ul>
+  </nav>
+
+
+  </header>
+  <main>
+    
+    <h1 class="post-title">Moodle</h1>
+
+    
+    
+    <time class="post-date" datetime="2017-03-03T10:51:47&#43;05:30"><em>March 3, 2017</em></time>
+
+  <div class="post-content">
+    <h2 id="why-moodle">Why Moodle</h2>
+<p>Being a citizen of a country of population more than 1.252 billion and only 64.8% are literate, I know the value of education. I look around and see children are employed when they should play and learn, girls are killed because parents can’t afford expense of rest of her life, corruption is increasing day by day and it is same country where most of the engineers are unemployed. But I don’t want to hate this society for all these reasons, I want to make this place a better one. Where each child in this can learn whatever he/she wants, they can do whatever they want and serve this society in their own ways.</p>
+<p>With Moodle I know the best place I can make changes in the society which can affect the cause roots of the social problems. I think everyone is successful if they are surviving each from there situations, I want to give them confidence and make them realise about their potential. Countries with the lowest literacy rate like Niger, Mali, Chad and Somalia needs development in the field of education and then gradually they can develop as a country in all sectors.</p>
+<p>Through Moodle I can see the best output affecting people’s lives, where many students and teachers exchange knowledge not because of their personal benefit but more relevantly to make someone’s life more meaningful and I think we should encourage them and support the best way we can.</p>
+<p>My father belong’s from a financially poor background, he dropped 3 years because he didn’t had money and resources to pay the school fee. He still continued studying and pursued his bachelor’s but unlike him many children looses interest and starts to work in some or the other shop to fulfill their financial expenses. Each day they survive without knowing that they will able to fill their stomachs even for one time.</p>
+<p>These are the only reasons for which contribute to Moodle, each day interacting with the developers, listening to their suggestions and not many time but sometimes getting into debates to decide when something is to be changed. I am evolving as the coder but most importantly as a social being.</p>
+<p>For installing moodle first of all you will need clone the repository.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>sudo git clone git://git.moodle.org/moodle.git
+</span></span></code></pre></div><p>Now you have to copy the cloned repository to /var/www/html. If the directory doesn&rsquo;t exist then it means
+you haven&rsquo;t setup PHP.</p>
+<h3 id="setting-up-php-enviornment"><!-- raw HTML omitted --> Setting up PHP enviornment<!-- raw HTML omitted --></h3>
+<p>For setting up PHP you will also be needing a data base manangement system like mysql and a webserver like
+Apache.</p>
+<p>For installing Mysql 5.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>sudo apt-get install mysql-server mysql-client
+</span></span></code></pre></div><p>For installing Apache2.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>sudo apt-get install apache2
+</span></span></code></pre></div><p>For installing PHP 7.0</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>sudo apt-get install php7.0 libapache2-mod-php7.0
+</span></span></code></pre></div><p>After installing you need to restart Apache.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>sudo /etc/init.d/apache2 restart
+</span></span></code></pre></div><p>After installing all these you can copy you moodle repository to /var/www/html. You may have issues with the
+permission of the directory.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>chmod -R <span style="color:#ae81ff">777</span> path/to/your/directory //it gives all the permissions to edit the directory
+</span></span><span style="display:flex;"><span>sudo cp -R /opt/moodle /var/www/html/
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>Now create a directory <span style="color:#66d9ef">for</span> storing Moodle data.
+</span></span><span style="display:flex;"><span>sudo mkdir /var/moodledata
+</span></span></code></pre></div><p>For giving permissions to the directory.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>sudo chown -R www-data /var/moodledata
+</span></span><span style="display:flex;"><span>sudo chmod -R <span style="color:#ae81ff">777</span> /var/moodledata
+</span></span><span style="display:flex;"><span>sudo chmod -R <span style="color:#ae81ff">0755</span> /var/www/html/moodle
+</span></span></code></pre></div><p>For setting up mySql</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>mysql -u root -p
+</span></span></code></pre></div><p>Create Moodle data base.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>mysql&gt;CREATE DATABASE moodle DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+</span></span><span style="display:flex;"><span>mysql&gt;create user <span style="color:#e6db74">&#39;moodledude&#39;</span>@<span style="color:#e6db74">&#39;localhost&#39;</span> IDENTIFIED BY <span style="color:#e6db74">&#39;passwordformoodledude&#39;</span>;
+</span></span><span style="display:flex;"><span>mysql&gt;GRANT SELECT,INSERT,UPDATE,DELETE,CREATE,CREATE TEMPORARY TABLES,DROP,INDEX,ALTER ON moodle.* TO moodledude@localhost IDENTIFIED BY <span style="color:#e6db74">&#39;passwordformoodledude&#39;</span>;
+</span></span><span style="display:flex;"><span>mysql&gt;quit;
+</span></span></code></pre></div><p>And restart mysql.
+Everything will be set up till now. Just open your browser and go to localhost/moodle and follow the steps.
+You might need to install some PHP modules that will be automatically be listed.
+For installing the module.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>sudo apt-get install php7.0-modulename
+</span></span></code></pre></div><p>If you have any problem in installing Moodle, you can always contact me or post your problem in <a href="https://moodle.org/mod/forum/view.php?id=28">Moodle
+disussion forum</a> Someone will definitely help you.</p>
+<h2 id="installation">Installation</h2>
+<p>Behat is a test framework for behavior-driven development written in the PHP. We use behat to automate
+the testing of a particular feature. There&rsquo;s a some effort needed to install and run behat test. This
+post will cover everything from installation to write feature script.</p>
+<h3 id="installing-behat"><!-- raw HTML omitted --> Installing Behat:<!-- raw HTML omitted --></h3>
+<p>First go to your moodle repository</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>  cd /var/www/html/moodle
+</span></span></code></pre></div><h2 id="behat-testing">Behat Testing</h2>
+<p>For configuring behat need some edit in config.php for specifying the location of the directory where the data is going to be stored
+and also a different port address, add following lines in config.php file.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>  $CFG-&gt;behat_dataroot <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;/var/www/behat_moodle&#39;</span>;
+</span></span><span style="display:flex;"><span>  $CFG-&gt;behat_prefix <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;behat_&#39;</span>;
+</span></span><span style="display:flex;"><span>  $CFG-&gt;behat_wwwroot<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;http://localhost:4000&#39;</span>;
+</span></span></code></pre></div><p>Now open terminal and install composer</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>  curl http://getcomposer.org/installer | php
+</span></span></code></pre></div><p>if you haven&rsquo;t installed curl then beofre executing the above command you have to install curl</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>  sudo apt-get install curl
+</span></span></code></pre></div><p>You need to host Moodle to another address.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>  php -S localhost:4000
+</span></span></code></pre></div><p>Now initialise behat which will also refresh behat.yml which has the list of all of the feaature files in
+the directory.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>  php admin/tool/behat/cli/init.php
+</span></span></code></pre></div><p>For keeping track on background script which are running in your broswer at the time when the feature file
+will be executed, you have to download <a href="https://jar-download.com/explore-java-source-code.php?a=selenium-server&amp;g=org.seleniumhq.selenium&amp;v=2.53.1&amp;downloadable=1/">selenium</a>(selenium-2.53.1 has a great compatibility with firefox- 47.0.1 )
+Open another tab in terminal and execute the following command</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>  java -jar ~/selenium/selenium-server-standalone-2.53.1.jar
+</span></span></code></pre></div><p>For updating available tests(in case if you have added a .feature file in any of the directory).</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>  php admin/tool/behat/cli/util.php --enable
+</span></span></code></pre></div><p>Final step for configuring all feature file.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>  vendor/bin/behat --config /path/to/your/behat/dataroot/directory/behatrun/behat/behat.yml
+</span></span></code></pre></div><p>Selenium will open a browser (firefox by default) and you will see how the steps you have been writting are
+executed.
+In a single run it will take a 18-24 hrs to complete all the steps. So it is preferred to run 3 parallel
+run. So there will be three browser&rsquo;s and three selemnium hosted at three different ports. For doing so you
+have to add few more lines to config.php and run init.php.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>  $CFG-&gt;behat_parallel_run <span style="color:#f92672">=</span> array <span style="color:#f92672">(</span>
+</span></span><span style="display:flex;"><span>    array <span style="color:#f92672">(</span><span style="color:#e6db74">&#39;wd_host&#39;</span> <span style="color:#f92672">=</span>&gt; <span style="color:#e6db74">&#39;http://127.0.0.1:4444/wd/hub&#39;</span><span style="color:#f92672">)</span>,
+</span></span><span style="display:flex;"><span>    array <span style="color:#f92672">(</span><span style="color:#e6db74">&#39;wd_host&#39;</span> <span style="color:#f92672">=</span>&gt; <span style="color:#e6db74">&#39;http://127.0.0.1:4445/wd/hub&#39;</span><span style="color:#f92672">)</span>,
+</span></span><span style="display:flex;"><span>    array <span style="color:#f92672">(</span><span style="color:#e6db74">&#39;wd_host&#39;</span> <span style="color:#f92672">=</span>&gt; <span style="color:#e6db74">&#39;http://127.0.0.1:4446/wd/hub&#39;</span><span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">)</span>;
+</span></span></code></pre></div><p>For configuring in another(chrome) browser. Before that make sure that you had installed
+<a href="https://sites.google.com/a/chromium.org/chromedriver/downloads">chromedriver</a> .</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>  $CFG-&gt;behat_config <span style="color:#f92672">=</span> array<span style="color:#f92672">(</span><span style="color:#e6db74">&#39;default&#39;</span> <span style="color:#f92672">=</span>&gt; array<span style="color:#f92672">(</span><span style="color:#e6db74">&#39;browser&#39;</span> <span style="color:#f92672">=</span>&gt; <span style="color:#e6db74">&#39;chrome&#39;</span><span style="color:#f92672">))</span>;
+</span></span></code></pre></div><p>Afer completing the all the test, there&rsquo;s no need of running all tests for a single fearture file which is
+added. You just have to refrest behat.yml and show show the path where it is stored.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>  vendor/bin/behat --config /var/www/behat_moodle/behatrun/behat/behat.yml /path/to/your/file.feature
+</span></span></code></pre></div><p>For more details on writing tests and configuring behat please got through the <a href="https://docs.moodle.org/dev/Acceptance_testing#Installation">Moodle docs on acceptance test</a>.</p>
+<p>Hope this helps!</p>
+
+  </div>
+
+  
+
+
+  </main>
+  <footer>
+    <p>Copyright 2025. All rights reserved.</p>
+
+  </footer>
+</body>
+</html>
