@@ -1,0 +1,14 @@
+{{ define "title" }}{{ .Title }} · {{ .Site.Title }}{{ end }}
+{{ define "main" }}
+<h2>{{ .Title }}</h2>
+<p>{{ len .Pages }} posts</p>
+
+<ul>
+  {{ range .Pages.ByDate.Reverse }}
+    <li>
+      <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+      <small>— {{ .Date.Format "2006-01-02" }}</small>
+    </li>
+  {{ end }}
+</ul>
+{{ end }}

@@ -1,0 +1,32 @@
+{{ define "main" }}
+  <h1>{{ .Title }}</h1>
+
+  <ul class="pub-list">
+    {{ $me := .Site.Params.me }}
+    {{ with .Params.publications }}
+      {{ range . }}
+        {{ $title   := index . "title" }}
+        {{ $venue   := index . "venue" }}
+        {{ $authors := index . "authors" }}
+        {{ $date    := index . "date" }}
+    <li class="pub-item">
+          <strong class="pub-title">{{ $title }}</strong><br>
+          <span class="pub-venue">{{ $venue }}</span>
+          <span class="pub-date">[{{ time.Format "2006" $date }}]</span><br>
+          <span class="pub-authors">
+            {{ range $i, $a := $authors }}
+              {{ if eq $a $me }}
+                <strong>{{ $a }}</strong>
+              {{ else }}
+                {{ $a }}
+              {{ end }}
+              {{ if lt (add $i 1) (len $authors) }}, {{ end }}
+            {{ end }}
+          </span>
+        </li>
+      {{ end }}
+    {{ else }}
+      <li>No publications found.</li>
+    {{ end }}
+  </ul>
+{{ end }}

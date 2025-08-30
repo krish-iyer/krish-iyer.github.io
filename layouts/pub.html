@@ -1,0 +1,24 @@
+{{ define "main" }}
+  <h1>{{ .Title }}</h1>
+<dl class="pub-list">
+  {{ range .Params.publications }}
+    <dt class="pub-title">{{ .title }}</dt>
+    <dd class="pub-venue">{{ .venue }}</dd>
+    <dd class="pub-authors">{{ delimit .authors ", " }}</dd>
+  {{ end }}
+</dl>
+
+  <ul class="pub-list">
+    {{ with .Params.publications }}
+      {{ range . }}
+        <li class="pub-item">
+          <strong class="pub-title">{{ .title }}</strong><br>
+          <span class="pub-venue">{{ .venue }}</span><br>
+          <span class="pub-authors">{{ delimit .authors ", " }}</span>
+        </li>
+      {{ end }}
+    {{ else }}
+      <li>No publications found.</li>
+    {{ end }}
+  </ul>
+{{ end }}

@@ -1,0 +1,21 @@
+{{ define "title" }}{{ .Title }} · {{ .Site.Title }}{{ end }}
+{{ define "main" }}
+<h2>{{ .Title }}</h2>
+
+{{ $term := .Title }}
+{{ $tax := (index .Site.Taxonomies "categories") }}
+{{ $bucket := index $tax $term }}
+
+{{ if not $bucket }}
+  <p>No posts found for “{{ $term }}”.</p>
+{{ else }}
+  <ul>
+    {{ range $bucket.Pages.ByDate.Reverse }}
+      <li>
+        [{{ .Date.Format "2006-01-02" }}]
+        <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+      </li>
+    {{ end }}
+  </ul>
+{{ end }}
+{{ end }}

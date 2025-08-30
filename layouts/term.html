@@ -1,0 +1,12 @@
+{{ define "title" }}All Categories · {{ .Site.Title }}{{ end }}
+{{ define "main" }}
+<h2>All Categories</h2>
+<ul>
+  {{ range .Pages }}
+    <li>
+      <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+      {{ with .Pages }} ({{ len . }}){{ end }}
+    </li>
+  {{ end }}
+</ul>
+{{ end }}

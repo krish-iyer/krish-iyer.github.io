@@ -1,0 +1,42 @@
+baseURL = 'https://example.org/'
+languageCode = 'en-US'
+title = "Krishnan's blog"
+disableKinds = ["taxonomy"]
+[menus]
+  [[menus.main]]
+    name = 'Home'
+    pageRef = '/'
+    weight = 10
+
+
+  [[menus.main]]
+    name = 'Publications'
+    pageRef = '/publications'
+    weight = 20
+
+  [[menus.main]]
+    name = 'CV'
+    url = '/files/resume.pdf'
+    weight = 30
+
+  [[menus.main]]
+    name = 'About'
+    pageRef = '/about'
+    weight = 40
+
+  [[menus.main]]
+    name = 'Contact'
+    pageRef = '/contact'
+    weight = 40
+
+[module]
+  [module.hugoVersion]
+    extended = false
+    min = '0.146.0'
+
+[taxonomies]
+  categories = ""
+  tags = "tags"
+
+[params]
+  me = "Krishnan B. Iyer"

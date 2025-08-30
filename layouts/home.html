@@ -1,0 +1,21 @@
+{{ define "main" }}
+<h2>Projects</h2>
+<ul>
+  {{ range $term, $_ := .Site.Taxonomies.categories }}
+  {{ if ne $term "oneoff" }}
+  <li><a href="{{ $term }}">{{ $term }}</a></li>
+  {{ end }}
+  {{ end }}
+
+</li>
+
+<h2>One-off Posts</h2>
+<ul>
+{{ range where .Site.RegularPages "Params.categories" "intersect" (slice "oneoff") }}
+      <li>
+        [{{ .Date.Format "2006-01-02" }}]
+        <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+      </li>
+    {{ end }}
+</li>
+{{ end }}
