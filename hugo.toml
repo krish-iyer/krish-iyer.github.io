@@ -40,3 +40,7 @@ disableKinds = ["taxonomy"]
 
 [params]
   me = "Krishnan B. Iyer"
+
+[caches]
+  [caches.images]
+    dir = ':cacheDir/images'
