@@ -2,129 +2,129 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>haiku on Krishnan&#39;s blog</title>
-    <link>http://localhost:1313/haiku/</link>
+    <link>http://localhost:45677/haiku/</link>
     <description>Recent content in haiku on Krishnan&#39;s blog</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 06 Aug 2018 21:24:03 +0530</lastBuildDate>
-    <atom:link href="http://localhost:1313/haiku/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:45677/haiku/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Week #11</title>
-      <link>http://localhost:1313/haiku/2018-08-06-gsoc_2018_sdhci_mmc_driver_week_11/</link>
+      <link>http://localhost:45677/haiku/2018-08-06-gsoc_2018_sdhci_mmc_driver_week_11/</link>
       <pubDate>Mon, 06 Aug 2018 21:24:03 +0530</pubDate>
-      <guid>http://localhost:1313/haiku/2018-08-06-gsoc_2018_sdhci_mmc_driver_week_11/</guid>
+      <guid>http://localhost:45677/haiku/2018-08-06-gsoc_2018_sdhci_mmc_driver_week_11/</guid>
       <description>&lt;p&gt;Hello everyone, We are in the final week of GSoC&#39;18 program and yesterday our &lt;a href=&#34;https://git.haiku-os.org/haiku/commit/?id=25b6a6f19b13680a759cffecebf60d0b7e76d3d3&#34;&gt;code&lt;/a&gt; has successfully &lt;a href=&#34;https://review.haiku-os.org/#/c/haiku/+/318/&#34;&gt;merged&lt;/a&gt;. It got crashed in the first build because we thought we would add the code but disable the build currently but we didn&amp;rsquo;t test the case when device manager will try to find the driver in a certain directory which we &lt;a href=&#34;https://github.com/krish-iyer/haiku/blob/sdhci_mmc_driver/src/system/kernel/device_manager/device_manager.cpp#L1899&#34;&gt;hardcoded&lt;/a&gt; at the time of loading the module. So we just changed it to an OR condition where it won&amp;rsquo;t be able to find the driver binary but still be able to boot the OS in any case.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Week #10</title>
-      <link>http://localhost:1313/haiku/2018-07-31-gsoc_2018_sdhci_mmc_driver_week_10/</link>
+      <link>http://localhost:45677/haiku/2018-07-31-gsoc_2018_sdhci_mmc_driver_week_10/</link>
       <pubDate>Tue, 31 Jul 2018 23:58:43 +0530</pubDate>
-      <guid>http://localhost:1313/haiku/2018-07-31-gsoc_2018_sdhci_mmc_driver_week_10/</guid>
+      <guid>http://localhost:45677/haiku/2018-07-31-gsoc_2018_sdhci_mmc_driver_week_10/</guid>
       <description>&lt;p&gt;Hello everyone, this week we have tried to get the response from the command but unfortunately, it didn&amp;rsquo;t work out. In the meantime, I have submitted the code for review and PulkoMandy had already reviewed once. I have been going through Linux patches&lt;a href=&#34;https://patchwork.ozlabs.org/patch/279434/&#34;&gt;1&lt;/a&gt; &lt;a href=&#34;https://patchwork.kernel.org/patch/3181031/&#34;&gt;2&lt;/a&gt; which are related to the issue we are currently facing.&lt;/p&gt;&#xA;&lt;p&gt;I have done following improvements in the code&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;Disabled adding drivers to the kernel, removed statements from&lt;/p&gt;</description>
     </item>
     <item>
       <title>Week #9</title>
-      <link>http://localhost:1313/haiku/2018-07-24-gsoc_2018_sdhci_mmc_driver_week_9/</link>
+      <link>http://localhost:45677/haiku/2018-07-24-gsoc_2018_sdhci_mmc_driver_week_9/</link>
       <pubDate>Tue, 24 Jul 2018 19:03:36 +0530</pubDate>
-      <guid>http://localhost:1313/haiku/2018-07-24-gsoc_2018_sdhci_mmc_driver_week_9/</guid>
+      <guid>http://localhost:45677/haiku/2018-07-24-gsoc_2018_sdhci_mmc_driver_week_9/</guid>
       <description>&lt;p&gt;Hello everyone, here we are with another update on the project. Last week we have started with installing&#xA;interrupt handler, so basically we will pass the address of a function while installing the interrupt handler, later when an interrupt occurs that function will be called.&lt;/p&gt;&#xA;&lt;p&gt;We opted for pin-based interrupt handler, which is one of the levels of interrupt handling. I have explained them in previous blogs.&lt;/p&gt;&#xA;&lt;h3 id=&#34;instructions-to-install-an-interrupt-handler&#34;&gt;Instructions to install an interrupt handler:&lt;/h3&gt;&#xA;&lt;pre&gt;&lt;code&gt;bus-&amp;gt;irq = pciInfo-&amp;gt;u.h0.interrupt_line; // driver needs to assign interrupt line to itself&#xA;&#xA;if (bus-&amp;gt;irq == 0 || bus-&amp;gt;irq == 0xff){ // checking if right interrupt value is assigned&#xA;    return B_ERROR &#xA;&#xA;status = install_io_interrupt_handler(bus-&amp;gt;irq, handler_function_name, bus, 0);&#xA;&#xA;if(status != B_OK) // check if interrupt handler is successfully installed&#xA;    return B_ERROR&#xA;&lt;/code&gt;&lt;/pre&gt;&#xA;&lt;p&gt;Currently interrupt handler function can handle following interrupts(Referred: &lt;a href=&#34;https://github.com/freebsd/freebsd/blob/master/sys/dev/sdhci/sdhci.c#L2162&#34;&gt;FreeBSD code&lt;/a&gt;)&lt;/p&gt;</description>
     </item>
     <item>
       <title>Third Phase Outline</title>
-      <link>http://localhost:1313/haiku/2018-07-12-gsoc_2018_sdhci_mmc_driver_third_phase_plan/</link>
+      <link>http://localhost:45677/haiku/2018-07-12-gsoc_2018_sdhci_mmc_driver_third_phase_plan/</link>
       <pubDate>Thu, 12 Jul 2018 10:52:58 +0530</pubDate>
-      <guid>http://localhost:1313/haiku/2018-07-12-gsoc_2018_sdhci_mmc_driver_third_phase_plan/</guid>
+      <guid>http://localhost:45677/haiku/2018-07-12-gsoc_2018_sdhci_mmc_driver_third_phase_plan/</guid>
       <description>&lt;p&gt;So here we are in the final week of the second phase of this project. I would like to address what was planned for this phase and what we have achieved and will proceed to plan for the third phase.&lt;/p&gt;&#xA;&lt;h2 id=&#34;second-phase-highlights&#34;&gt;Second Phase Highlights&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;We were successful in register mapping through MMUIO.&lt;/li&gt;&#xA;&lt;li&gt;We have created a bus manager but not linked with controller ATM.&lt;/li&gt;&#xA;&lt;li&gt;Interrupts have not been implemented but also not required in this phase.&lt;/li&gt;&#xA;&lt;li&gt;Separating controller(device) and MMC bus(child device) but in a single module is still needed to be done.&lt;/li&gt;&#xA;&lt;li&gt;mmc_disk being running multiple times is fixed now.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;plan-for-the-third-phase&#34;&gt;Plan for the Third Phase&lt;/h2&gt;&#xA;&lt;p&gt;I have already addressed the issue of reading OCR value in my most recent blog post. The issue was, even after setting up the command register we were not able to get the response from response register after reset. When we enabled timout error status, it automatically turned the error bit to 1 and which says that it failed to get any response in 64 cycles of SDCLK. It will the foremost task&#xA;and will be reading the response of commands. To proceed further in sequences it&amp;rsquo;s necessary that we should get the responses of the commands.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Week #8</title>
-      <link>http://localhost:1313/haiku/2018-07-09-gsoc_2018_sdhci_mmc_driver_week_8/</link>
+      <link>http://localhost:45677/haiku/2018-07-09-gsoc_2018_sdhci_mmc_driver_week_8/</link>
       <pubDate>Mon, 09 Jul 2018 20:09:54 +0530</pubDate>
-      <guid>http://localhost:1313/haiku/2018-07-09-gsoc_2018_sdhci_mmc_driver_week_8/</guid>
+      <guid>http://localhost:45677/haiku/2018-07-09-gsoc_2018_sdhci_mmc_driver_week_8/</guid>
       <description>&lt;p&gt;Hey guys! Last week we have improved the code and made it more readable. We have completed the reset and clock sequence and proceed with power sequence. In the 4th step of the sequence, it asks to get the Operation Conditions Register(OCR) value of SD card. In the SD host controller spec, in command register there is command index bits which mention about setting up command number specified in bits 45-40 of the command-format in &lt;a href=&#34;https://www.sdcard.org/downloads/pls/pdf/index.php?p=Part1_Physical_Layer_Simplified_Specification_Ver1.10.jpg&amp;amp;f=Part1_Physical_Layer_Simplified_Specification_Ver1.10.pdf&amp;amp;e=EN_P1110&#34;&gt;SD Memory Card PhysicalLayer Specification&lt;/a&gt;. Hence, in command format they mentioned about command index, there we figured out that our command of interest is CMD58 which has following config&lt;/p&gt;</description>
     </item>
     <item>
       <title>Week #7</title>
-      <link>http://localhost:1313/haiku/2018-07-03-gsoc_2018_sdhci_mmc_driver_week_7/</link>
+      <link>http://localhost:45677/haiku/2018-07-03-gsoc_2018_sdhci_mmc_driver_week_7/</link>
       <pubDate>Tue, 03 Jul 2018 18:27:58 +0530</pubDate>
-      <guid>http://localhost:1313/haiku/2018-07-03-gsoc_2018_sdhci_mmc_driver_week_7/</guid>
+      <guid>http://localhost:45677/haiku/2018-07-03-gsoc_2018_sdhci_mmc_driver_week_7/</guid>
       <description>&lt;p&gt;Finally, we got the register mapping work and they are responsive, we have tested by enabling software reset bit and it has all the default values of registers which are set by Qemu except the present state register and capabilities register. These both should be left unaffected as mentioned in the &lt;a href=&#34;https://www.sdcard.org/downloads/pls/pdf/index.php?p=PartA2_SD_Host_Controller_Simplified_Specification_Ver1.00.jpg&amp;amp;f=PartA2_SD_Host_Controller_Simplified_Specification_Ver1.00.pdf&amp;amp;e=EN_A2100&#34;&gt;spec&lt;/a&gt;. We are following SD Host specification version 1.00 for now, which also doesn&amp;rsquo;t support UHS but Qemu seems to be supporting it&#xA;well.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Week #6</title>
-      <link>http://localhost:1313/haiku/2018-06-26-gsoc_2018_sdhci_mmc_driver_week_6/</link>
+      <link>http://localhost:45677/haiku/2018-06-26-gsoc_2018_sdhci_mmc_driver_week_6/</link>
       <pubDate>Tue, 26 Jun 2018 15:04:41 +0530</pubDate>
-      <guid>http://localhost:1313/haiku/2018-06-26-gsoc_2018_sdhci_mmc_driver_week_6/</guid>
+      <guid>http://localhost:45677/haiku/2018-06-26-gsoc_2018_sdhci_mmc_driver_week_6/</guid>
       <description>&lt;p&gt;Hello everyone! Here&amp;rsquo;s the update of week #6, in the last update we were not able to access the registers. When we tried mapping it, there were all zeros. so we knew there&amp;rsquo;s something wrong in  the way we were accessing the register and in between this we got to know that &lt;a href=&#34;https://github.com/qemu/qemu/blob/bec9c64ef7be8063f1192608b83877bc5c9ea217/hw/sd/sdhci.c#L72&#34;&gt;qemu emulation for sdhc hardware&lt;/a&gt; only supports &lt;a href=&#34;https://www.sdcard.org/jp/developers/overview/host_controller/simple_spec/Simplified_SD_Host_Controller_Spec.pdf&#34;&gt;spec version 2&lt;/a&gt; and 3 and the spec which we intended to implement was &lt;a href=&#34;https://www.sdcard.org/downloads/pls/pdf/index.php?p=PartA2_SD%20Host_Controller_Simplified_Specification_Ver4.20.jpg&amp;amp;f=PartA2_SD%20Host_Controller_Simplified_Specification_Ver4.20.pdf&amp;amp;e=EN_SSA2&#34;&gt;4.2&lt;/a&gt;.Later, we got to know that &lt;a href=&#34;https://github.com/krish-iyer/haiku/blob/5abb958dec121d202e3f71450d41acff063d5393/src/add-ons/kernel/busses/mmc/sdhci_pci.cpp#L116&#34;&gt;this&lt;/a&gt;&lt;/p&gt;</description>
     </item>
     <item>
       <title>Second Phase Outline</title>
-      <link>http://localhost:1313/haiku/2018-06-14-gsoc_2018_sdhci_mmc_driver_second_phase_outline/</link>
+      <link>http://localhost:45677/haiku/2018-06-14-gsoc_2018_sdhci_mmc_driver_second_phase_outline/</link>
       <pubDate>Thu, 14 Jun 2018 11:51:57 +0530</pubDate>
-      <guid>http://localhost:1313/haiku/2018-06-14-gsoc_2018_sdhci_mmc_driver_second_phase_outline/</guid>
+      <guid>http://localhost:45677/haiku/2018-06-14-gsoc_2018_sdhci_mmc_driver_second_phase_outline/</guid>
       <description>&lt;p&gt;Hey, folks! So we are at the end of first phase of the project and I had expected that I would be able to implement PIO but it seems that I have lagged a bit. Till now we have got our controller driver setting up the mmc bus and mmc disk driver to publish a slot. To implement PIO before DMA, also requires register mapping which we are currently working on. We tried it though but didn’t turn out well.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Week #5</title>
-      <link>http://localhost:1313/haiku/2018-06-11-gsoc_2018_sdhci_mmc_driver_week_5/</link>
+      <link>http://localhost:45677/haiku/2018-06-11-gsoc_2018_sdhci_mmc_driver_week_5/</link>
       <pubDate>Mon, 11 Jun 2018 18:34:48 +0530</pubDate>
-      <guid>http://localhost:1313/haiku/2018-06-11-gsoc_2018_sdhci_mmc_driver_week_5/</guid>
+      <guid>http://localhost:45677/haiku/2018-06-11-gsoc_2018_sdhci_mmc_driver_week_5/</guid>
       <description>&lt;p&gt;Hey, here I am with another update! Last time I mentioned about splitting up the module but due to time constraint we agreed to skip that currently and move  forward. After setting up the bus, I thought it would be bus manager which needs to be setted up for data transfer and other read and write operations but it turns out to few things which need to be done before that and it&amp;rsquo;s actually not the bus manager who do these operations, it will just create an instance of the interrupts and the operations to be done, and call back after it&amp;rsquo;s done. I was referring to virtio subsystem&amp;rsquo;s driver layout so wasn’t able to notice a difference between virtio and sdhc and i.e there are slots that needs to be attached to the bus(MMC bus) unlike in virtio where devices are attached.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Week #4</title>
-      <link>http://localhost:1313/haiku/2018-06-04-gsoc_2018_sdhci_mmc_driver_week_4/</link>
+      <link>http://localhost:45677/haiku/2018-06-04-gsoc_2018_sdhci_mmc_driver_week_4/</link>
       <pubDate>Sun, 03 Jun 2018 21:11:13 +0530</pubDate>
-      <guid>http://localhost:1313/haiku/2018-06-04-gsoc_2018_sdhci_mmc_driver_week_4/</guid>
+      <guid>http://localhost:45677/haiku/2018-06-04-gsoc_2018_sdhci_mmc_driver_week_4/</guid>
       <description>&lt;p&gt;Hey everyone! here I am with another update. Last time I had concluded-&amp;ldquo;PCI class is not discoverable to device manager&amp;rdquo;, it was actally a bit wrong. So korli explained that device manager won&amp;rsquo;t load a driver which system doesn&amp;rsquo;t know so in order for device manager to consider sdhci bus device, it has to&#xA;be added under a condition of the devices of same type. So we &lt;a href=&#34;https://github.com/krish-iyer/haiku/blob/sdhci_mmc_driver/src/system/kernel/device_manager/device_manager.cpp#L1917&#34;&gt;added it under &amp;ldquo;disk&amp;rdquo;&lt;/a&gt;. With that he also committed &lt;a href=&#34;https://review.haiku-os.org/#/c/haiku/+/276/&#34;&gt;PoC&lt;/a&gt; which came out to be very useful but still I took sometime to really understand it.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Week #3</title>
-      <link>http://localhost:1313/haiku/2018-05-28-gsoc_2018_sdhci_mmc_driver_week_3/</link>
+      <link>http://localhost:45677/haiku/2018-05-28-gsoc_2018_sdhci_mmc_driver_week_3/</link>
       <pubDate>Mon, 28 May 2018 20:35:18 +0530</pubDate>
-      <guid>http://localhost:1313/haiku/2018-05-28-gsoc_2018_sdhci_mmc_driver_week_3/</guid>
+      <guid>http://localhost:45677/haiku/2018-05-28-gsoc_2018_sdhci_mmc_driver_week_3/</guid>
       <description>&lt;p&gt;Sorry folks! for the delay in the updates. I was pretty much occupied by end term exams. After initial setup, we divided the our initial plan in following steps.&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Discover PCI bus&lt;/li&gt;&#xA;&lt;li&gt;Filter out SDHC device from the connected devices on the bus.&lt;/li&gt;&#xA;&lt;li&gt;Register the device as the child node.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;As I was able to load the driver, it exited in between somewhere from the supports_device(). So I broke the conditions where it checks for the bus, device ID and vendor ID, in order to see where exactly it was not satisfying the condition. I also printed bus value, we got to know that the driver was not able to access PCI bus and it&amp;rsquo;s hidden by default. To enable it we need to mention the bus manager(&lt;em&gt;&amp;ldquo;mmc&amp;rdquo;:location://src add-ons/kernel/busses/mmc&lt;/em&gt;) path in the device manager(&lt;em&gt;location://src/system/kernel/device_manager device_manager.cpp&lt;/em&gt;) where few more busses&amp;rsquo;s paths were hardcoded.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Week #1 and #2</title>
-      <link>http://localhost:1313/haiku/2018-05-06-gsoc_2018_sdhci_mmc_driver_week_1_and_2/</link>
+      <link>http://localhost:45677/haiku/2018-05-06-gsoc_2018_sdhci_mmc_driver_week_1_and_2/</link>
       <pubDate>Sun, 06 May 2018 17:58:47 +0530</pubDate>
-      <guid>http://localhost:1313/haiku/2018-05-06-gsoc_2018_sdhci_mmc_driver_week_1_and_2/</guid>
+      <guid>http://localhost:45677/haiku/2018-05-06-gsoc_2018_sdhci_mmc_driver_week_1_and_2/</guid>
       <description>&lt;p&gt;Hey folks! here&amp;rsquo;s the updates of past two weeks on the project!&lt;/p&gt;&#xA;&lt;p&gt;I have cloned the latest haiku source and built the image file. With the generated image file I have emulated sdhci-pci device successfully. Following are the instructions to be followed:&lt;/p&gt;&#xA;&lt;h2 id=&#34;cloning-the-source-code&#34;&gt;Cloning the source code&lt;/h2&gt;&#xA;&lt;pre&gt;&lt;code&gt;git clone https://github.com/haiku/haiku.git&#xA;git clone https://github.com/haiku/buildtools.git&#xA;&lt;/code&gt;&lt;/pre&gt;&#xA;&lt;h2 id=&#34;compiling-source-code&#34;&gt;Compiling Source Code&lt;/h2&gt;&#xA;&lt;p&gt;Create a directory where you are going to save the build image and related files&lt;/p&gt;</description>
     </item>
     <item>
       <title>SDHCI MMC Driver</title>
-      <link>http://localhost:1313/haiku/2018-04-25-gsoc_2018sdhci_mmc_driver/</link>
+      <link>http://localhost:45677/haiku/2018-04-25-gsoc_2018sdhci_mmc_driver/</link>
       <pubDate>Wed, 25 Apr 2018 22:08:09 +0530</pubDate>
-      <guid>http://localhost:1313/haiku/2018-04-25-gsoc_2018sdhci_mmc_driver/</guid>
+      <guid>http://localhost:45677/haiku/2018-04-25-gsoc_2018sdhci_mmc_driver/</guid>
       <description>&lt;p&gt;Hello everyone! I am B Krishnan Iyer(irc: krish-iyer, telegram: krish_iyer trac: krish_iyer, github: krish-iyer), currently pursuing bachelor&#39;s in Electrical and Electronics Engineering at Amrita University. I am one of the three GSoC participants with Haiku. I am greatful to everyone for accepting me as an intern. This summer I will be developing SDHCI MMC driver.&lt;/p&gt;&#xA;&lt;h3&gt;About Me&lt;/h3&gt;&#xA;&lt;p&gt;My area of interest lies in Embedded system, apart from academics, I work on developing drivers for microcontrollers. I have also worked with different single board computers such as Raspberry Pi and BeagleBone and single board microcontrollers like Arduino(Atmega328P and ATmega2560), TI’s Launchpad(MSP430). Currently, I am developing drivers for ARM-Cortex M4 based boards to communicate to different sensors over different communication protocols(USART, I2C and SPI).&lt;/p&gt;</description>
     </item>
     <item>
       <title>Building Haiku and emulating with Qemu for Linux Distros</title>
-      <link>http://localhost:1313/haiku/2018-03-24-building-haiku-and-emulating-with-qemu/</link>
+      <link>http://localhost:45677/haiku/2018-03-24-building-haiku-and-emulating-with-qemu/</link>
       <pubDate>Sat, 24 Mar 2018 10:51:47 +0530</pubDate>
-      <guid>http://localhost:1313/haiku/2018-03-24-building-haiku-and-emulating-with-qemu/</guid>
+      <guid>http://localhost:45677/haiku/2018-03-24-building-haiku-and-emulating-with-qemu/</guid>
       <description>&lt;h2 id=&#34;building-haiku-from-source-code&#34;&gt;Building Haiku from source code&lt;/h2&gt;&#xA;&lt;p&gt;The following instructions are specifically to building haiku for x86_64 but you can always try building for other architectures too.&lt;/p&gt;&#xA;&lt;h3 id=&#34;clonning-the-source-code&#34;&gt;Clonning the source code&lt;/h3&gt;&#xA;&lt;p&gt;The official repository seems broken anyway didn&amp;rsquo;t work out for me so I clonned from github repo&lt;/p&gt;&#xA;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;git clone https://github.com/haiku/haiku.git&#xA;&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Haiku uses some external tools to build from the source code&lt;/p&gt;&#xA;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;git clone https://github.com/haiku/buildtools.git&#xA;&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;make sure that both the clonned repositories are in the same directories&lt;/p&gt;</description>
     </item>
     <item>
       <title>Process of Compiling a C-Code</title>
-      <link>http://localhost:1313/haiku/2017-10-20-process-of-compiling-a-c-code/</link>
+      <link>http://localhost:45677/haiku/2017-10-20-process-of-compiling-a-c-code/</link>
       <pubDate>Fri, 20 Oct 2017 10:51:47 +0530</pubDate>
-      <guid>http://localhost:1313/haiku/2017-10-20-process-of-compiling-a-c-code/</guid>
+      <guid>http://localhost:45677/haiku/2017-10-20-process-of-compiling-a-c-code/</guid>
       <description>&lt;p&gt;We program to give a certain set of instructions to the computer but it’s tough and time-consuming to learn machine code and give instructions. So we have developed a high-level language which is converted into a low-level language(machine code) through certain tools and each tool is specific to the hardware which is going to understand the instructions. The tool to convert C code into machine code is called as compilers. For general purpose and compiling codes for Linux we use gcc and for AVR microcontrollers we use avr–gcc and PIC-microcontrollers we have pic-gcc.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Introduction to Embedded Systems</title>
-      <link>http://localhost:1313/haiku/2017-10-15-a-brief-introduction-to-embedded-systems/</link>
+      <link>http://localhost:45677/haiku/2017-10-15-a-brief-introduction-to-embedded-systems/</link>
       <pubDate>Sun, 15 Oct 2017 10:51:47 +0530</pubDate>
-      <guid>http://localhost:1313/haiku/2017-10-15-a-brief-introduction-to-embedded-systems/</guid>
+      <guid>http://localhost:45677/haiku/2017-10-15-a-brief-introduction-to-embedded-systems/</guid>
       <description>&lt;p&gt;The first guess we make is of-course something small and which is a part of a big system. So I will try to convert all of your guesses to some fundamental knowledge so the next time you will more confident than just making a guess.&lt;/p&gt;&#xA;&lt;p&gt;So yes, Embedded systems have software embedded inside the hardware. Hence it has two parts hardware and software. These systems are task specific and function &amp;amp; respond in real time. This hardware understands the language of 0 &amp;amp; 1 which we call as a low-level language, there are more of these like hexadecimal, octal number systems etc. These instructions in low-level languages are burned in the memory of the micro controllers or micro processors. Basically, micro controllers are made on based on two architecture, Harvard and Von Neumann. The basic difference in both the architecture is one of them( Von Neumann) got two sperate memories so that instructions and data, so they can be done simultaneously. The other one(Harvard) has only one memory so either it can give instruction or play with data at a time. So the hardware has millions of logic circuits and small switches which are actually flip-flops and are used make a register and it has a state(0 or 1) and some set of register will give you a series of 0 &amp;amp; 1 values which is a data or based on it state of registers current or data is been circulated and instructions.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Moodle</title>
-      <link>http://localhost:1313/haiku/2017-03-03-moodle/</link>
+      <link>http://localhost:45677/haiku/2017-03-03-moodle/</link>
       <pubDate>Fri, 03 Mar 2017 10:51:47 +0530</pubDate>
-      <guid>http://localhost:1313/haiku/2017-03-03-moodle/</guid>
+      <guid>http://localhost:45677/haiku/2017-03-03-moodle/</guid>
       <description>&lt;h2 id=&#34;why-moodle&#34;&gt;Why Moodle&lt;/h2&gt;&#xA;&lt;p&gt;Being a citizen of a country of population more than 1.252 billion and only 64.8% are literate, I know the value of education. I look around and see children are employed when they should play and learn, girls are killed because parents can’t afford expense of rest of her life, corruption is increasing day by day and it is same country where most of the engineers are unemployed. But I don’t want to hate this society for all these reasons, I want to make this place a better one. Where each child in this can learn whatever he/she wants, they can do whatever they want and serve this society in their own ways.&lt;/p&gt;</description>
     </item>
   </channel>

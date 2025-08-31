@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Hackdrones on Krishnan&#39;s blog</title>
-    <link>http://localhost:45677/categories/hackdrones/</link>
-    <description>Recent content in Hackdrones on Krishnan&#39;s blog</description>
+    <title>hackdrones on Krishnan&#39;s blog</title>
+    <link>http://localhost:45677/hackdrones/</link>
+    <description>Recent content in hackdrones on Krishnan&#39;s blog</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 07 May 2020 12:32:45 +0100</lastBuildDate>
-    <atom:link href="http://localhost:45677/categories/hackdrones/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:45677/hackdrones/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Object Orientation Estimation Algorithm for Visual Feedback Systems</title>
       <link>http://localhost:45677/hackdrones/2020-05-07-orientation-estimation/</link>

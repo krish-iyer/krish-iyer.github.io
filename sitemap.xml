@@ -2,111 +2,111 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://localhost:1313/categories/</loc>
+    <loc>http://localhost:45677/categories/</loc>
     <lastmod>2023-12-06T12:32:45+01:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/categories/oneoff/</loc>
+    <loc>http://localhost:45677/categories/oneoff/</loc>
     <lastmod>2023-12-06T12:32:45+01:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/2023-12-06-pacman/</loc>
+    <loc>http://localhost:45677/posts/2023-12-06-pacman/</loc>
     <lastmod>2023-12-06T12:32:45+01:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/</loc>
+    <loc>http://localhost:45677/posts/</loc>
     <lastmod>2023-12-06T12:32:45+01:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/</loc>
+    <loc>http://localhost:45677/</loc>
     <lastmod>2023-01-01T08:00:00-07:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/drones/</loc>
+    <loc>http://localhost:45677/hackdrones/</loc>
     <lastmod>2020-05-07T12:32:45+01:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/categories/hackdrones/</loc>
+    <loc>http://localhost:45677/categories/hackdrones/</loc>
     <lastmod>2020-05-07T12:32:45+01:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/drones/2020-05-07-orientation-estimation/</loc>
+    <loc>http://localhost:45677/hackdrones/2020-05-07-orientation-estimation/</loc>
     <lastmod>2020-05-07T12:32:45+01:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/drones/2020-03-03-hacking-a-mini-drone/</loc>
+    <loc>http://localhost:45677/hackdrones/2020-03-03-hacking-a-mini-drone/</loc>
     <lastmod>2020-03-03T12:32:45+01:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/dav1d/</loc>
+    <loc>http://localhost:45677/dav1d/</loc>
     <lastmod>2019-08-19T12:32:45+01:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/categories/dav1d/</loc>
+    <loc>http://localhost:45677/categories/dav1d/</loc>
     <lastmod>2019-08-19T12:32:45+01:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/dav1d/2019-08-19-gsoc19-final-report/</loc>
+    <loc>http://localhost:45677/dav1d/2019-08-19-gsoc19-final-report/</loc>
     <lastmod>2019-08-19T12:32:45+01:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/dav1d/2019-06-04-dav1d-arm-neon-optimization/</loc>
+    <loc>http://localhost:45677/dav1d/2019-06-04-dav1d-arm-neon-optimization/</loc>
     <lastmod>2019-06-08T12:32:45+01:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/dav1d/2019-06-04-introduction-to-assembly-and-dav1d/</loc>
+    <loc>http://localhost:45677/dav1d/2019-06-04-introduction-to-assembly-and-dav1d/</loc>
     <lastmod>2019-06-04T12:32:45+01:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/haiku/</loc>
+    <loc>http://localhost:45677/haiku/</loc>
     <lastmod>2018-08-06T21:24:03+05:30</lastmod>
   </url><url>
-    <loc>http://localhost:1313/categories/haiku/</loc>
+    <loc>http://localhost:45677/categories/haiku/</loc>
     <lastmod>2018-08-06T21:24:03+05:30</lastmod>
   </url><url>
-    <loc>http://localhost:1313/haiku/2018-08-06-gsoc_2018_sdhci_mmc_driver_week_11/</loc>
+    <loc>http://localhost:45677/haiku/2018-08-06-gsoc_2018_sdhci_mmc_driver_week_11/</loc>
     <lastmod>2018-08-06T21:24:03+05:30</lastmod>
   </url><url>
-    <loc>http://localhost:1313/haiku/2018-07-31-gsoc_2018_sdhci_mmc_driver_week_10/</loc>
+    <loc>http://localhost:45677/haiku/2018-07-31-gsoc_2018_sdhci_mmc_driver_week_10/</loc>
     <lastmod>2018-07-31T23:58:43+05:30</lastmod>
   </url><url>
-    <loc>http://localhost:1313/haiku/2018-07-24-gsoc_2018_sdhci_mmc_driver_week_9/</loc>
+    <loc>http://localhost:45677/haiku/2018-07-24-gsoc_2018_sdhci_mmc_driver_week_9/</loc>
     <lastmod>2018-07-24T19:03:36+05:30</lastmod>
   </url><url>
-    <loc>http://localhost:1313/haiku/2018-07-12-gsoc_2018_sdhci_mmc_driver_third_phase_plan/</loc>
+    <loc>http://localhost:45677/haiku/2018-07-12-gsoc_2018_sdhci_mmc_driver_third_phase_plan/</loc>
     <lastmod>2018-07-12T10:52:58+05:30</lastmod>
   </url><url>
-    <loc>http://localhost:1313/haiku/2018-07-09-gsoc_2018_sdhci_mmc_driver_week_8/</loc>
+    <loc>http://localhost:45677/haiku/2018-07-09-gsoc_2018_sdhci_mmc_driver_week_8/</loc>
     <lastmod>2018-07-09T20:09:54+05:30</lastmod>
   </url><url>
-    <loc>http://localhost:1313/haiku/2018-07-03-gsoc_2018_sdhci_mmc_driver_week_7/</loc>
+    <loc>http://localhost:45677/haiku/2018-07-03-gsoc_2018_sdhci_mmc_driver_week_7/</loc>
     <lastmod>2018-07-03T18:27:58+05:30</lastmod>
   </url><url>
-    <loc>http://localhost:1313/haiku/2018-06-26-gsoc_2018_sdhci_mmc_driver_week_6/</loc>
+    <loc>http://localhost:45677/haiku/2018-06-26-gsoc_2018_sdhci_mmc_driver_week_6/</loc>
     <lastmod>2018-06-26T15:04:41+05:30</lastmod>
   </url><url>
-    <loc>http://localhost:1313/haiku/2018-06-14-gsoc_2018_sdhci_mmc_driver_second_phase_outline/</loc>
+    <loc>http://localhost:45677/haiku/2018-06-14-gsoc_2018_sdhci_mmc_driver_second_phase_outline/</loc>
     <lastmod>2018-06-14T11:51:57+05:30</lastmod>
   </url><url>
-    <loc>http://localhost:1313/haiku/2018-06-11-gsoc_2018_sdhci_mmc_driver_week_5/</loc>
+    <loc>http://localhost:45677/haiku/2018-06-11-gsoc_2018_sdhci_mmc_driver_week_5/</loc>
     <lastmod>2018-06-11T18:34:48+05:30</lastmod>
   </url><url>
-    <loc>http://localhost:1313/haiku/2018-06-04-gsoc_2018_sdhci_mmc_driver_week_4/</loc>
+    <loc>http://localhost:45677/haiku/2018-06-04-gsoc_2018_sdhci_mmc_driver_week_4/</loc>
     <lastmod>2018-06-03T21:11:13+05:30</lastmod>
   </url><url>
-    <loc>http://localhost:1313/haiku/2018-05-28-gsoc_2018_sdhci_mmc_driver_week_3/</loc>
+    <loc>http://localhost:45677/haiku/2018-05-28-gsoc_2018_sdhci_mmc_driver_week_3/</loc>
     <lastmod>2018-05-28T20:35:18+05:30</lastmod>
   </url><url>
-    <loc>http://localhost:1313/haiku/2018-05-06-gsoc_2018_sdhci_mmc_driver_week_1_and_2/</loc>
+    <loc>http://localhost:45677/haiku/2018-05-06-gsoc_2018_sdhci_mmc_driver_week_1_and_2/</loc>
     <lastmod>2018-05-06T17:58:47+05:30</lastmod>
   </url><url>
-    <loc>http://localhost:1313/haiku/2018-04-25-gsoc_2018sdhci_mmc_driver/</loc>
+    <loc>http://localhost:45677/haiku/2018-04-25-gsoc_2018sdhci_mmc_driver/</loc>
     <lastmod>2018-04-25T22:08:09+05:30</lastmod>
   </url><url>
-    <loc>http://localhost:1313/haiku/2018-03-24-building-haiku-and-emulating-with-qemu/</loc>
+    <loc>http://localhost:45677/haiku/2018-03-24-building-haiku-and-emulating-with-qemu/</loc>
     <lastmod>2018-03-24T10:51:47+05:30</lastmod>
   </url><url>
-    <loc>http://localhost:1313/haiku/2017-10-20-process-of-compiling-a-c-code/</loc>
+    <loc>http://localhost:45677/haiku/2017-10-20-process-of-compiling-a-c-code/</loc>
     <lastmod>2017-10-20T10:51:47+05:30</lastmod>
   </url><url>
-    <loc>http://localhost:1313/haiku/2017-10-15-a-brief-introduction-to-embedded-systems/</loc>
+    <loc>http://localhost:45677/haiku/2017-10-15-a-brief-introduction-to-embedded-systems/</loc>
     <lastmod>2017-10-15T10:51:47+05:30</lastmod>
   </url><url>
-    <loc>http://localhost:1313/haiku/2017-03-03-moodle/</loc>
+    <loc>http://localhost:45677/haiku/2017-03-03-moodle/</loc>
     <lastmod>2017-03-03T10:51:47+05:30</lastmod>
   </url><url>
-    <loc>http://localhost:1313/about/</loc>
+    <loc>http://localhost:45677/about/</loc>
   </url><url>
-    <loc>http://localhost:1313/contact/</loc>
+    <loc>http://localhost:45677/contact/</loc>
   </url><url>
-    <loc>http://localhost:1313/publications/</loc>
+    <loc>http://localhost:45677/publications/</loc>
   </url><url>
-    <loc>http://localhost:1313/tags/</loc>
+    <loc>http://localhost:45677/tags/</loc>
   </url>
 </urlset>
