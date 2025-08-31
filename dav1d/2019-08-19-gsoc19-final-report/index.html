@@ -11,6 +11,22 @@
       <script src="/js/main.js"></script>
 
 
+  
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+<script>
+  MathJax = {
+    tex: {
+      displayMath: [['\\[', '\\]'], ['$$', '$$']],  
+      inlineMath: [['\\(', '\\)']]                  
+    },
+    loader:{
+      load: ['ui/safe']
+    },
+  };
+</script>
+
+  
+
 </head>
 <body>
   <header>
@@ -84,14 +100,14 @@
 <li><a href="#whats-left-out">What&rsquo;s Left out!</a></li>
 <li><a href="#final-note-and-things-i-learnt">Final Note and Things I learnt</a></li>
 </ol>
-<h2 id="project-overview"><!-- raw HTML omitted --><!-- raw HTML omitted --> Project Overview</h2>
+<h2 id="project-overview"><a name="project-overview"></a> Project Overview</h2>
 <p>The project dealt with analysing various functions implemented in C language and then implement same in ARM assembly using SIMD architecture for both 32 and 64 bit processors. This will enhance efficiency in terms of both execution speed and binary size. There was performance testing involved after the function was implemented in assembly by using counter registers which helped in benchmarking the number of instruction cycles a function gets executed. Benchmarking was done for improving the production quality of dav1d across ARMv8 and ARMv7 devices.</p>
 <p>The Project is guided by Martin Storsjö and Nathan Egge. There has been a significant contribution of Henrik Gramner in the review process. Also, special thanks of Jean-Baptiste Kempf to keep us motivated and thanks to VideoLAN for sponsoring odroid N2 development board.</p>
-<h2 id="target-device"><!-- raw HTML omitted --><!-- raw HTML omitted --> Target Device</h2>
+<h2 id="target-device"><a name="target-device"></a> Target Device</h2>
 <p>As the project dealt with development of dav1d for only ARM architecture, we selected <a href="https://www.hardkernel.com/shop/odroid-n2-with-4gbyte-ram/">odroid N-2</a> as our target development board which has quad Cortex A-73 and dual A-53 cluster. This will help us getting real performance figures than the emulated one which might not be accurate. The board chipset has ARMv8-A architecture with NEON and it supports both 64 and 32 bit execution states. Hence we can develop both AARCH32 and AARCH64 code on the device.</p>
-<h3 id="setting-up-the-device"><!-- raw HTML omitted --><!-- raw HTML omitted --> Setting up the device</h3>
+<h3 id="setting-up-the-device"><a name="setting-up-the-device"></a> Setting up the device</h3>
 <p>Now in order to boot the development board with an OS, there are two <a href="https://wiki.odroid.com/odroid-n2/os_images/ubuntu">ubuntu 18.04 LTS images</a> available with Kernel version 4.9.162 LTS. They will be officially supported Until Jan 2023. You can either boot the image to micro SD card using <a href="https://en.wikipedia.org/wiki/Dd_(Unix)">dd command</a>, <a href="https://www.balena.io/etcher/">balenaEtcher</a> or any other software like <a href="https://rufus.ie/">rufus</a> if you are using windows. Make sure that SPI boot select switch is on the MMC side so that it can boot from SD card and not onboard SPI memory.</p>
-<h3 id="building-dav1d"><!-- raw HTML omitted --><!-- raw HTML omitted --> Building dav1d</h3>
+<h3 id="building-dav1d"><a name="building-dav1d"></a> Building dav1d</h3>
 <p>Once you&rsquo;re done with installing ubuntu we can move further to build dav1d. Your OS will be of 64 bit so it will be having support for 64 bit compiler and assembler natively but if you need to compile any AARCH32 code, you need some cross compiler tools(<em>compiler, assembler, gdb etc</em>). The source code of dav1d can be cloned from <a href="https://code.videolan.org/videolan/dav1d/">here</a>, the README file will also help in following with the compile and building dav1d. For a direct reference, I will mention it here.</p>
 <p>You need to install <a href="https://mesonbuild.com/Quick-guide.html">meson</a> and <a href="https://ninja-build.org/">ninja</a> before proceeding any further</p>
 <pre tabindex="0"><code>~$ meson build --buildtype release
@@ -99,13 +115,13 @@
 </code></pre><p>Now meson will use 64bit gcc and gas(<em>gnu assembler</em>) natively. So if you need to compile 32bit code then exec below mentioned commands. You can find cross_file.txt <a href="https://code.videolan.org/snippets/972">here</a>.</p>
 <pre tabindex="0"><code>~$ apt-get install libc6:armhf libstdc++6:armhf gcc-arm-linux-gnueabihf binutils-arm-linux-gnueabihf-dbg
 ~$ meson build --cross-file cross_file.txt
-</code></pre><h3 id="accessing-counter-registers"><!-- raw HTML omitted --><!-- raw HTML omitted --> Accessing Counter Registers</h3>
+</code></pre><h3 id="accessing-counter-registers"><a name="accessing-counter-registers"></a> Accessing Counter Registers</h3>
 <p>Now you are all set with building dav1d. Furthermore, we want to count in how many instruction cycles does our asm function and c function gets executed. This will give us more clarity regarding how efficient asm code is with respect to the c code also we can tune and improve the existing asm function by comparing to the previous benchmark results. But somehow these counter registers are not accessible to the user and only to the kernel. So to access the counter registers we need to write a kernel module.</p>
 <p>Download <a href="https://code.videolan.org/krish-iyer/dav1d/snippets/1029">source</a> and <a href="https://code.videolan.org/krish-iyer/dav1d/snippets/1030">Makefile</a> into some directory, in my case it&rsquo;s in a dir called <em>bench</em>. Following commands will help you through.</p>
 <pre tabindex="0"><code>~$ cd bench
 ~$ make
 ~$ insmod enable_arm_pmu.ko
-</code></pre><h2 id="directory-structure"><!-- raw HTML omitted --><!-- raw HTML omitted --> Directory Structure</h2>
+</code></pre><h2 id="directory-structure"><a name="directory-structure"></a> Directory Structure</h2>
 <p>Now we have successfully setup the development environment but before editing any file or adding any ASM function, we must understand how files and directories have been organized. In the diagram below I have <strong>only mentioned the files and directories relevant for this project</strong>, there are other files and directories in the dav1d which I have not mentioned.</p>
 <pre tabindex="0"><code>dav1d
 |__ src
@@ -135,7 +151,7 @@
 <li><strong>tests/checkasm</strong> -&gt; <em>checkasm tool source diretory</em></li>
 <li><strong>tests/checkasm/mc.c</strong> -&gt; <em>motion compensation test function source files</em></li>
 </ul>
-<h2 id="analysing-c-function"><!-- raw HTML omitted --><!-- raw HTML omitted --> Analysing C function</h2>
+<h2 id="analysing-c-function"><a name="analysing-c-function"></a> Analysing C function</h2>
 <p>Now we are all done with setting up the development environment and understanding directory structure. So now we have to analyse the functions implemented in C language and implement the same in ARM assembly using NEON registers also compare the performance. We will also try to optimize it further if there&rsquo;s room for that. We started first with blend/blend_v/blend_h functions. AFAIK, I think these functions belongs to motion compensation and hence located in the</p>
 <pre tabindex="0"><code>src/mc_tmpl.c
 </code></pre><p>and here&rsquo;s blend function</p>
@@ -167,10 +183,10 @@ mask += w;
 <li><em>w</em> is the length of each row and <em>h</em> is length column.</li>
 </ul>
 <p>We will further look into the C function, while writing assembly code but these are all the highlights needed for now.</p>
-<h2 id="simd-the-idea"><!-- raw HTML omitted --><!-- raw HTML omitted --> SIMD: The Idea</h2>
+<h2 id="simd-the-idea"><a name="SIMD:-The-Idea"></a> SIMD: The Idea</h2>
 <p>So to understand SIMD(single instruction multiple data) if you don&rsquo;t already know about it or didn&rsquo;t go through my previous blogs. The advantage over common assembly is we are going to fetch multiple data, keeping it in single register and do the operation with a single instruction.</p>
 <p>So, for example, you have two 128bit registers, normally if you try to store any number in that register, it will be represented in 128 binary and then stored. For example, if you want to store 2 in 128bit register then register value will be 126 leading zeroes and 10 in the end. In case of SIMD you can divide the whole register into even parts so it can be used to keep multiple values like keeping 2 and 4 in the same register rather than using two different registers. Now you have a maximum of 128 bit register so either you can accommodate 16 8bit or 8 16bit or 4 32 bit or 2 64 bit data on either of the registers.</p>
-<h3 id="instructions-in-simd"><!-- raw HTML omitted --><!-- raw HTML omitted --> Instructions in SIMD</h3>
+<h3 id="instructions-in-simd"><a name="instructions-in-simd"></a> Instructions in SIMD</h3>
 <p>In normal assembly if you have to add four elements of two different arrays lets say array size is four for both and store it in a third array</p>
 <pre tabindex="0"><code>int a[4] = {1, 2, 3, 4};    // first array
 int b[4] = {5, 6, 7, 8};    // second array
@@ -194,7 +210,7 @@ int c[4];                   // elements to be store after operation
     vst1.32     {q2}, [r5]!
 </code></pre><p>Hence we got rid of the inner loop and iterating through each element. That&rsquo;s the advantage of SIMD over normal assembly.</p>
 <p>Now if you haven&rsquo;t noticed, elements of a and b were contiguously arranged and hence we were able to load it into a single register. So specific for widths of the data or the data about which we are sure that they would be contiguously arranged in the memory like an array, we have different implementations, it helps us to reduce extra reg and optimize it more to gain similar functionality over fewer instruction cycles. I will elaborate this further in later sections</p>
-<h2 id="declaring-neon-asm-function"><!-- raw HTML omitted --><!-- raw HTML omitted --> Declaring NEON ASM Function</h2>
+<h2 id="declaring-neon-asm-function"><a name="declaring-neon-asm-function"></a> Declaring NEON ASM Function</h2>
 <p>Before even implementing the function, we need to hook the asm function because till now it was using C implementation and with the availability of asm function, we need it to prioritize asm function over C. So we need to declare the function and hook it to the object. The concerned file would be</p>
 <pre tabindex="0"><code>src/arm/mc_init_tmpl.c
 </code></pre><p>In mc_inti_tmpl.c all the ASM functions for both 32 bit and 64 bit are declared</p>
@@ -205,11 +221,11 @@ c-&gt;xyz = dav1d_xyz_8bpc_neon;       # hooking to the c object
 <pre tabindex="0"><code>#if ARCH_ARM
     c-&gt;xyz = dav1d_xyz_8bpc_neon;
 #endif
-</code></pre><h2 id="writing-neon-asm-function-for-aarch32"><!-- raw HTML omitted --><!-- raw HTML omitted --> Writing NEON ASM Function for AARCH32</h2>
+</code></pre><h2 id="writing-neon-asm-function-for-aarch32"><a name="writing-neon-asm-function-aarch32"></a> Writing NEON ASM Function for AARCH32</h2>
 <p>Now we are ready to implement our assembly function. Definitition of function should be under something like</p>
 <pre tabindex="0"><code>function xyz_8bpc_neon, export=1
 </code></pre><p>which will export the function in the format of  <strong>dav1d_xyz_8bpc_neon</strong> exactly like how you declared the function in <em>src/arm/mc_init_tmpl.c</em>.</p>
-<h3 id="jump-table-for-aarch32"><!-- raw HTML omitted --><!-- raw HTML omitted --> Jump Table for AARCH32</h3>
+<h3 id="jump-table-for-aarch32"><a name="jump-table-aarch32"></a> Jump Table for AARCH32</h3>
 <p>Now in the earlier sections we understood that we have specific code for specific widths which gauratees us that data has been arranged contiguously in the memory. So for example in blend function we form different subroutines for specific widths. So to know the value of width and select the right subroubtine we have a algorithm which maps w to the right implmentation.</p>
 <p>Our function has the width parameter <em>w</em>, which will be having value of 2, 4, 8, 16, 32, 64 or 128. Now, we want to map this to a table index for the jump table. When we calculate leading zeroes(<em>clz()</em>) for say for 128 as a 32 bit value, we will get 24, because the 32 bit binary representation of 128, 0x00000080, has got 24 leading zeros.</p>
 <p>When we do the same for 64, 0x0000000040, we get 25. With this, we map the w parameter values from the values 128, 64, 32, 16, 8, 4, 2, to values 0, 1, 2, 3, 4, 5, 6, which work as index into the jump table, to choose the right function implementation depending on the intended width.</p>
@@ -237,7 +253,7 @@ elseif (r8 == 1)
 <pre tabindex="0"><code>    .word 320f  - L(blend_tbl) + CONFIG_THUMB
 </code></pre><p>it&rsquo;s something like (32f - tbl) + tbl.</p>
 <p>This kind of form is followed in all the functions in dav1d, in order to maintain the consistency and to work round some bugs in other tools in the case of AARCH32.</p>
-<h3 id="implmentation-for-aarch32"><!-- raw HTML omitted --><!-- raw HTML omitted --> Implmentation for AARCH32</h3>
+<h3 id="implmentation-for-aarch32"><a name="implementation-aarch32"></a> Implmentation for AARCH32</h3>
 <p>So let&rsquo;s try write blend function in ARM assembly using NEON registers as we already analysed the C code and as the code is specific for different widths let&rsquo;s write for w = 4. Similar to the example above in SIMD section we are loading 4 values at a time. dst, tmp and mask are 0f 8 bit hence we can accommodate 4 values in 32 bits.</p>
 <pre tabindex="0"><code>40:
         vmov.i8         d22, #64
@@ -253,7 +269,7 @@ elseif (r8 == 1)
         vst1.32         {d20[0]}, [r0], r1// dst = (((dst * (64 - mask) ) + mask * tmp) + 32) &gt;&gt;6; also update dst with next addr
         bgt             4b
         pop             {r4-r5,pc}
-</code></pre><h3 id="checkasm-and-benchmarking"><!-- raw HTML omitted --><!-- raw HTML omitted --> Checkasm and Benchmarking</h3>
+</code></pre><h3 id="checkasm-and-benchmarking"><a name="checkasm"></a> Checkasm and Benchmarking</h3>
 <p>Now that you have implmented the function, it&rsquo;s time to check if it&rsquo;s giving the right expected output and if so then try to benchmark it.</p>
 <p>Checkasm is basically a tool which matches the C and ASM function&rsquo;s outputs, given the same random input.
 <strong>Note</strong>: each you make change to the code, you have build it again and check with the following commands.</p>
@@ -302,7 +318,7 @@ dst:
 <pre tabindex="0"><code>blend_w4_8bpc_c: 201.2
 blend_w4_8bpc_neon: 49.8
 </code></pre><p>Now here we can clearly see that our code is 5 times efficient than c code.</p>
-<h3 id="optimization-for-aarch32"><!-- raw HTML omitted --><!-- raw HTML omitted --> Optimization for AARCH32</h3>
+<h3 id="optimization-for-aarch32"><a name="optimization-aarch32"></a> Optimization for AARCH32</h3>
 <p>Although our code is efficient, we can further increase the efficiency by optimizing the code.</p>
 <p>In the project I have touched 3 aspects of optimization.</p>
 <ol>
@@ -310,7 +326,7 @@ blend_w4_8bpc_neon: 49.8
 <li>Instruction reordering</li>
 <li>Memory Alignment</li>
 </ol>
-<h3 id="loop-unrolling"><!-- raw HTML omitted --><!-- raw HTML omitted --> Loop Unrolling</h3>
+<h3 id="loop-unrolling"><a name="loop-unrolling"></a> Loop Unrolling</h3>
 <p>For example we have a loop</p>
 <pre tabindex="0"><code>for(int i=0 ; i&lt;n ; i++)
 {
@@ -348,7 +364,7 @@ blend_w4_8bpc_neon: 34.3
 Earlier
 blend_w4_8bpc_neon: 49.8
 </code></pre><p>As you can see there&rsquo;s significant amount affect.</p>
-<h3 id="instruction-reordering"><!-- raw HTML omitted --><!-- raw HTML omitted --> Instruction Reordering</h3>
+<h3 id="instruction-reordering"><a name="instruction-reordering"></a> Instruction Reordering</h3>
 <p>For example</p>
 <pre tabindex="0"><code>a = b + c;
 d = a + b;
@@ -414,13 +430,13 @@ blend_w4_8bpc_neon: 34.3
         vmlal.u8        q10, d1,  d18
         vrshrn.i16      d23, q10, #6
 </code></pre><p>reason being q3 gets update in vmlal and then if we keep vrsrhn just after that may have to wait for q3 to get update and then only it can be executed. Hence we kept at the end as far as possible.</p>
-<h3 id="memory-alignment"><!-- raw HTML omitted --><!-- raw HTML omitted --> Memory Alignment</h3>
+<h3 id="memory-alignment"><a name="memory-alignment"></a> Memory Alignment</h3>
 <p>For example</p>
 <pre tabindex="0"><code>vld1.u8         {q2,  q3},  [r5,  :128]!
 </code></pre><p>can also be written as</p>
 <pre tabindex="0"><code>vld1.u8         {q2,  q3},  [r5]!
 </code></pre><p>But the later pretty much uses more instruction cycles than the before. Memory alignment  gaurantees that memory will be aligned by so and so bits. This was only affective on A8 and A9 and not on A53 and A73.</p>
-<h2 id="from-aarch32-to-aarch64"><!-- raw HTML omitted --><!-- raw HTML omitted --> From AARCH32 to AARCH64</h2>
+<h2 id="from-aarch32-to-aarch64"><a name="from-aarch32-to-aarch64"></a> From AARCH32 to AARCH64</h2>
 <p>The code for 32 bit and 64 bit is almost exactly same except there is no overlapping like q and d registers and there are more register than in AARCH32 with a bit different naming scheme. In 64 bit Jump table is placed in the end and something like and it happened to be different than AARCH32.</p>
 <pre tabindex="0"><code>   .hword L(blend_tbl) - 32b
 </code></pre><p>which is tbl - (tbl - 32b). Where tbl has the address. tbl is placed in the and end for a higher value that&rsquo;s why the expression is like subtracting 32b from tbl.</p>
@@ -450,7 +466,7 @@ blend_w4_8bpc_neon: 34.3
         st1             {v6.s}[1],   [x8],  x1
         b.gt            4b
         ret
-</code></pre><h2 id="list-of-commits"><!-- raw HTML omitted --><!-- raw HTML omitted --> List of Commits</h2>
+</code></pre><h2 id="list-of-commits"><a name="list-of-commits"></a> List of Commits</h2>
 <p>Here&rsquo;s the list and details of all commits. I have completed w_mask_444/420/422 and blend/blend_h/blend_v for both AARCH32 and AARCH64 architecture and they are succssfully merged.</p>
 <p><em><strong>added lines: 1543, removed lines: 272, total lines: 1271</strong></em></p>
 <table>
@@ -519,9 +535,9 @@ blend_w4_8bpc_neon: 34.3
       </tr>
   </tbody>
 </table>
-<h2 id="whats-left-out"><!-- raw HTML omitted --><!-- raw HTML omitted --> What&rsquo;s Left out!</h2>
+<h2 id="whats-left-out"><a name="#What's-Left-out"></a> What&rsquo;s Left out!</h2>
 <p>Here&rsquo;s a <a href="https://code.videolan.org/videolan/dav1d/issues/215">list</a> of functions to be implemented in ARM. I would like to continue with VideoLAN and my first goal would be to port warp8x8 functiom from AARCH64 to AARCH32.</p>
-<h2 id="final-note-and-things-i-learnt"><!-- raw HTML omitted --><!-- raw HTML omitted --> Final Note and Things I learnt</h2>
+<h2 id="final-note-and-things-i-learnt"><a name="final-note-and-things-i-learnt"></a> Final Note and Things I learnt</h2>
 <p>It has been a great journey and a steep learning curve in my career. Right from the first email to VideoLAN, they were very patient, I have started learning ARM assembly from February'19 and with the right guidance, we were able to produce quality code. Following things I leant throughout the project</p>
 <ol>
 <li>ARM assembly with NEON architecture for both 32 and 64 bit</li>

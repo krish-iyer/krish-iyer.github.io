@@ -11,6 +11,22 @@
       <script src="/js/main.js"></script>
 
 
+  
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+<script>
+  MathJax = {
+    tex: {
+      displayMath: [['\\[', '\\]'], ['$$', '$$']],  
+      inlineMath: [['\\(', '\\)']]                  
+    },
+    loader:{
+      load: ['ui/safe']
+    },
+  };
+</script>
+
+  
+
 </head>
 <body>
   <header>
@@ -57,9 +73,22 @@
 <h3 id="identification-of-points">Identification of points</h3>
 <p>The median and quartiles as shown in “Fig. 1” makes the orientation independent of the shape and position of the feature in the camera frame as median serves as the middle value of the sorted set and quartile being a second point in the feature gives the slope relative to the camera frame. This statistical approach ensures that points will always lie in the boundary values of the feature. Hence a significant amount of error and noise is being avoided and has a robust response.</p>
 <h3 id="determining-orientation">Determining orientation</h3>
-<p>After points have been identified, orientation can easily be calculated by
-$tan^-1 ( \frac{x}{y} )$. The magnitude of the angle will be calculated by the slope as shown in “Fig. 2” where as the direction(anticlockwise or clockwise)(shown in “Fig. 4”) will be given by the difference of y value respect to index value of x quartile and y median as shown in “Fig. 3”.</p>
-<!-- raw HTML omitted -->
+<p>After points have been identified, orientation can easily be calculated by</p>
+\[ tan^-1 ( \frac{x}{y} ) \]<p>. The magnitude of the angle will be calculated by the slope as shown in “Fig. 2” where as the direction(anticlockwise or clockwise)(shown in “Fig. 4”) will be given by the difference of y value respect to index value of x quartile and y median as shown in “Fig. 3”.</p>
+<div style="display: flex; justify-content: space-around; align-items: flex-end;">
+  <figure style="flex: 1; margin: 0 10px;">
+    <img src="/files/images/object_est_fig1.png" alt="Image 1 Description" style="width: 100%;">
+    <figcaption style="margin-top: 10px; word-wrap: break-word;">Fig. 1. Identification of Points</figcaption>
+  </figure>
+  <figure style="flex: 1; margin: 0 10px;">
+    <img src="/files/images/object_est_fig2.png" alt="Image 2 Description" style="width: 100%;">
+    <figcaption style="margin-top: 10px; word-wrap: break-word;">Fig. 2. Orientation Angle vs Time (ideal) for π/2 to − π/2 orientation</figcaption>
+  </figure>
+  <figure style="flex: 1; margin: 0 10px;">
+    <img src="/files/images/object_est_fig3.png" alt="Image 3 Description" style="width: 100%;">
+    <figcaption style="margin-top: 10px; word-wrap: break-word;">Fig. 3. Difference of y values vs Time (y value with respect to index value of x quartile and y median) (ideal) for π/2 to − π/2 orientation</figcaption>
+  </figure>
+</div>
 <h2 id="implementation">IMPLEMENTATION</h2>
 <p>We tested this on a testbed consisting of a camera [7] [8] fixed orthogonal to the object feature. Feature detection is done based on a unique colour on the object in the camera frame and the feature is a blue rectangular shaped strip. The algorithm is implemented in Python programming language using OpenCV library and been implemented in following steps.</p>
 <h3 id="feature-detection-1">Feature Detection</h3>
@@ -71,21 +100,43 @@ $tan^-1 ( \frac{x}{y} )$. The magnitude of the angle will be calculated by the s
 <h3 id="identification-of-points-1">Identification of points</h3>
 <ul>
 <li>Separate row and column of detected feature</li>
-<li>Find row($x_m$) and column($y_m$) median</li>
-<li>Find a quartile with 25% in row($x_q$) and column($y_q$) array
+<li>Find row(\(x_m\)) and column(\(y_m\)) median</li>
+<li>Find a quartile with 25% in row(\(x_q\)) and column(\(y_q\)) array
 from midpoint.</li>
 <li>Find the index of the above value in row array</li>
-<li>For the same index find the value in column index($y_{\text{ind}}$)</li>
+<li>For the same index find the value in column index(\(y_{\text{ind}}\))</li>
 </ul>
 <h3 id="orientation-estimation">Orientation estimation</h3>
 <ul>
-<li>Find the slope of the line segment joining $x_m$ , $y_m$ and $x_q$,$y_q$ by $tan^−1(\frac{x_m − x_q }{y_m − y_q})$</li>
+<li>Find the slope of the line segment joining \(x_m\) , \(y_m\) and \(x_q\),\(y_q\) by \(tan^−1(\frac{x_m − x_q }{y_m − y_q})\)</li>
 <li>For the direction(anticlockwise or clockwise) will be
-given by the difference of y value respect to index value of x quartile and y median $y_m − y_{\text{ind}}$</li>
+given by the difference of y value respect to index value of x quartile and y median \(y_m − y_{\text{ind}}\)</li>
 </ul>
-<!-- raw HTML omitted -->
+<div style="display: flex; justify-content: space-around; align-items: flex-end;">
+	<figure style="flex: 1; margin: 0 10px;">
+		<img src="/files/images/object_est_fig4.png" alt="Image 1 Description" style="width: 100%;">
+		<figcaption style="margin-top: 10px; word-wrap: break-word;">Fig. 4. Direction estimated based on the difference of y points (-1 represents anticlockwise, 1 represents clockwise direction and 0 represents reference interval) (ideal) for π/2 to − π/2 orientation</figcaption>
+	</figure>
+	<figure style="flex: 1; margin: 0 10px;">
+		<img src="/files/images/object_est_fig5.png" alt="Image 2 Description" style="width: 100%;">
+		<figcaption style="margin-top: 10px; word-wrap: break-word;">Fig. 5. Orientation Angle vs Time (practical) for π/2 to − π/2 orientation</figcaption>
+	</figure>
+	<figure style="flex: 1; margin: 0 10px;">
+		<img src="/files/images/object_est_fig6.png" alt="Image 3 Description" style="width: 100%;">
+		<figcaption style="margin-top: 10px; word-wrap: break-word;">Fig. 6. Difference of y values (y value with respect to index value of x quartile and y median) (practical) for π/2 to − π/2 orientation</figcaption>
+	</figure>
+</div>
 <p>The orientation estimation and direction graphs are shown in “Fig. 5” and “Fig. 8” respectively. The noise due to the difference as shown in “Fig. 6” operation in estimation of direction is filtered with a low pass filter(moving average filter) as shown in “Fig. 7”</p>
-<!-- raw HTML omitted -->
+<div style="display: flex; justify-content: space-between;">
+  <figure style="flex: 1; margin: 0 10px;">
+    <img src="/files/images/object_est_fig6.png" alt="Image 1 Description" style="max-width: 100%; height: auto;">
+    <figcaption style="margin-top: 10px;">Fig. 7. Applied Filtered on Difference of y points</figcaption>
+  </figure>
+  <figure style="flex: 1; margin: 0 10px;">
+    <img src="/files/images/object_est_fig7.png" alt="Image 2 Description" style="max-width: 100%; height: auto;">
+    <figcaption style="margin-top: 10px;">Fig. 8. Direction estimated based on the difference of y points (-1 represents anticlockwise, 1 represents clockwise direction and 0 represents reference interval) (practical) for π/2 to − π/2 orientation</figcaption>
+  </figure>
+</div>
 <h2 id="conclusion">CONCLUSION</h2>
 <p>Hence a simple statistical method of estimating orientation [6] was implemented for real-time applications. This method is very well applicable to images as it doesn’t depend on successive frames to determine the orientation. One of the applications could be for the implementation of yaw control of drone [2] in an indoor environment keeping camera on the feedback for the control.</p>
 <h2 id="references">REFERENCES</h2>

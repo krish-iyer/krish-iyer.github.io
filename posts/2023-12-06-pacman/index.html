@@ -11,6 +11,22 @@
       <script src="/js/main.js"></script>
 
 
+  
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+<script>
+  MathJax = {
+    tex: {
+      displayMath: [['\\[', '\\]'], ['$$', '$$']],  
+      inlineMath: [['\\(', '\\)']]                  
+    },
+    loader:{
+      load: ['ui/safe']
+    },
+  };
+</script>
+
+  
+
 </head>
 <body>
   <header>
@@ -98,7 +114,7 @@
 <li><a href="#6-references">References</a></li>
 </ol>
 <h2 id="1-pacman--the-game">1. Pacman : The Game</h2>
-<!-- raw HTML omitted -->
+<img src="/files/images/pacman-image-3.png" alt="Cleanflight configurator" style="width: 100%; height: auto;">
 <p>Pacman, as the protagonist, gains points by eating food but is also chased by ghosts. If a ghost catches Pacman, the game resets. From this, we can outline several key components:</p>
 <ol>
 <li>Controlling Pacman and ghost positions.
@@ -335,9 +351,14 @@
 </span></span></code></pre></div><h4 id="329-score">3.2.9. Score</h4>
 <p>The score needs be 4 digit where each digit goes from 0-9 which can be represented as 4 bit. The digits can be sprites in the memory and selected based on the y indexing by a factor of 16 as mentioned above. To convert an 4 digit integer to 4 bit individual binary numbers will require a decimal to BCD converter.</p>
 <h4 id="3210-flow-chart">3.2.10. Flow Chart</h4>
-<!-- raw HTML omitted -->
+<center>
+<img src="/files/images/drawcon_flow_chart.svg" alt="Cleanflight configurator" style="width: 30%; height: auto;">
+</center>
+### 3.3 Testing
 <p>Testing was done by simply by running a clk and fixing the pacman position. For VGA vsync, hsync values were monitored. It was also verified if hcount and vcount reaches max values and get reset immediately after that as seen in below graphs.</p>
-<!-- raw HTML omitted -->
+<img src="/files/images/pacman-image-2.png" alt="Cleanflight configurator" style="width: 100%; height: auto;">
+<img src="/files/images/pacman-image-1.png" alt="Cleanflight configurator" style="width: 100%; height: auto;">
+<img src="/files/images/pacman-image.png" alt="Cleanflight configurator" style="width: 100%; height: auto;">
 <p>It can be observed in the below screenshot that map_rows are fetch corresponding to the y index that&rsquo;s set by drawcon.</p>
 <p>Testing could have automatically tested by conditions in the testbench. For example it could be tested if hcount reaches to 1679 and reset after that.</p>
 <h2 id="4-what-could-have-been-done-better">4. What could have been done better</h2>
@@ -351,10 +372,10 @@
 <p>Testing could have been automated rather than manual scrolling and validating signals.</p>
 <h2 id="5-demo">5. Demo</h2>
 <p>{% raw %}
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
+<video width="100%" controls>
+<source src="/files/images/Pacman Video Gameplay.mp4" type="video/mp4">
 Your browser does not support the video tag.
-<!-- raw HTML omitted -->
+</video>
 {% endraw %}</p>
 <h2 id="6-references">6. References</h2>
 <ol>

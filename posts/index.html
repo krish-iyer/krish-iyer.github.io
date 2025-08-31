@@ -11,6 +11,22 @@
       <script src="/js/main.js"></script>
 
 
+  
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+<script>
+  MathJax = {
+    tex: {
+      displayMath: [['\\[', '\\]'], ['$$', '$$']],  
+      inlineMath: [['\\(', '\\)']]                  
+    },
+    loader:{
+      load: ['ui/safe']
+    },
+  };
+</script>
+
+  
+
 </head>
 <body>
   <header>
@@ -95,7 +111,7 @@
 <li><a href="#6-references">References</a></li>
 </ol>
 <h2 id="1-pacman--the-game">1. Pacman : The Game</h2>
-<!-- raw HTML omitted -->
+<img src="/files/images/pacman-image-3.png" alt="Cleanflight configurator" style="width: 100%; height: auto;">
 <p>Pacman, as the protagonist, gains points by eating food but is also chased by ghosts. If a ghost catches Pacman, the game resets. From this, we can outline several key components:</p>
   
 

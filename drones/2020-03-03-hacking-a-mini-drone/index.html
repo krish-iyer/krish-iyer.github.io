@@ -11,6 +11,22 @@
       <script src="/js/main.js"></script>
 
 
+  
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+<script>
+  MathJax = {
+    tex: {
+      displayMath: [['\\[', '\\]'], ['$$', '$$']],  
+      inlineMath: [['\\(', '\\)']]                  
+    },
+    loader:{
+      load: ['ui/safe']
+    },
+  };
+</script>
+
+  
+
 </head>
 <body>
   <header>
@@ -206,7 +222,7 @@ $ echo &#39;SUBSYSTEM==&#34;usb&#34;, ATTRS{idVendor}==&#34;0483&#34;, ATTRS{idP
 <li>Click on <strong>Flash Firmware</strong> after it gets loaded</li>
 </ul>
 <p>This project is very specific about the version because other versions might or might not have some functionalities also some additional support will be added in this firmware version in later phase. Other versions might not support MSP, altitude hold, etc.</p>
-<!-- raw HTML omitted -->
+<img src="/files/images/cleanflight_configurator.png" alt="Cleanflight configurator" style="width: 100%; height: auto;">
 <p>Once you are done with flashing the firmware into the FC, you can set modes and toggle a few settings to enable MSP over one of the serial ports (UART).</p>
 <h3 id="installing-multiwii-python-library">Installing MultiWii Python Library</h3>
 <p>To install MultiWii python Library, follow the below given steps:</p>
@@ -223,8 +239,8 @@ $ pip3 install .
 <li>Select port (e.g., /tty/USB0)</li>
 <li>then click on Upload program</li>
 </ul>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
+<img src="/files/images/arduino_preferences.png" alt="Arduino Preferences" style="width: 100%; height: auto;">
+<img src="/files/images/arduino_boardmanager.png" alt="Arduino Board Manager" style="width: 100%; height: auto;">
 
   </div>
 

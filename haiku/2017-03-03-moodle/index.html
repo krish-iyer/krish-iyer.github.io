@@ -11,6 +11,22 @@
       <script src="/js/main.js"></script>
 
 
+  
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+<script>
+  MathJax = {
+    tex: {
+      displayMath: [['\\[', '\\]'], ['$$', '$$']],  
+      inlineMath: [['\\(', '\\)']]                  
+    },
+    loader:{
+      load: ['ui/safe']
+    },
+  };
+</script>
+
+  
+
 </head>
 <body>
   <header>
@@ -56,7 +72,7 @@
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>sudo git clone git://git.moodle.org/moodle.git
 </span></span></code></pre></div><p>Now you have to copy the cloned repository to /var/www/html. If the directory doesn&rsquo;t exist then it means
 you haven&rsquo;t setup PHP.</p>
-<h3 id="setting-up-php-enviornment"><!-- raw HTML omitted --> Setting up PHP enviornment<!-- raw HTML omitted --></h3>
+<h3 id="setting-up-php-enviornment"><span style="color:black"> Setting up PHP enviornment</span></h3>
 <p>For setting up PHP you will also be needing a data base manangement system like mysql and a webserver like
 Apache.</p>
 <p>For installing Mysql 5.</p>
@@ -95,7 +111,7 @@ disussion forum</a> Someone will definitely help you.</p>
 <p>Behat is a test framework for behavior-driven development written in the PHP. We use behat to automate
 the testing of a particular feature. There&rsquo;s a some effort needed to install and run behat test. This
 post will cover everything from installation to write feature script.</p>
-<h3 id="installing-behat"><!-- raw HTML omitted --> Installing Behat:<!-- raw HTML omitted --></h3>
+<h3 id="installing-behat"><span style="color:black"> Installing Behat:</span></h3>
 <p>First go to your moodle repository</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>  cd /var/www/html/moodle
 </span></span></code></pre></div><h2 id="behat-testing">Behat Testing</h2>
