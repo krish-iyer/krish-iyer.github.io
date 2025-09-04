@@ -1,13 +1,32 @@
 @charset "utf-8";
-@import url('https://fonts.googleapis.com/css2?family=Cutive+Mono&family=Work+Sans&display=swap" rel="stylesheet"');
+@import url("https://fonts.googleapis.com/css2?family=Cutive+Mono&family=Work+Sans&display=swap");
 
+/* -----------------------------
+   Global spacing variables
+   ----------------------------- */
+:root {
+  /* Default pages padding (home/list/etc.) */
+  --pad-x: clamp(1rem, 25vw, 25rem);
+}
+
+body:has(.content-with-toc) {
+  --pad-x: clamp(1rem, 12vw, 10rem);
+}
+
+
+
+/* -----------------------------
+   Base
+   ----------------------------- */
 body {
   color: #000;
   font-family: 'Work Sans', sans-serif;
   font-size: 16px;
   line-height: 1.5;
-  margin: 1rem auto;
-  max-width: 768px;
+
+  margin: 0;
+  max-width: none;
+  padding-inline: var(--pad-x); /* single source of truth */
 }
 
 h1 {
@@ -17,61 +36,71 @@ h1 {
   color: #000;
 }
 
-
-header {
-  border-bottom: 1.5px dashed #000;
-  margin-bottom: 1rem;
-  margin-top: 4rem;
-  padding-bottom: 16px;
+/* -----------------------------
+   Header / Footer dashed rules
+   ----------------------------- */
+header, footer {
+  border: 0;            /* remove full-width borders */
+  position: relative;   /* anchor pseudo-elements */
 }
 
-footer {
+/* Header dashed rule, aligned to content width */
+header::after {
+  content: ""; display: block;
+  border-bottom: 1.5px dashed #000;
+  padding-bottom: 16px;
+  /*padding-inline: var(--pad-x);*/
+}
+
+footer::before {
+  content: ""; display: block;
   border-top: 1.5px dashed #000;
+  padding-bottom: 16px;
+  /*padding-inline: var(--pad-x);*/
+}
+/* Keep your existing vertical spacing */
+header {
+  margin-top: 4rem;
+  margin-bottom: 1rem;
+}
+footer {
   margin-top: 1rem;
-  padding-top: 16px;
   text-align: center;
 }
 
+
+
+/* -----------------------------
+   Links
+   ----------------------------- */
 a {
   color: rgb(34, 34, 238);
   text-decoration: underline;
-  /* text-underline-offset: 2px; */
-  /* text-decoration-thickness: 2px; */
 }
-
-/* a:visited { */
-/*   color: inherit; */
-/* } */
-
 a:hover,
 a:focus {
   color: darkblue;
-  background-color: rgb(242, 242, 242);  /* light grey */
+  background-color: rgb(242, 242, 242);
   text-decoration-thickness: 2.5px;
   outline: none;
 }
-/* a:hover, */
-/* a:focus { */
-/*   text-decoration-thickness: 4px; */
-/*   outline: none; */
-/* } */
-
 a:focus-visible {
   outline: 2px solid #888;
   outline-offset: 2px;
 }
 
+/* -----------------------------
+   Lists
+   ----------------------------- */
 ul:not(.menu-root) {
   list-style: none;
   margin: 0;
   padding: 0;
 }
-
 ul:not(.menu-root) > li {
   padding-left: 2rem;
   text-indent: 0;
 }
-
 ul:not(.menu-root) > li::before {
   content: "-";
   position: relative;
@@ -79,19 +108,31 @@ ul:not(.menu-root) > li::before {
   font-weight: bold;
 }
 
+/* -----------------------------
+   Site nav
+   ----------------------------- */
 /* static/css/site.css */
-.site-nav .menu-root { display:flex; flex-wrap:wrap; align-items:center; gap:.5rem; list-style:none; margin:0; padding:0; }
-.site-nav .menu-root > li + li::before { content:"/"; margin:0 .5rem 0 .25rem; opacity:.6; }
-/* .site-nav .menu-root a {text-decoration: underline;} */
-.site-nav .submenu { list-style:none; margin:.25rem 0 0; padding:0; }
-.site-nav .submenu > li + li { margin-top:.25rem; }
+.site-nav .menu-root {
+  display: flex; flex-wrap: wrap; align-items: center;
+  gap: .5rem; list-style: none; margin: 0; padding: 0;
+}
+.site-nav .menu-root > li + li::before {
+  content: "/"; margin: 0 .5rem 0 .25rem; opacity: .6;
+}
+.site-nav .submenu {
+  list-style: none; margin: .25rem 0 0; padding: 0;
+}
+.site-nav .submenu > li + li {
+  margin-top: .25rem;
+}
 
-
+/* -----------------------------
+   Post header bits
+   ----------------------------- */
 .post-title {
   text-align: center;
   margin: 0;
 }
-
 .post-date {
   display: block;
   text-align: center;
@@ -101,21 +142,20 @@ ul:not(.menu-root) > li::before {
   font-size: 14px;
 }
 
-/**
- * Code and syntax highlighting
- */
-pre { background-color: #f3f3f3;
-      border: none;
-      padding: 1em;
-      overflow:auto;
-      font-size: 12px;
-      color: rgba(0, 0, 0, 0.95);
-      font-family: 'Cutive Mono', monospace;
-      line-height: 1.7 !important;}
-.selected-text{
-  background:#fff;
-  color :#000;
+/* -----------------------------
+   Code / Syntax highlighting
+   ----------------------------- */
+pre {
+  background-color: #f3f3f3;
+  border: none;
+  padding: 1em;
+  overflow: auto;
+  font-size: 12px;
+  color: rgba(0, 0, 0, 0.95);
+  font-family: 'Cutive Mono', monospace;
+  line-height: 1.7 !important;
 }
+.selected-text { background: #fff; color: #000; }
 .highlight .c { color: #999988; font-style: italic } /* Comment */
 .highlight .err { color: #a61717; background-color: #e3d2d2 } /* Error */
 .highlight .k { font-weight: bold } /* Keyword */
@@ -176,34 +216,112 @@ pre { background-color: #f3f3f3;
 .highlight .vi { color: #008080 } /* Name.Variable.Instance */
 .highlight .il { color: #009999 } /* Literal.Number.Integer.Long */
 
-/* Publication */
+/* -----------------------------
+   Publications
+   ----------------------------- */
+.pub-list { list-style: none; padding: 0; }
+.pub-item { margin-bottom: 1rem; }
+.pub-title { font-weight: bold; }
+.pub-venue { font-style: italic; color: #000; padding-left: 1rem; }
+.pub-authors { color: #000; padding-left: 1rem; }
+.pub-authors strong {
+  color: #000; font-weight: bold; text-decoration: underline; /* your name stands out */
+}
 
-.pub-list {
-  list-style: none;
+/* -----------------------------
+   Post layout with ToC
+   ----------------------------- */
+.content-with-toc {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 260px; /* fluid content + fixed ToC */
+  gap: 2rem;
+
+  /* Full width of page; padding handled on body via --pad-x */
+  max-width: none;
+  margin: 0;
   padding: 0;
 }
 
-.pub-item {
-  margin-bottom: 1rem;
-}
+.post-content { width: 100%; }
 
-.pub-title {
-  font-weight: bold;
-}
-
-.pub-venue {
-  font-style: italic;
-  color: #000;
+/* ToC column */
+.post-toc {
+  position: sticky;
+  top: 80px;            /* adjust for your header height */
+  align-self: start;
+  max-height: calc(100vh - 100px);
+  overflow-y: auto;
+  border-left: 1px solid #eee;
   padding-left: 1rem;
+  font-size: 0.9rem;
 }
 
-.pub-authors {
-  color: #000;
-  padding-left: 1rem;
+/* -----------------------------
+   Responsive
+   ----------------------------- */
+@media (max-width: 900px) {
+  .post-toc { display: none; }
+  .content-with-toc { grid-template-columns: 1fr; }
 }
 
-.pub-authors strong {
-  color: #000;
-  font-weight: bold;
-  text-decoration: underline; /* your name stands out */
+
+/* 2) Make images/media scale down even if HTML sets width/height */
+.post-content img,
+.post-content video,
+.post-content iframe,
+.post-content embed {
+  max-width: 100%;
+  height: auto;
+}
+
+/* If authors used HTML width/height attributes, override safely */
+.post-content img[width],
+.post-content img[height] {
+  max-width: 100% !important;
+  height: auto !important;
+}
+
+/* 3) Long words/URLs can break instead of forcing a scrollbar */
+.post-content,
+.post-content p,
+.post-content li,
+.post-content td {
+  overflow-wrap: anywhere;   /* modern + safe */
+  word-break: break-word;    /* fallback */
+}
+
+/* 4) Code blocks: choose ONE of the two behaviors below */
+
+/* A) Keep horizontal scroll (default, safest for code) */
+pre { overflow-x: auto; }
+
+/* B) Wrap long code lines on small screens only (no horizontal bar)
+   Uncomment to enable wrapping on narrow viewports */
+@media (max-width: 900px) {
+  pre, pre code {
+    white-space: pre-wrap;   /* keep spacing but allow wraps */
+    overflow-wrap: anywhere;
+  }
+  /* Optional: shrink tabs to reduce width */
+  pre { tab-size: 2; }
+}
+
+/* 5) Tables: allow horizontal scroll without breaking layout */
+.post-content table {
+  display: block;
+  max-width: 100%;
+  overflow-x: auto;
+  border-collapse: collapse;
+}
+
+/* 6) If you ever embed responsive videos */
+.responsive-embed {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;      /* adjust as needed */
+}
+.responsive-embed > iframe {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  border: 0;
 }

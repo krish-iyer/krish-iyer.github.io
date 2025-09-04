@@ -5,8 +5,15 @@
     {{ $dateHuman := .Date | time.Format ":date_long" }}
     <time class="post-date" datetime="{{ $dateMachine }}"><em>{{ $dateHuman }}</em></time>
 
-  <div class="post-content">
+  <div class="content-with-toc">
+  <main class="post-content">
     {{ .Content }}
+  </main>
+
+  <aside class="post-toc">
+    <h3>Table of Contents</h3>
+    {{ .TableOfContents }}
+  </aside>
   </div>
 
   {{ partial "terms.html" (dict "taxonomy" "tags" "page" .) }}
