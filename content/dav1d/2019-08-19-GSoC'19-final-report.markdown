@@ -6,30 +6,6 @@ categories: [dav1d]
 ---
 So here we come to an end of my GSoC'19 project under VideoLAN.
 
-##  Table of Contents
-1. [Project Overview](#project-overview)
-2. [Target Device](#target-device)
-   1. [Setting up the device](#setting-up-the-device)
-   2. [Building dav1d](#building-dav1d)
-   3. [Accessing Counter Registers](#accessing-counter-registers)
-3. [Directory Structure of dav1d](#directory-structure-of-dav1d)
-4. [Analysing C function](#analysing-c-function)
-5. [SIMD: The Idea](#simd-the-idea)
-   1. [Instructions in SIMD](#instructions-in-simd)
-6. [Declaring NEON ASM Function](#declaring-neon-asm-function)
-7. [Writing NEON ASM Function for AARCH32](#writing-neon-asm-function-for-aarch32)
-   1. [Jump Table for AARCH32](#jump-table-for-aarch32)
-   2. [Implmentation for AARCH32](#implmentation-for-aarch32)
-   3. [Checkasm and Benchmarking](#checkasm-and-benchmarking)
-   4. [Optimization for AARCH32](#optimization-for-aarch32)
-      1. [Loop Unrolling AARCH32](#loop-unrolling-aarch32)
-      2. [Instruction Reordering AARCH32](#instruction-reordering-aarch32)
-      3. [Memory Alignment](#memory-alignment)
-8. [From AARCH32 to AARCH64](#from-aarch32-to-aarch64)
-9. [List of Commits](#list-of-commits)
-10. [What's Left out!](#whats-left-out)
-11. [Final Note and Things I learnt](#final-note-and-things-i-learnt)
-
 ## <a name="project-overview"></a> Project Overview
 The project dealt with analysing various functions implemented in C language and then implement same in ARM assembly using SIMD architecture for both 32 and 64 bit processors. This will enhance efficiency in terms of both execution speed and binary size. There was performance testing involved after the function was implemented in assembly by using counter registers which helped in benchmarking the number of instruction cycles a function gets executed. Benchmarking was done for improving the production quality of dav1d across ARMv8 and ARMv7 devices.
 

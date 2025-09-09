@@ -5,24 +5,6 @@ date:   2020-03-03 12:32:45 +0100
 categories: [hackdrones]
 ---
 
-##  Table of Contents
-1. [Introduction](#introduction)
-2. [Methodology](#methodology)
-	1. [Drone Control firmware](#drone-control-firmware)
-	2. [Sensors](#sensors)
-	3. [Network](#network)
-	4. [Formation control](#formation-control)
-3. [Installation](#installation)
-	1. [Hardware](#hardware)
-	2. [WiFi Module - ESP8285](#wifi-module---esp8285)
-	3. [Flashing Circuit for ESP8285](#flashing-circuit-for-esp8285)
-	4. [Connection to FC](#connection-to-fc)
-	5. [Barometer - BMP280 and Magnetometer - QMC5883L](#barometer---bmp280-and-magnetometer---qmc5883l)
-2. [Software](#software)
-	1. [Flashing Cleanflight Firmware](#flashing-cleanflight-firmware)
-	2. [Installing MultiWii Python Library](#installing-multiwii-python-library)
-	3. [Flashing firmware to ESP8285 using Arduino IDE](#flashing-firmware-to-esp8285-using-arduino-ide)
-
 # Introduction
 
 This documentation will help you build a solid foundation for a drone network, enabling you to implement various swarm control algorithms specific to drones. This guide will cover wireless control of drones and manipulation of low-level network bindings.
