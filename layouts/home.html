@@ -3,17 +3,18 @@
 <ul>
   {{ range $term, $_ := .Site.Taxonomies.categories }}
   {{ if ne $term "oneoff" }}
-  <li><a href="{{ $term }}">{{ $term }}</a></li>
+  {{ with site.GetPage (printf "/%s/_index.md" $term) }}
+  <li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
   {{ end }}
   {{ end }}
-
+  {{ end }}
 </li>
 
 <h2>One-off Posts</h2>
 <ul>
 {{ range where .Site.RegularPages "Params.categories" "intersect" (slice "oneoff") }}
       <li>
-        [{{ .Date.Format "2006-01-02" }}]
+<span class="list-date">[{{ .Date.Format "2006-01-02" }}]</span>
         <a href="{{ .RelPermalink }}">{{ .Title }}</a>
       </li>
     {{ end }}

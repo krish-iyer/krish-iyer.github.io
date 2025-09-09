@@ -1,5 +1,5 @@
 @charset "utf-8";
-@import url('https://fonts.googleapis.com/css2?family=Cutive+Mono&family=Work+Sans&display=swap" rel="stylesheet"');
+@import url("https://fonts.googleapis.com/css2?family=Cutive+Mono&family=Work+Sans&family=Source+Code+Pro&display=swap");
 
 :root {
   --pad-x: clamp(1rem, 25vw, 25rem);
@@ -282,6 +282,14 @@ pre { background-color: #f3f3f3;
 .post-content td {
   overflow-wrap: anywhere;   /* modern + safe */
   word-break: break-word;    /* fallback */
+}
+
+li .list-date {
+  display: inline-block;
+  width: 12ch;             /* enough for [YYYY-MM-DD] */
+  font-family: 'Source Code Pro', monospace;
+  font-style: normal;      /* no italics */
+  text-align: right;
 }
 
 pre { overflow-x: auto; }

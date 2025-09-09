@@ -1,21 +1,17 @@
 {{ define "title" }}{{ .Title }} · {{ .Site.Title }}{{ end }}
+
 {{ define "main" }}
+{{ $term := .Data.Term }}
+{{ $pages := .Pages.ByDate.Reverse }}
+{{ $count := len $pages }}
+
 <h2>{{ .Title }}</h2>
-
-{{ $term := .Title }}
-{{ $tax := (index .Site.Taxonomies "categories") }}
-{{ $bucket := index $tax $term }}
-
-{{ if not $bucket }}
-  <p>No posts found for “{{ $term }}”.</p>
-{{ else }}
-  <ul>
-    {{ range $bucket.Pages.ByDate.Reverse }}
-      <li>
-        [{{ .Date.Format "2006-01-02" }}]
-        <a href="{{ .RelPermalink }}">{{ .Title }}</a>
-      </li>
-    {{ end }}
-  </ul>
-{{ end }}
+<ul>
+  {{ range $pages }}
+  <li>
+    <span class="list-date">[{{ .Date.Format "2006-01-02" }}]</span>
+    <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+  </li>
+  {{ end }}
+</ul>
 {{ end }}
