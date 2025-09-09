@@ -2,24 +2,24 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Hackdrones on Krishnan&#39;s blog</title>
-    <link>http://localhost:35453/categories/hackdrones/</link>
+    <link>http://localhost:43199/categories/hackdrones/</link>
     <description>Recent content in Hackdrones on Krishnan&#39;s blog</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 07 May 2020 12:32:45 +0100</lastBuildDate>
-    <atom:link href="http://localhost:35453/categories/hackdrones/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:43199/categories/hackdrones/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Object Orientation Estimation Algorithm for Visual Feedback Systems</title>
-      <link>http://localhost:35453/hackdrones/2020-05-07-orientation-estimation/</link>
+      <link>http://localhost:43199/hackdrones/2020-05-07-orientation-estimation/</link>
       <pubDate>Thu, 07 May 2020 12:32:45 +0100</pubDate>
-      <guid>http://localhost:35453/hackdrones/2020-05-07-orientation-estimation/</guid>
+      <guid>http://localhost:43199/hackdrones/2020-05-07-orientation-estimation/</guid>
       <description>&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;&#xA;&lt;p&gt;Let&amp;rsquo;s try to demonstrate a simple statistical approach to find the orientation of the object. There are already existing complex solutions [4] [5] which draw a significant amount of CPU resources, making it impractical to implement in real-time systems. Especially for moving systems, a delay in the orientation could cost a large deviation(error) from the reference. One of the closest approaches is discussed by Dulio Furtado and Fulton T. Ray, Jr [1].&lt;/p&gt;</description>
     </item>
     <item>
       <title>Hacking a Mini Drone</title>
-      <link>http://localhost:35453/hackdrones/2020-03-03-hacking-a-mini-drone/</link>
+      <link>http://localhost:43199/hackdrones/2020-03-03-hacking-a-mini-drone/</link>
       <pubDate>Tue, 03 Mar 2020 12:32:45 +0100</pubDate>
-      <guid>http://localhost:35453/hackdrones/2020-03-03-hacking-a-mini-drone/</guid>
+      <guid>http://localhost:43199/hackdrones/2020-03-03-hacking-a-mini-drone/</guid>
       <description>&lt;h1 id=&#34;introduction&#34;&gt;Introduction&lt;/h1&gt;&#xA;&lt;p&gt;This documentation will help you build a solid foundation for a drone network, enabling you to implement various swarm control algorithms specific to drones. This guide will cover wireless control of drones and manipulation of low-level network bindings.&lt;/p&gt;&#xA;&lt;p&gt;For testing and demonstration, I will be using a FC (flight controller) supported by Cleanflight configurator, which simplifies the control part. The idea is to first set up a standard drone in a flight-ready state and then gradually introduce custom code. For example, there&amp;rsquo;s a detailed tutorial on how to &lt;a href=&#34;https://www.instructables.com/id/Build-a-WiFi-Enabled-Micro-quadrotor/&#34;&gt;fly a drone using an Android app&lt;/a&gt;.&lt;/p&gt;</description>
     </item>
   </channel>
