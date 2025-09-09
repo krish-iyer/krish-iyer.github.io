@@ -1,13 +1,22 @@
 @charset "utf-8";
 @import url('https://fonts.googleapis.com/css2?family=Cutive+Mono&family=Work+Sans&display=swap" rel="stylesheet"');
 
+:root {
+  --pad-x: clamp(1rem, 25vw, 25rem);
+}
+
+body:has(.content-with-toc) {
+  --pad-x: clamp(1rem, 12vw, 10rem);
+}
+
 body {
   color: #000;
   font-family: 'Work Sans', sans-serif;
   font-size: 16px;
   line-height: 1.5;
-  margin: 1rem auto;
-  max-width: 768px;
+  margin: 0;
+  max-width: none;
+  padding-inline: var(--pad-x);
 }
 
 h1 {
@@ -17,20 +26,32 @@ h1 {
   color: #000;
 }
 
+header, footer {
+  border: 0;
+  position: relative;
+}
 
-header {
+header::after {
+  content: ""; display: block;
   border-bottom: 1.5px dashed #000;
-  margin-bottom: 1rem;
-  margin-top: 4rem;
   padding-bottom: 16px;
 }
 
-footer {
+footer::before {
+  content: ""; display: block;
   border-top: 1.5px dashed #000;
+  padding-bottom: 16px;
+}
+
+header {
+  margin-top: 4rem;
+  margin-bottom: 1rem;
+}
+footer {
   margin-top: 1rem;
-  padding-top: 16px;
   text-align: center;
 }
+
 
 a {
   color: rgb(34, 34, 238);
@@ -206,4 +227,87 @@ pre { background-color: #f3f3f3;
   color: #000;
   font-weight: bold;
   text-decoration: underline; /* your name stands out */
+}
+
+/* Post layout with ToC */
+
+.content-with-toc {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 260px; /* fluid content + fixed ToC */
+  gap: 2rem;
+  max-width: none;
+  margin: 0;
+  padding: 0;
+}
+
+.post-content { width: 100%; }
+
+/* ToC column */
+.post-toc {
+  position: sticky;
+  top: 80px;            /* adjust for your header height */
+  align-self: start;
+  max-height: calc(100vh - 100px);
+  overflow-y: auto;
+  border-left: 2px solid #000;
+  padding-left: 1rem;
+  font-size: 0.9rem;
+}
+
+/* Responsive */
+
+@media (max-width: 900px) {
+  .post-toc { display: none; }
+  .content-with-toc { grid-template-columns: 1fr; }
+}
+
+.post-content img,
+.post-content video,
+.post-content iframe,
+.post-content embed {
+  max-width: 100%;
+  height: auto;
+}
+
+/* If authors used HTML width/height attributes, override safely */
+.post-content img[width],
+.post-content img[height] {
+  max-width: 100% !important;
+  height: auto !important;
+}
+
+.post-content,
+.post-content p,
+.post-content li,
+.post-content td {
+  overflow-wrap: anywhere;   /* modern + safe */
+  word-break: break-word;    /* fallback */
+}
+
+pre { overflow-x: auto; }
+
+@media (max-width: 900px) {
+  pre, pre code {
+    white-space: pre-wrap;   /* keep spacing but allow wraps */
+    overflow-wrap: anywhere;
+  }
+  pre { tab-size: 2; }
+}
+
+.post-content table {
+  display: block;
+  max-width: 100%;
+  overflow-x: auto;
+  border-collapse: collapse;
+}
+
+.responsive-embed {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;      /* adjust as needed */
+}
+.responsive-embed > iframe {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  border: 0;
 }

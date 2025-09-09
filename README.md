@@ -23,5 +23,8 @@ theme = 'focusreadability'
         [markup.goldmark.extensions.passthrough.delimiters]
           block = [['\[', '\]'], ['$$', '$$']]
           inline = [['\(', '\)']]
-
+  [markup.tableOfContents]
+    startLevel = 2
+    endLevel = 4
+ 
 ```
