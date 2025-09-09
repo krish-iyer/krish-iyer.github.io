@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr">
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=35453&amp;path=livereload" data-no-instant defer></script>
   <meta charset="utf-8">
 <meta name="viewport" content="width=device-width">
 <title>Hacking a Mini Drone | Krishnan&#39;s blog</title>
@@ -61,35 +61,7 @@
     
     <time class="post-date" datetime="2020-03-03T12:32:45&#43;01:00"><em>March 3, 2020</em></time><div class="content-with-toc">
                                   <main class="post-content">
-                                    <h2 id="table-of-contents">Table of Contents</h2>
-<ol>
-<li><a href="#introduction">Introduction</a></li>
-<li><a href="#methodology">Methodology</a>
-<ol>
-<li><a href="#drone-control-firmware">Drone Control firmware</a></li>
-<li><a href="#sensors">Sensors</a></li>
-<li><a href="#network">Network</a></li>
-<li><a href="#formation-control">Formation control</a></li>
-</ol>
-</li>
-<li><a href="#installation">Installation</a>
-<ol>
-<li><a href="#hardware">Hardware</a></li>
-<li><a href="#wifi-module---esp8285">WiFi Module - ESP8285</a></li>
-<li><a href="#flashing-circuit-for-esp8285">Flashing Circuit for ESP8285</a></li>
-<li><a href="#connection-to-fc">Connection to FC</a></li>
-<li><a href="#barometer---bmp280-and-magnetometer---qmc5883l">Barometer - BMP280 and Magnetometer - QMC5883L</a></li>
-</ol>
-</li>
-<li><a href="#software">Software</a>
-<ol>
-<li><a href="#flashing-cleanflight-firmware">Flashing Cleanflight Firmware</a></li>
-<li><a href="#installing-multiwii-python-library">Installing MultiWii Python Library</a></li>
-<li><a href="#flashing-firmware-to-esp8285-using-arduino-ide">Flashing firmware to ESP8285 using Arduino IDE</a></li>
-</ol>
-</li>
-</ol>
-<h1 id="introduction">Introduction</h1>
+                                    <h1 id="introduction">Introduction</h1>
 <p>This documentation will help you build a solid foundation for a drone network, enabling you to implement various swarm control algorithms specific to drones. This guide will cover wireless control of drones and manipulation of low-level network bindings.</p>
 <p>For testing and demonstration, I will be using a FC (flight controller) supported by Cleanflight configurator, which simplifies the control part. The idea is to first set up a standard drone in a flight-ready state and then gradually introduce custom code. For example, there&rsquo;s a detailed tutorial on how to <a href="https://www.instructables.com/id/Build-a-WiFi-Enabled-Micro-quadrotor/">fly a drone using an Android app</a>.</p>
 <p>If you missed the link above, I can provide you with some details here. The controller used is SPRACINGF3EVO, and it&rsquo;s important to note that we&rsquo;ll be focusing on brushed motor controllers rather than brushless motors. Brushless motors require ESCs (Electronic Speed Controllers) and larger batteries for safety and stability, whereas brushed controllers are simpler. However, the methodologies discussed in this documentation apply to both brushed and brushless controllers.</p>
@@ -245,10 +217,6 @@ $ pip3 install .
                                   <aside class="post-toc">
                                     <h3>Table of Contents</h3>
                                     <nav id="TableOfContents">
-  <ul>
-    <li><a href="#table-of-contents">Table of Contents</a></li>
-  </ul>
-
   <ul>
     <li><a href="#drone-control-firmware">Drone Control firmware</a></li>
     <li><a href="#sensors">Sensors</a></li>
