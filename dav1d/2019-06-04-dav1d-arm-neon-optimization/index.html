@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr">
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=45677&amp;path=livereload" data-no-instant defer></script>
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
   <meta charset="utf-8">
 <meta name="viewport" content="width=device-width">
 <title>SIMD in ARM | Krishnan&#39;s blog</title>
@@ -59,10 +59,8 @@
 
     
     
-    <time class="post-date" datetime="2019-06-08T12:32:45&#43;01:00"><em>June 8, 2019</em></time>
-
-  <div class="post-content">
-    <p>So now let&rsquo;s talk about the project I am working on but before further proceedings let me remind about the tutorial to <a href="https://thinkingeek.com/arm-assembler-raspberry-pi/">refer</a> to, if you have understood those or already know about ARM assembly then we are on the same page.</p>
+    <time class="post-date" datetime="2019-06-08T12:32:45&#43;01:00"><em>June 8, 2019</em></time><main class="post-content">
+                                  <p>So now let&rsquo;s talk about the project I am working on but before further proceedings let me remind about the tutorial to <a href="https://thinkingeek.com/arm-assembler-raspberry-pi/">refer</a> to, if you have understood those or already know about ARM assembly then we are on the same page.</p>
 <p>My project is &ldquo;dav1d ARM NEON optimization&rdquo; and, I have applied under GSoC'19 program and the project is initiated and maintained by VideoLAN and FFmpeg. So dav1d is an av1 decoder which like any other decoder aspires to be fast and efficient. It is available for x86, x64, ARMv7, ARMv8 architectures, my project deals with ARM arch specifically ARMv7-a. So to make code exec efficient and fast we need to cut-off in between generalised high-level language compiler and directly talk with assembly lang to the processor(communication with a native language on a country land will always be a fine interpretation to that of foriegn language). It makes code development bit tough but trust me when you see the difference, it&rsquo;s all worth the patience, time and effort.</p>
 <p>Now, we are not just writing assembly code for the different filters and functions of decoder but as humans, we never settle for less, so we exploit some extra functionalities.</p>
 <p>There are a total of 16  registers, we denote it with R and a CPSR in the processor. We also got a co-processor, we use SIMD instruction with following floating point registers sets and execute single instruction on multiple data(SIMD).</p>
@@ -134,9 +132,7 @@ addr_c: .word c
 </code></pre><p>So in regards with assembly with SIMD, we need not loop at all, we are executing the instruction on 4 int type data at once. Hence if need to loop 16 times in C code, we need to only go for 4 with SIMD implementation. We also do some reordering with instructions and loop unrolling to even more optimize the code. I will share tricks and tips in the upcoming blog posts.</p>
 <p>In the next blog post, I would start sharing my weekly progress and we will have an insight into the dav1d functions and implementations</p>
 
-  </div>
-
-  
+                                </main>
 
 
   </main>

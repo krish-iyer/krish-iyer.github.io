@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr">
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=45677&amp;path=livereload" data-no-instant defer></script>
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
   <meta charset="utf-8">
 <meta name="viewport" content="width=device-width">
 <title>Week #4 | Krishnan&#39;s blog</title>
@@ -59,10 +59,8 @@
 
     
     
-    <time class="post-date" datetime="2018-06-03T21:11:13&#43;05:30"><em>June 3, 2018</em></time>
-
-  <div class="post-content">
-    <p>Hey everyone! here I am with another update. Last time I had concluded-&ldquo;PCI class is not discoverable to device manager&rdquo;, it was actally a bit wrong. So korli explained that device manager won&rsquo;t load a driver which system doesn&rsquo;t know so in order for device manager to consider sdhci bus device, it has to
+    <time class="post-date" datetime="2018-06-03T21:11:13&#43;05:30"><em>June 3, 2018</em></time><main class="post-content">
+                                  <p>Hey everyone! here I am with another update. Last time I had concluded-&ldquo;PCI class is not discoverable to device manager&rdquo;, it was actally a bit wrong. So korli explained that device manager won&rsquo;t load a driver which system doesn&rsquo;t know so in order for device manager to consider sdhci bus device, it has to
 be added under a condition of the devices of same type. So we <a href="https://github.com/krish-iyer/haiku/blob/sdhci_mmc_driver/src/system/kernel/device_manager/device_manager.cpp#L1917">added it under &ldquo;disk&rdquo;</a>. With that he also committed <a href="https://review.haiku-os.org/#/c/haiku/+/276/">PoC</a> which came out to be very useful but still I took sometime to really understand it.</p>
 <p>So next thing which we intended to do is to register a child device or a node which is our picked up device out of all the device which were there on the PCI bus. Now we have to attach these devices on a mmc bus and then we have to configure interrupts and commands for data transfer(Programmed I/O method).</p>
 <p>So there&rsquo;s is something like a bus and bus manager, I really want to clearify these two things now because in next few weeks we will be working on bus manager and we should avoid confusion of any kind. So till now we told device manager that if a sdhci-pci device is attached to the system then it should load the driver from mentioned path unlike PnP devices. Now we have got the driver loaded also we have filtered out the device. Now we have to initiate a bus(mmc) and attach device to it. This will be the role of a bus, now we need to set up a bus manager in order deal with storage(read, write, data transfer etc). It will mainly deal with the commands and expose some API&rsquo;s for the user to do the operations and build application on top of it.</p>
@@ -92,9 +90,7 @@ register_child_device()</li>
 <p>I have been trying to split the module into two but I think setting up interrupts is more important and splitting can be done in parallel.</p>
 <p>Thanks to korli, PulkoMandy, phoudoin for helping me. I will be soon be ready with a plan for bus manager after setting up the interrupts and registers etc.</p>
 
-  </div>
-
-  
+                                </main>
 
 
   </main>

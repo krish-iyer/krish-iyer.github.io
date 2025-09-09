@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr">
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=45677&amp;path=livereload" data-no-instant defer></script>
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
   <meta charset="utf-8">
 <meta name="viewport" content="width=device-width">
 <title>Pac-man on FPGA | Krishnan&#39;s blog</title>
@@ -59,10 +59,9 @@
 
     
     
-    <time class="post-date" datetime="2023-12-06T12:32:45&#43;01:00"><em>December 6, 2023</em></time>
-
-  <div class="post-content">
-    <ol>
+    <time class="post-date" datetime="2023-12-06T12:32:45&#43;01:00"><em>December 6, 2023</em></time><div class="content-with-toc">
+                                  <main class="post-content">
+                                    <ol>
 <li><a href="#1-pacman--the-game">Pacman : The Game</a></li>
 <li><a href="#2-game-logic">Game Logic</a>
 <ol>
@@ -384,9 +383,63 @@ Your browser does not support the video tag.
 <li><a href="https://gameinternals.com/understanding-pac-man-ghost-behavior">Pacman Game Logic</a></li>
 </ol>
 
-  </div>
-
-  
+                                  </main>
+                                  <aside class="post-toc">
+                                    <h3>Table of Contents</h3>
+                                    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-pacman--the-game">1. Pacman : The Game</a></li>
+    <li><a href="#2-game-logic">2. Game Logic</a>
+      <ul>
+        <li><a href="#21-pacman-control">2.1. Pacman Control</a></li>
+        <li><a href="#22-ghosts-control">2.2. Ghosts Control</a></li>
+        <li><a href="#23-collision">2.3. Collision</a>
+          <ul>
+            <li><a href="#231-sprites-and-wall">2.3.1 Sprites and Wall</a></li>
+            <li><a href="#232-among-sprites">2.3.2 Among Sprites</a></li>
+          </ul>
+        </li>
+        <li><a href="#24-food-logic">2.4. Food Logic</a></li>
+      </ul>
+    </li>
+    <li><a href="#3-graphical-interface">3. Graphical Interface</a>
+      <ul>
+        <li><a href="#31-vga-video-graphics-array-module-vga_out--file-vga_outv">3.1. VGA (Video Graphics Array) (module: vga_out ; file: vga_out.v)</a>
+          <ul>
+            <li><a href="#311-theory">3.1.1. Theory</a></li>
+            <li><a href="#312-implementation">3.1.2. Implementation</a></li>
+          </ul>
+        </li>
+        <li><a href="#32-map-and-sprites-module-drawcon--file-drawconv">3.2. Map and Sprites (module: drawcon ; file: drawcon.v)</a>
+          <ul>
+            <li><a href="#321-block-memory">3.2.1. Block Memory</a></li>
+            <li><a href="#322-scaling-the-map">3.2.2. Scaling the map</a></li>
+            <li><a href="#323-pacman-food">3.2.3. Pacman Food</a></li>
+            <li><a href="#324-controlling-r-g-b">3.2.4. Controlling R, G, B</a></li>
+            <li><a href="#325-map">3.2.5. Map</a></li>
+            <li><a href="#326-pacman-and-ghosts">3.2.6. Pacman and Ghosts</a></li>
+            <li><a href="#327-food">3.2.7. Food</a></li>
+            <li><a href="#328-pose-changing-sprites">3.2.8. Pose Changing Sprites</a></li>
+            <li><a href="#329-score">3.2.9. Score</a></li>
+            <li><a href="#3210-flow-chart">3.2.10. Flow Chart</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#4-what-could-have-been-done-better">4. What could have been done better</a>
+      <ul>
+        <li><a href="#41-optimizing-food-map">4.1 Optimizing food map</a></li>
+        <li><a href="#42-reset-food-while-resetting-the-game">4.2 Reset food while resetting the game</a></li>
+        <li><a href="#43-change-pose-only-while-moving">4.3 Change pose only while moving</a></li>
+        <li><a href="#44-automated-testing">4.4 Automated Testing</a></li>
+      </ul>
+    </li>
+    <li><a href="#5-demo">5. Demo</a></li>
+    <li><a href="#6-references">6. References</a></li>
+  </ul>
+</nav>
+                                  </aside>
+                                </div>
 
 
   </main>

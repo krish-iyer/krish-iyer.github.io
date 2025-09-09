@@ -2,38 +2,38 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Categories on Krishnan&#39;s blog</title>
-    <link>http://localhost:45677/categories/</link>
+    <link>http://localhost:1313/categories/</link>
     <description>Recent content in Categories on Krishnan&#39;s blog</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Wed, 06 Dec 2023 12:32:45 +0100</lastBuildDate>
-    <atom:link href="http://localhost:45677/categories/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/categories/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Oneoff</title>
-      <link>http://localhost:45677/categories/oneoff/</link>
+      <link>http://localhost:1313/categories/oneoff/</link>
       <pubDate>Wed, 06 Dec 2023 12:32:45 +0100</pubDate>
-      <guid>http://localhost:45677/categories/oneoff/</guid>
+      <guid>http://localhost:1313/categories/oneoff/</guid>
       <description></description>
     </item>
     <item>
       <title>Hackdrones</title>
-      <link>http://localhost:45677/categories/hackdrones/</link>
+      <link>http://localhost:1313/categories/hackdrones/</link>
       <pubDate>Thu, 07 May 2020 12:32:45 +0100</pubDate>
-      <guid>http://localhost:45677/categories/hackdrones/</guid>
+      <guid>http://localhost:1313/categories/hackdrones/</guid>
       <description></description>
     </item>
     <item>
       <title>Dav1d</title>
-      <link>http://localhost:45677/categories/dav1d/</link>
+      <link>http://localhost:1313/categories/dav1d/</link>
       <pubDate>Mon, 19 Aug 2019 12:32:45 +0100</pubDate>
-      <guid>http://localhost:45677/categories/dav1d/</guid>
+      <guid>http://localhost:1313/categories/dav1d/</guid>
       <description></description>
     </item>
     <item>
       <title>Haiku</title>
-      <link>http://localhost:45677/categories/haiku/</link>
+      <link>http://localhost:1313/categories/haiku/</link>
       <pubDate>Mon, 06 Aug 2018 21:24:03 +0530</pubDate>
-      <guid>http://localhost:45677/categories/haiku/</guid>
+      <guid>http://localhost:1313/categories/haiku/</guid>
       <description></description>
     </item>
   </channel>

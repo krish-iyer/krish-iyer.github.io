@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr">
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=45677&amp;path=livereload" data-no-instant defer></script>
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
   <meta charset="utf-8">
 <meta name="viewport" content="width=device-width">
 <title>Week #6 | Krishnan&#39;s blog</title>
@@ -59,10 +59,8 @@
 
     
     
-    <time class="post-date" datetime="2018-06-26T15:04:41&#43;05:30"><em>June 26, 2018</em></time>
-
-  <div class="post-content">
-    <p>Hello everyone! Here&rsquo;s the update of week #6, in the last update we were not able to access the registers. When we tried mapping it, there were all zeros. so we knew there&rsquo;s something wrong in  the way we were accessing the register and in between this we got to know that <a href="https://github.com/qemu/qemu/blob/bec9c64ef7be8063f1192608b83877bc5c9ea217/hw/sd/sdhci.c#L72">qemu emulation for sdhc hardware</a> only supports <a href="https://www.sdcard.org/jp/developers/overview/host_controller/simple_spec/Simplified_SD_Host_Controller_Spec.pdf">spec version 2</a> and 3 and the spec which we intended to implement was <a href="https://www.sdcard.org/downloads/pls/pdf/index.php?p=PartA2_SD%20Host_Controller_Simplified_Specification_Ver4.20.jpg&amp;f=PartA2_SD%20Host_Controller_Simplified_Specification_Ver4.20.pdf&amp;e=EN_SSA2">4.2</a>.Later, we got to know that <a href="https://github.com/krish-iyer/haiku/blob/5abb958dec121d202e3f71450d41acff063d5393/src/add-ons/kernel/busses/mmc/sdhci_pci.cpp#L116">this</a></p>
+    <time class="post-date" datetime="2018-06-26T15:04:41&#43;05:30"><em>June 26, 2018</em></time><main class="post-content">
+                                  <p>Hello everyone! Here&rsquo;s the update of week #6, in the last update we were not able to access the registers. When we tried mapping it, there were all zeros. so we knew there&rsquo;s something wrong in  the way we were accessing the register and in between this we got to know that <a href="https://github.com/qemu/qemu/blob/bec9c64ef7be8063f1192608b83877bc5c9ea217/hw/sd/sdhci.c#L72">qemu emulation for sdhc hardware</a> only supports <a href="https://www.sdcard.org/jp/developers/overview/host_controller/simple_spec/Simplified_SD_Host_Controller_Spec.pdf">spec version 2</a> and 3 and the spec which we intended to implement was <a href="https://www.sdcard.org/downloads/pls/pdf/index.php?p=PartA2_SD%20Host_Controller_Simplified_Specification_Ver4.20.jpg&amp;f=PartA2_SD%20Host_Controller_Simplified_Specification_Ver4.20.pdf&amp;e=EN_SSA2">4.2</a>.Later, we got to know that <a href="https://github.com/krish-iyer/haiku/blob/5abb958dec121d202e3f71450d41acff063d5393/src/add-ons/kernel/busses/mmc/sdhci_pci.cpp#L116">this</a></p>
 <pre><code>pcicmd &amp;= ~(PCI_command_memory | PCI_command_int_disable);
 </code></pre>
 <p>was disabling PCI I/O decoding and ensuring that PCI_command_memory is set but it turns out that on haiku the PCI bus let the driver to decide whether what kind of support it need from the device. Which kinda should be automatic and restricted for a driver. Soon after commenting out the clearing command we got some value in the register mapping through MMUIO and that also confirmed that mapping of registers is working, that was a relief. My next objective was to detect the card some how by enabling few bits. So I thought it better and easy to use test registers without much complication.</p>
@@ -78,9 +76,7 @@ will try by enabling and polling interrupt registers.</p>
 <p>gives zero everytime and thus it means that we are left with pin-driven interrupt but there might be a possibility that we might have to enable msi in qemu. We still have to look into this.</p>
 <p>In this I was also explored an interesting aspect which I haven&rsquo;t looked into, thanks to PulkoMandy to bring it up. I have attached link to mail <a href="https://www.freelists.org/post/haiku-development/SDHCI-MMC-Driver-Trouble-in-Mapping-the-Registers,1">archive</a> and tried to explain. Please comment below if I have missed something or any different idea in which it could have been explained. Recently, there was also a <a href="https://github.com/qemu/qemu/commit/1e23b63f022ae79d7a5c535fe549127ad52d5ba6">commit</a> regarding register definition for sepc version 4.2 in qemu. Let&rsquo;s see in this week if get card detection working.</p>
 
-  </div>
-
-  
+                                </main>
 
 
   </main>

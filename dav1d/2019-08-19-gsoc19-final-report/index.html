@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr">
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=45677&amp;path=livereload" data-no-instant defer></script>
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
   <meta charset="utf-8">
 <meta name="viewport" content="width=device-width">
 <title>GSoC&#39;19 - dav1d ARM NEON Optimization | Krishnan&#39;s blog</title>
@@ -59,10 +59,9 @@
 
     
     
-    <time class="post-date" datetime="2019-08-19T12:32:45&#43;01:00"><em>August 19, 2019</em></time>
-
-  <div class="post-content">
-    <p>So here we come to an end of my GSoC'19 project under VideoLAN.</p>
+    <time class="post-date" datetime="2019-08-19T12:32:45&#43;01:00"><em>August 19, 2019</em></time><div class="content-with-toc">
+                                  <main class="post-content">
+                                    <p>So here we come to an end of my GSoC'19 project under VideoLAN.</p>
 <h2 id="table-of-contents">Table of Contents</h2>
 <ol>
 <li><a href="#project-overview">Project Overview</a></li>
@@ -546,9 +545,47 @@ blend_w4_8bpc_neon: 34.3
 <li>Understand and respond in the review process</li>
 </ol>
 
-  </div>
-
-  
+                                  </main>
+                                  <aside class="post-toc">
+                                    <h3>Table of Contents</h3>
+                                    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#table-of-contents">Table of Contents</a></li>
+    <li><a href="#project-overview">Project Overview</a></li>
+    <li><a href="#target-device">Target Device</a>
+      <ul>
+        <li><a href="#setting-up-the-device">Setting up the device</a></li>
+        <li><a href="#building-dav1d">Building dav1d</a></li>
+        <li><a href="#accessing-counter-registers">Accessing Counter Registers</a></li>
+      </ul>
+    </li>
+    <li><a href="#directory-structure">Directory Structure</a></li>
+    <li><a href="#analysing-c-function">Analysing C function</a></li>
+    <li><a href="#simd-the-idea">SIMD: The Idea</a>
+      <ul>
+        <li><a href="#instructions-in-simd">Instructions in SIMD</a></li>
+      </ul>
+    </li>
+    <li><a href="#declaring-neon-asm-function">Declaring NEON ASM Function</a></li>
+    <li><a href="#writing-neon-asm-function-for-aarch32">Writing NEON ASM Function for AARCH32</a>
+      <ul>
+        <li><a href="#jump-table-for-aarch32">Jump Table for AARCH32</a></li>
+        <li><a href="#implmentation-for-aarch32">Implmentation for AARCH32</a></li>
+        <li><a href="#checkasm-and-benchmarking">Checkasm and Benchmarking</a></li>
+        <li><a href="#optimization-for-aarch32">Optimization for AARCH32</a></li>
+        <li><a href="#loop-unrolling">Loop Unrolling</a></li>
+        <li><a href="#instruction-reordering">Instruction Reordering</a></li>
+        <li><a href="#memory-alignment">Memory Alignment</a></li>
+      </ul>
+    </li>
+    <li><a href="#from-aarch32-to-aarch64">From AARCH32 to AARCH64</a></li>
+    <li><a href="#list-of-commits">List of Commits</a></li>
+    <li><a href="#whats-left-out">What’s Left out!</a></li>
+    <li><a href="#final-note-and-things-i-learnt">Final Note and Things I learnt</a></li>
+  </ul>
+</nav>
+                                  </aside>
+                                </div>
 
 
   </main>

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr">
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=45677&amp;path=livereload" data-no-instant defer></script>
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
   <meta charset="utf-8">
 <meta name="viewport" content="width=device-width">
 <title>Week #5 | Krishnan&#39;s blog</title>
@@ -59,10 +59,8 @@
 
     
     
-    <time class="post-date" datetime="2018-06-11T18:34:48&#43;05:30"><em>June 11, 2018</em></time>
-
-  <div class="post-content">
-    <p>Hey, here I am with another update! Last time I mentioned about splitting up the module but due to time constraint we agreed to skip that currently and move  forward. After setting up the bus, I thought it would be bus manager which needs to be setted up for data transfer and other read and write operations but it turns out to few things which need to be done before that and it&rsquo;s actually not the bus manager who do these operations, it will just create an instance of the interrupts and the operations to be done, and call back after it&rsquo;s done. I was referring to virtio subsystem&rsquo;s driver layout so wasn’t able to notice a difference between virtio and sdhc and i.e there are slots that needs to be attached to the bus(MMC bus) unlike in virtio where devices are attached.</p>
+    <time class="post-date" datetime="2018-06-11T18:34:48&#43;05:30"><em>June 11, 2018</em></time><main class="post-content">
+                                  <p>Hey, here I am with another update! Last time I mentioned about splitting up the module but due to time constraint we agreed to skip that currently and move  forward. After setting up the bus, I thought it would be bus manager which needs to be setted up for data transfer and other read and write operations but it turns out to few things which need to be done before that and it&rsquo;s actually not the bus manager who do these operations, it will just create an instance of the interrupts and the operations to be done, and call back after it&rsquo;s done. I was referring to virtio subsystem&rsquo;s driver layout so wasn’t able to notice a difference between virtio and sdhc and i.e there are slots that needs to be attached to the bus(MMC bus) unlike in virtio where devices are attached.</p>
 <p>So there are some slots which belongs to mmc bus and needs to published. So whenever a card is detected it will hook to one of those published slot. Bus manager will map physical address into virtual memory. Now there are two ways to do this one is MMU(memory management unit), this maps virtual memory addresses to physical addresses and another is IOMMU(input/output memory management unit), which maps device visible addresses rather than CPU visible addresses. The way we implement IOMMU is as follows:</p>
 <pre><code>uint32 offset = fPCIInfo-&gt;u.h0.base_registers[0] &amp; (B_PAGE_SIZE - 1);
 phys_addr_t physicalAddress = fPCIInfo-&gt;u.h0.base_registers[0] - offset;
@@ -88,9 +86,7 @@ The hierarchy will be something like:</p>
 <p>This week while figuring out I also notice something like , &ldquo;B_PRI(x)&rdquo; which are used in printing some values in like TRACE() or sprintf(). It is used to handle the values across different architechtures like %d and %ld will be different for 32-bit and 64-bit.</p>
 <p>Next, I will try to create a device module which will do MMC io, read, write etc on MMC media. Thanks to korli, DeadYak, PulkoMandy, phoudoin.</p>
 
-  </div>
-
-  
+                                </main>
 
 
   </main>

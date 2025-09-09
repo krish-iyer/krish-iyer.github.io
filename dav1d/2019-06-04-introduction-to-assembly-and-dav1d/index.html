@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr">
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=45677&amp;path=livereload" data-no-instant defer></script>
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
   <meta charset="utf-8">
 <meta name="viewport" content="width=device-width">
 <title>Introduction to ARM Assembly and dav1d | Krishnan&#39;s blog</title>
@@ -59,10 +59,9 @@
 
     
     
-    <time class="post-date" datetime="2019-06-04T12:32:45&#43;01:00"><em>June 4, 2019</em></time>
-
-  <div class="post-content">
-    <h2 id="general-assembly">General Assembly</h2>
+    <time class="post-date" datetime="2019-06-04T12:32:45&#43;01:00"><em>June 4, 2019</em></time><div class="content-with-toc">
+                                  <main class="post-content">
+                                    <h2 id="general-assembly">General Assembly</h2>
 <p>The first thing to know about the assembly is, it&rsquo;s very much architecture dependant so for every different architecture there&rsquo;s a completely different story. Secondly, it&rsquo;s hard to get but that makes it more interesting.</p>
 <p>So before stepping into ARM assembly, I have written assembly programs and studied architecture in detail for mid-range micro-controllers. Also, I have done bit study for TMS320C6000 and TMS320F28027, they are like DSP processors so data lines and processor units are bit different there.</p>
 <h2 id="why-assembly">Why Assembly</h2>
@@ -75,9 +74,19 @@
 <p><a href="https://code.videolan.org/videolan/dav1d">dav1d</a> is an av1 decoder more about dav1d you can read from <a href="http://www.jbkempf.com/blog/post/2018/Introducing-dav1d">j-b&rsquo;s blog</a>. In order to achieve faster execution we need to optimize the code and also use some co-processor&rsquo;s capabilities to make it much more faster, so here comes NEON into play, it&rsquo;s built on co-processor 10 and 11(IIRC). So with this one, we get access to vector registers and we can execute single instruction on multiple data(SIMD).</p>
 <p>I will share some of the benchmarks in upcoming blog posts which compares C implementation vs Assembly implementation.</p>
 
-  </div>
-
-  
+                                  </main>
+                                  <aside class="post-toc">
+                                    <h3>Table of Contents</h3>
+                                    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#general-assembly">General Assembly</a></li>
+    <li><a href="#why-assembly">Why Assembly</a></li>
+    <li><a href="#how-to-get-started-with-arm-assembly">How to get started with ARM Assembly</a></li>
+    <li><a href="#dav1d-neon-optimization">dav1d NEON Optimization</a></li>
+  </ul>
+</nav>
+                                  </aside>
+                                </div>
 
 
   </main>

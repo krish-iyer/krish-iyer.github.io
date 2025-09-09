@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr">
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=45677&amp;path=livereload" data-no-instant defer></script>
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
   <meta charset="utf-8">
 <meta name="viewport" content="width=device-width">
 <title>Week #1 and #2 | Krishnan&#39;s blog</title>
@@ -59,10 +59,9 @@
 
     
     
-    <time class="post-date" datetime="2018-05-06T17:58:47&#43;05:30"><em>May 6, 2018</em></time>
-
-  <div class="post-content">
-    <p>Hey folks! here&rsquo;s the updates of past two weeks on the project!</p>
+    <time class="post-date" datetime="2018-05-06T17:58:47&#43;05:30"><em>May 6, 2018</em></time><div class="content-with-toc">
+                                  <main class="post-content">
+                                    <p>Hey folks! here&rsquo;s the updates of past two weeks on the project!</p>
 <p>I have cloned the latest haiku source and built the image file. With the generated image file I have emulated sdhci-pci device successfully. Following are the instructions to be followed:</p>
 <h2 id="cloning-the-source-code">Cloning the source code</h2>
 <pre><code>git clone https://github.com/haiku/haiku.git
@@ -159,9 +158,33 @@ I have been updating the code on my remote github repo[1] almost everyday, feel 
 <li><a href="https://github.com/krish-iyer/haiku/tree/sdhci_mmc_driver">https://github.com/krish-iyer/haiku/tree/sdhci_mmc_driver</a></li>
 </ul>
 
-  </div>
-
-  
+                                  </main>
+                                  <aside class="post-toc">
+                                    <h3>Table of Contents</h3>
+                                    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#cloning-the-source-code">Cloning the source code</a></li>
+    <li><a href="#compiling-source-code">Compiling Source Code</a></li>
+    <li><a href="#building-image">Building Image</a></li>
+    <li><a href="#error-while-building">Error! while building</a></li>
+    <li><a href="#emulation-with-qemu">Emulation with Qemu</a>
+      <ul>
+        <li><a href="#installing-qemu">Installing Qemu</a></li>
+        <li><a href="#boot-os-in-virtual-drive">Boot OS in Virtual Drive</a></li>
+        <li><a href="#emulation">Emulation</a></li>
+      </ul>
+    </li>
+    <li><a href="#creating-device-driver">Creating Device Driver</a>
+      <ul>
+        <li><a href="#apis-implemented-so-far">APIs implemented so far:</a></li>
+        <li><a href="#to-make-the-driver-module-loadable">To make the driver module loadable:</a></li>
+      </ul>
+    </li>
+    <li><a href="#loading-the-module">Loading the module</a></li>
+  </ul>
+</nav>
+                                  </aside>
+                                </div>
 
 
   </main>
