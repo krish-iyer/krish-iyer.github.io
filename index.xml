@@ -30,7 +30,7 @@
       <description>&lt;h1 id=&#34;introduction&#34;&gt;Introduction&lt;/h1&gt;&#xA;&lt;p&gt;This documentation will help you build a solid foundation for a drone network, enabling you to implement various swarm control algorithms specific to drones. This guide will cover wireless control of drones and manipulation of low-level network bindings.&lt;/p&gt;&#xA;&lt;p&gt;For testing and demonstration, I will be using a FC (flight controller) supported by Cleanflight configurator, which simplifies the control part. The idea is to first set up a standard drone in a flight-ready state and then gradually introduce custom code. For example, there&amp;rsquo;s a detailed tutorial on how to &lt;a href=&#34;https://www.instructables.com/id/Build-a-WiFi-Enabled-Micro-quadrotor/&#34;&gt;fly a drone using an Android app&lt;/a&gt;.&lt;/p&gt;</description>
     </item>
     <item>
-      <title>GSoC&#39;19 - dav1d ARM NEON Optimization</title>
+      <title>dav1d ARM NEON Optimization</title>
       <link>http://localhost:1313/dav1d/2019-08-19-gsoc19-final-report/</link>
       <pubDate>Mon, 19 Aug 2019 12:32:45 +0100</pubDate>
       <guid>http://localhost:1313/dav1d/2019-08-19-gsoc19-final-report/</guid>
