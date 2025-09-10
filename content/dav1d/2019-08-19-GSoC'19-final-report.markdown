@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "GSoC'19 - dav1d ARM NEON Optimization"
+title:  "dav1d ARM NEON Optimization"
 date:   2019-08-19 12:32:45 +0100
 categories: [dav1d]
 ---
